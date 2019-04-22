@@ -180,6 +180,7 @@ button:focus {
 }
 
 .top_menu {
+  list-style: none;
   overflow: hidden;
   background: #f9f9ff;
 }
