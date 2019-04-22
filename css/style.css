@@ -44,6 +44,15 @@ Table of Content:
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:400,600,700|Roboto:300,400,500,700");
 /*---------------------------------------------------- */
 /*----------------------------------------------------*/
+
+.dropdown{
+  padding-top: 18px;
+  margin-right: 45px;
+}
+
+.nav-item.active{
+
+}
 .list {
   list-style: none;
   margin: 0px;
@@ -186,21 +195,21 @@ button:focus {
 }
 
 .top_menu .float-left a {
-  font-size: 12px;
-  color: #fff;
-  background: #ff1857;
+  font-size: 15px;
+  color: rgb(80, 78, 78);
+  background: none;
   font-family: "Roboto", sans-serif;
   font-weight: normal;
   text-transform: uppercase;
-  padding: 0px 15px;
+  padding: 0px 5px;
   line-height: 30px;
   display: inline-block;
-  border: 1px solid #ff1857;
+
   margin-top: 6px;
 }
 
 .top_menu .float-left a:hover {
-  background: transparent;
+  background: none;
   color: #ff1857;
 }
 
@@ -258,6 +267,7 @@ button:focus {
   -webkit-box-pack: justify;
   -ms-flex-pack: justify;
   justify-content: space-between;
+  align-items:center;
   width: 100%;
 }
 
@@ -287,7 +297,15 @@ button:focus {
 
 .main_menu .navbar .nav .nav-item:hover .nav-link, .main_menu .navbar .nav .nav-item.active .nav-link {
   color: #ff1857;
+  font: 500 12px/0px "Roboto", sans-serif;
 }
+.main_menu .nav-item.active {
+  margin-left: 20px;
+  padding: 0px 2px;
+  font: 500 10px/45px "Roboto", sans-serif;
+
+}
+
 
 .main_menu .navbar .nav .nav-item.submenu {
   position: relative;
@@ -414,6 +432,7 @@ button:focus {
   position: relative;
   background: url(../img/banner/home-banner.jpg) no-repeat scroll center center;
   min-height: 600px;
+  
 }
 
 .home_banner_area .banner_inner .banner_content {
@@ -3541,7 +3560,7 @@ h6 {
 }
 
 .gad_btn {
-  background: #ff1857;
+  background: #746d6f;
   color: #fff;
   display: inline-block;
   padding: 0px 20px;
