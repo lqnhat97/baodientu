@@ -4191,3 +4191,70 @@ h6 {
 
 /*# sourceMappingURL=style.css.map */
 /*---------------------Sign up------------------------*/
+.div_border{
+  width: 750px;
+  border:  0.5px solid #d4d4d4;
+  border-radius: 10px;
+  margin: 0 auto;
+  margin-top: 15px;
+  padding-top: 30px;
+  padding-left: 40px;
+  padding-bottom: 10px;
+}
+.title_head{
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #007bff;
+  text-transform: uppercase;
+}
+.border_input{
+  border-radius: 5px;
+  border:  0.5px solid #d4d4d4;
+  width: 670px;
+}
+.div_distance{
+  margin-bottom: 15px;
+}
+.label1{
+  font-size: 15px;
+  color: #000;
+}
+.button1{
+  width: 120px;
+  border:  0.5px solid #007bff;
+  background-color: #fff;
+  font-size: 15px;
+  margin-right: 10px;
+  border-radius: 5px;
+}
+.button1:hover{
+  background-color: #007bff;
+  color: #fff;
+  font-size: 15px;
+  cursor: pointer;
+}
+::placeholder {
+  color: #90a4ae;
+  font-size: 14px;
+  padding: 20px;
+}
+.select1{
+  width: 100px; 
+  border-radius: 5px;
+  margin-left: 20px;
+}
+.radio1{
+  margin-left: 30px;
+}
+.checkbox1{
+  margin-right: 10px;
+}
+.compel{
+  color: red;
+}
+.div_button{
+  margin-bottom: 15px;
+  text-align: center;
+}
