@@ -4219,6 +4219,7 @@ h6 {
   padding-top: 30px;
   padding-left: 40px;
   padding-bottom: 10px;
+  background-color: #ffffffb8;
 }
 .title_head{
   text-align: center;
@@ -4276,4 +4277,48 @@ h6 {
 .div_button{
   margin-bottom: 15px;
   text-align: center;
+}
+.div_social{
+  margin-top: 30px;
+  text-align: center;
+}
+.btn-social{
+  position: relative;
+}
+.btn-facebook{
+  color: #fff;
+  background-color: #3b5998;
+  font-size: 17px;
+  border:  0.5px solid #3b5998;
+  padding: 5px;
+  border-radius: 5px;
+}
+.btn-facebook:hover{
+  color: #fff;
+  background-color: #1b3e79;
+}
+.fa-facebook{
+  right: 50px;
+  width: 30px;
+  border-right: 1px solid #dcdcdc;
+}
+.btn-google{
+  color: #fff;
+  background-color: #df4a32;
+  font-size: 17px;
+  border:  0.5px solid #df4a32;
+  padding: 5px;
+  border-radius: 5px;
+}
+.btn-google:hover{
+  color: #fff;
+  background-color: #ce3f2f;
+}
+.fa-google{
+  right: 50px;
+  width: 30px;
+  border-right: 1px solid #dcdcdc;
+}
+.background1{
+  background-image: url(../img/banner/banner.jpg);
 }
