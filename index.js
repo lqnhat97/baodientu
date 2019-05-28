@@ -1,5 +1,6 @@
 var express = require('express');
 var exphbs  = require('express-handlebars');
+var db = require('./database/db');
 
 var app = express();
 
@@ -19,6 +20,11 @@ app.set('view option',{layout:false})
 //routing
 //Trang chủ
 app.get('/', function (req, res) {
+    db.load('select * from NguoiDung').then(row=>{
+        console.log(row);
+    }).catch(e=>{
+        if(e) throw e;
+    })
     res.render("index",{
         layout:'main.hbs'
     });
