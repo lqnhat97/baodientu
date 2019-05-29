@@ -1,4 +1,4 @@
-create database BaoDienTu;
+drop database baodientu;create database baodientu;use baodientu;
 
 create table PhanHeNguoiDung
 (	IDPhanHe varchar(10) not null primary key,
@@ -14,8 +14,8 @@ create table NguoiDung
 ( ID INT  not null primary KEY auto_increment,
 	UserName varchar(50) not null unique,
 	MatKhau varchar(50) not null,
-	HoTen varchar(50),
-	GioiTinh varchar(10),
+	HoTen varchar(50) CHARACTER SET utf8 ,
+	GioiTinh varchar(10) CHARACTER SET utf8 ,
 	NgaySinh date,
 	Email varchar(50) not null unique,
 	SDT varchar(15) not null unique,
@@ -25,13 +25,13 @@ create table NguoiDung
 	NgayHetHan datetime,
 	TinhTrang varchar(20)
 	 );
-ALTER TABLE nguoidung CHANGE password matkhau varchar(50);
+ALTER TABLE nguoidung CHANGE matkhau password  varchar(50);
 alter table nguoidung drop column TKThe;
 
 
 create table ChuyenMuc #category
 ( IDChuyenMuc varchar(10) not null primary key,
-	TenChuyenMuc varchar(50) not null,
+	TenChuyenMuc varchar(50) CHARACTER SET utf8 not null ,
 	TenChuyenMuc_KhongDau varchar(50),
 	ChuyenMucCha varchar(10)
 	);
@@ -43,12 +43,12 @@ create table Nhan #tag
 
 create table BaiViet
 ( IDBaiViet varchar(15) not null primary key,
-  TieuDe varchar(255) not null,
+  TieuDe varchar(255) CHARACTER SET utf8  not null,
   TieuDe_KhongDau varchar(255),
-  ChuyenMuc varchar(10),
+  ChuyenMuc varchar(10) CHARACTER SET utf8 ,
   NgayDang datetime,
   AnhDaiDien int,
-  NoiDung text,
+  NoiDung text CHARACTER SET utf8 ,
   LuotXem int,
   PhongVien int,
   BienTapVien int,
@@ -65,7 +65,7 @@ create table BinhLuan
 ( IDBinhLuan int auto_increment,
   BaiViet varchar(15) not null,
   DocGia int not null,
-  NoiDung text,
+  NoiDung text  CHARACTER SET utf8 ,
   TinhTrang INT, # 1 : an, 0 : hien thi
    primary key(IDBinhLuan,BaiViet,DocGia)
    );
@@ -150,7 +150,7 @@ insert phanhenguoidung values ('PV001','Phong Vien');
 insert phanhenguoidung values ('BTV001','Bien Tap Vien');
 
 insert nguoidung values (null,'lequangnhat','nhat123',' Le Quang Nhat', 'Nam', '1997-08-29', 'lqnhat@gmail.com', '0926803468', 'PV001', '2019-05-10', '2024-05-10', 'Hoat Dong');
-update nguoidung set Username="hoanganhtuan", MatKhau="tuan123", HoTen="Hoang Anh Tuan", Email="hatuan@gmail.com" where ID = 2;
+update nguoidung set Username="hoanganhtuan", password="tuan123", HoTen="Hoang Anh Tuan", Email="hatuan@gmail.com" where ID = 2;
 insert nguoidung values (null,'vulamanh','anh123','Vu Lam Anh', 'Nu', '1995-05-25', 'lamanhpv@gmail.com', '0977713558', 'PV001', '2019-05-10', '2024-05-10', 'Hoat Dong');
 insert nguoidung values (null,'nguyenanhthi','thi123','Nguyen Anh Thi', 'Nu', '1996-02-05', 'thithi@gmail.com', '0355688828', 'PV001', '2019-05-10', '2024-05-10', 'Hoat Dong');
 insert nguoidung values (null,'trandonghoa','hoa123','Tran Dong Hoa', 'Nam', '1992-04-13', 'donghoatran@gmail.com', '0898981597', 'BTV001', '2019-05-10', '2024-05-10', 'Hoat Dong');
@@ -179,15 +179,3 @@ HỌA TIẾT CHERRY
 Những trái cherry đỏ lịm thu hút ánh nhìn người đối diện. Bạn có thể diện trang phục cherry cùng những phụ kiện cùng tông để tạo tổng thể hài hòa. Từ áo sơmi, áo blouse đến những chiếc đầm quấn dịu dàng, thời trang mùa Hè của bạn trở nên ấn tượng hơn nhờ loại quả “ngon mắt” này.
 HỌA TIẾT QUẢ DỨA
 Họa tiết quả dứa giúp vẻ ngoài của bạn thêm nổi bật và trẻ trung hơn. Vì loại quả này có hình vẽ hơi phức tạp, bạn nên ưu tiên kết hợp cùng những món đồ đơn giản hoặc chọn họa tiết nhỏ để trang phục không bị rối mắt.', '4', '5','6','1','1');
-
-
-
-
-
-
-
-
-
-
-
- 
