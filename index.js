@@ -9,11 +9,6 @@ var userController = require('./controller/userController')
 
 app.engine('hbs', exphbs({
     layoutsDir: 'views/layouts',
-    helpers: {
-        category:()=> {
-           return mainRepos.loadChuyenMuc();
-        }
-    }
 }));
 app.set('view engine', 'hbs');
 app.use(express.static('public'));
@@ -29,19 +24,6 @@ app.get('/', function (req, res) {
     });
 });
 
-//Đăng nhập
-app.get('/login', function (req, res) {
-    res.render("login", {
-        layout: 'main.hbs'
-    });
-});
-
-//Đăng xuất
-app.get('/signup', function (req, res) {
-    res.render("signup", {
-        layout: 'main.hbs'
-    });
-});
 
 //Category
 app.get('/category', function (req, res) {
