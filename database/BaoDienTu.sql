@@ -13,7 +13,7 @@ create table TaiKhoanThe
 	SoDu FLOAT
 	);
 create table NguoiDung
-( ID INT  not null primary KEY auto_increment,
+(	ID INT  not null primary KEY auto_increment,
 	UserName varchar(50) not null unique,
 	MatKhau varchar(50) not null,
 	HoTen varchar(50) CHARACTER SET utf8 ,
@@ -22,14 +22,10 @@ create table NguoiDung
 	Email varchar(50) not null unique,
 	SDT varchar(15) not null unique,
 	PhanHe varchar(10),
-	TKThe varchar(15) ,
 	NgayDangKy datetime,
 	NgayHetHan datetime,
 	TinhTrang varchar(20)
 	 );
-ALTER TABLE nguoidung CHANGE matkhau password  varchar(50);
-alter table nguoidung drop column TKThe;
-
 
 create table ChuyenMuc #category
 ( IDChuyenMuc varchar(10) not null primary key,
@@ -50,7 +46,8 @@ create table BaiViet
   ChuyenMuc varchar(10),
   NgayDang datetime,
   AnhDaiDien int,
-  NoiDung text CHARACTER SET utf8 ,
+  NoiDung text CHARACTER SET utf8,
+  XemTruoc text CHARACTER SET utf8,
   LuotXem int,
   PhongVien int,
   BienTapVien int,
@@ -180,7 +177,7 @@ insert urlhinhanh values (null,'https://i-dulich.vnecdn.net/2019/04/19/di-choi-g
 insert baiviet values ('BV001',N'9 cách tận hưởng cuộc sống theo cách thực sự ý nghĩa','9 cach tan huong cuoc song theo cach thuc su y nghia','TS001','2019-05-10','2','Cuộc sống của mỗi người chúng ta giống như một chuyến đi dài vô tận không có bản đồ. Trong hành trình cuộc đời, bạn phải dừng chân tại nhiều nơi khác nhau, đổi hướng đi tới những con đường chưa hề biết đến. Thường xuyên thay đổi định hướng và có đôi khi bạn dường như bị lạc, mặc dù bạn ghét phải thừa nhận điều này.
 Tuy nhiên, thật đáng buồn rằng có một số người kiên quyết mang theo bản đồ cho riêng mình để đảm bảo rằng bản thân luôn chắc chắn mọi điều. Tất cả các con đường đều có sẵn trên bản đồ và họ sẽ không bao giờ bị lạc.
 Nếu cuộc sống đơn giản chỉ là tồn tại thì nó giống như một chiếc máy bay điều khiển tự động, với đôi mắt mở to nhưng không nhìn thấy gì cả, cũng không thực sự cảm thấy hoặc trải nghiệm được gì. Bạn cứ bước đi hết bước này đến bước khác theo một hướng duy nhất. Không có cảm xúc, không có thách thức và chắc chắn không có được niềm vui nếu chỉ đơn giản lặp đi lặp lại một công việc mà bạn làm hàng ngày, trong khi mong đợi một điều gì khác.
-Trừ khi bạn cảm thấy sâu thẳm bên trong mình rằng cuộc sống không có nghĩa là như vậy thì có nhiều điều hơn thế mà bạn cần phải thay đổi. Là một người yêu thích sự thay đổi, tác giả của bài viết đã rút ra một số việc cần phải làm để cuộc sống trở nên thực sự ý nghĩa và từ đó bạn có thể bắt đầu yêu từng khoảng khắc trong cuộc sống của mình lại một lần nữa. Mời các bạn cùng tham khảo 9 cách tận hưởng cuộc sống theo cách thực sự ý nghĩa!', '0', '1','2','0','0');
+Trừ khi bạn cảm thấy sâu thẳm bên trong mình rằng cuộc sống không có nghĩa là như vậy thì có nhiều điều hơn thế mà bạn cần phải thay đổi. Là một người yêu thích sự thay đổi, tác giả của bài viết đã rút ra một số việc cần phải làm để cuộc sống trở nên thực sự ý nghĩa và từ đó bạn có thể bắt đầu yêu từng khoảng khắc trong cuộc sống của mình lại một lần nữa. Mời các bạn cùng tham khảo 9 cách tận hưởng cuộc sống theo cách thực sự ý nghĩa!', 'Cuộc sống của mỗi người chúng ta giống như một chuyến đi dài vô tận không có bản đồ. Trong hành trình cuộc đời, bạn phải dừng chân tại nhiều nơi khác nhau, đổi hướng đi tới những con đường chưa hề biết đến.','0', '1','2','0','0');
 
 insert baiviet values ('BV002',N'Chào Hè tươi mát với trang phục họa tiết hoa quả nhiệt đới','Chao he tuoi mat voi trang phuc hoa qua nhiet doi','TT001','2019-05-10','1','Những họa tiết hoa quả phổ biến nhất trong thời trang Hè như họa tiết quả chanh, quả cherry hay quả dứa một lần nữa nằm trong ưu tiên hàng đầu của bạn.
 Họa tiết hoa quả không thể thiếu khi nhắc đến thời trang mùa Hè. Hình ảnh vui nhộn và bảng màu bắt mắt xua đi cái nóng oi ả, đưa bạn đến với vùng biển đầy nắng gió hay khu vườn trái cây nhiệt đới sai quả.
@@ -189,7 +186,7 @@ HỌA TIẾT TRÁI CHANH
 HỌA TIẾT CHERRY
 Những trái cherry đỏ lịm thu hút ánh nhìn người đối diện. Bạn có thể diện trang phục cherry cùng những phụ kiện cùng tông để tạo tổng thể hài hòa. Từ áo sơmi, áo blouse đến những chiếc đầm quấn dịu dàng, thời trang mùa Hè của bạn trở nên ấn tượng hơn nhờ loại quả “ngon mắt” này.
 HỌA TIẾT QUẢ DỨA
-Họa tiết quả dứa giúp vẻ ngoài của bạn thêm nổi bật và trẻ trung hơn. Vì loại quả này có hình vẽ hơi phức tạp, bạn nên ưu tiên kết hợp cùng những món đồ đơn giản hoặc chọn họa tiết nhỏ để trang phục không bị rối mắt.', '0', '3','5','0','0');
+Họa tiết quả dứa giúp vẻ ngoài của bạn thêm nổi bật và trẻ trung hơn. Vì loại quả này có hình vẽ hơi phức tạp, bạn nên ưu tiên kết hợp cùng những món đồ đơn giản hoặc chọn họa tiết nhỏ để trang phục không bị rối mắt.','Những họa tiết hoa quả phổ biến nhất trong thời trang Hè như họa tiết quả chanh, quả cherry hay quả dứa một lần nữa nằm trong ưu tiên hàng đầu của bạn.', '0', '3','5','0','0');
 
 insert baiviet values ('BV003',N'HLV Park Hang-seo cần sự ổn định để đối đầu với Thái Lan','HLV Park Hang-seo can su on dinh de doi dau voi Thai Lan','TTA001','2019-05-10','3','Dù gây bất ngờ với danh sách triệu tập ĐTQG, nhưng theo chuyên gia Đoàn Minh Xương, HLV Park Hang-seo đang cần sự ổn định để đối đầu với Thái Lan.
 Chiều ngày 27/5, HLV trưởng ĐTQG Việt Nam Park Hang-seo đã công bố danh sách chính thức triệu tập 23 tuyển thủ Việt Nam chuẩn bị cho Kings Cup 2019. Danh sách này đã gây nhiều bất ngờ cho người hâm mộ khi dàn tuyển thủ được triệu tập hầu như đều là những gương mặt cũ đã từng "ăn cơm" tuyển trong suốt một thời gian dài.
@@ -203,7 +200,7 @@ Danh sách đội tuyển Việt Nam:
 Thủ môn: Trần Nguyên Mạnh (SLNA), Đặng Văn Lâm (Muangthong United), Nguyễn Văn Toản (Hải Phòng).
 Hậu vệ: Đoàn Văn Hậu (Hà Nội FC), Bùi Tiến Dũng (Viettel), Quế Ngọc Hải (Viettel), Trần Đình Trọng (Hà Nội FC), Đỗ Duy Mạnh (Hà Nội FC), Huỳnh Tấn Sinh (Quảng Nam), Hồng Duy (HAGL), Văn Thanh (HAGL).
 Tiền vệ: Đức Huy (Hà Nội FC), Xuân Trường (Buriram United), Hùng Dũng (Hà Nội FC), Tuấn Anh (HAGL), Trọng Hoàng (Viettel), Văn Kiên (Hà Nội FC), Minh Vương (HAGL).
-Tiền đạo: Văn Toàn (HAGL), Công Phượng (Incheon United), Quang Hải (Hà Nội FC), Anh Đức (B.Bình Dương), Đức Chinh (SHB Đà Nẵng).', '0', '6','8','0','0');
+Tiền đạo: Văn Toàn (HAGL), Công Phượng (Incheon United), Quang Hải (Hà Nội FC), Anh Đức (B.Bình Dương), Đức Chinh (SHB Đà Nẵng).','Dù gây bất ngờ với danh sách triệu tập ĐTQG, nhưng theo chuyên gia Đoàn Minh Xương, HLV Park Hang-seo đang cần sự ổn định để đối đầu với Thái Lan.', '0', '6','8','0','0');
 
 insert baiviet values ('BV004',N'8 điểm đến gần Hà Nội và dễ đi trong dịp 30/4','8 diem den gan Ha Noi va de di trong dip 30/4','DL001','2019-05-10','4','Chỉ mất từ một tới hai tiếng chạy xe, du khách có thể chọn cho mình những chuyến picnic ngắn ngày, hòa mình cùng thiên nhiên trong dịp nghỉ lễ.
 Núi Trầm
@@ -229,7 +226,7 @@ Mùa bướm ở rừng Cúc Phương bắt đầu từ khoảng cuối tháng 4
 Giá vé vào cửa vườn quốc gia Cúc Phương là 60.000 đồng một người, 30.000 đồng với học sinh, sinh viên... 
 Đồng Cao
 Nằm cách Hà Nội chừng 150 km, Đồng Cao là điểm đến hoang sơ thuộc xã Thạch Sơn, huyện Sơn Động, tỉnh Bắc Giang. Đây là điểm đến hiếm hoi thích hợp cho cả bốn mùa, thu hút du khách bởi không gian rộng lớn với những thảo nguyên, đồi cỏ thấp và bầu không khí trong lành. Du lịch Đồng Cao thường thích hợp với kiểu phượt xe máy, picnic ngắn ngày do khu vực này nằm khá biệt lập, chỉ có khoảng hơn chục nóc nhà của người dân nằm rải rác xung quanh. Vào mùa hè, những đồng cỏ tại đây chuyển màu xanh mướt và ngả vàng khi bước sang mùa đông. Do vị trí xa khu đông dân cư, các nhóm phượt Đồng Cao có cơ hội nhìn thấy bầu trời đầy sao vào ban đêm những ngày trời quang mây và đón ánh bình minh vào sáng hôm sau.
-Du khách cần chuẩn bị kỹ càng các vật dụng như lều trại, đồ nấu nướng do không có bất cứ dịch vụ nào trong bán kính khoảng 10 km quanh Đồng Cao.', '0', '9','8','0','0');
+Du khách cần chuẩn bị kỹ càng các vật dụng như lều trại, đồ nấu nướng do không có bất cứ dịch vụ nào trong bán kính khoảng 10 km quanh Đồng Cao.','Chỉ mất từ một tới hai tiếng chạy xe, du khách có thể chọn cho mình những chuyến picnic ngắn ngày, hòa mình cùng thiên nhiên trong dịp nghỉ lễ.', '0', '9','8','0','0');
 
 
 
