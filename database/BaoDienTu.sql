@@ -49,6 +49,7 @@ create table BaiViet
   NgayDang datetime,
   AnhDaiDien int,
   NoiDung text CHARACTER SET utf8 ,
+  XemTruoc text CHARACTER SET utf8 ,
   LuotXem int,
   PhongVien int,
   BienTapVien int,
@@ -168,7 +169,7 @@ insert urlhinhanh values (null,'https://st.quantrimang.com/photos/image/2017/08/
 insert baiviet values ('BV001',N'9 cách tận hưởng cuộc sống theo cách thực sự ý nghĩa','9 cach tan huong cuoc song theo cach thuc su y nghia','TS001','2019-05-10','2','Cuộc sống của mỗi người chúng ta giống như một chuyến đi dài vô tận không có bản đồ. Trong hành trình cuộc đời, bạn phải dừng chân tại nhiều nơi khác nhau, đổi hướng đi tới những con đường chưa hề biết đến. Thường xuyên thay đổi định hướng và có đôi khi bạn dường như bị lạc, mặc dù bạn ghét phải thừa nhận điều này.
 Tuy nhiên, thật đáng buồn rằng có một số người kiên quyết mang theo bản đồ cho riêng mình để đảm bảo rằng bản thân luôn chắc chắn mọi điều. Tất cả các con đường đều có sẵn trên bản đồ và họ sẽ không bao giờ bị lạc.
 Nếu cuộc sống đơn giản chỉ là tồn tại thì nó giống như một chiếc máy bay điều khiển tự động, với đôi mắt mở to nhưng không nhìn thấy gì cả, cũng không thực sự cảm thấy hoặc trải nghiệm được gì. Bạn cứ bước đi hết bước này đến bước khác theo một hướng duy nhất. Không có cảm xúc, không có thách thức và chắc chắn không có được niềm vui nếu chỉ đơn giản lặp đi lặp lại một công việc mà bạn làm hàng ngày, trong khi mong đợi một điều gì khác.
-Trừ khi bạn cảm thấy sâu thẳm bên trong mình rằng cuộc sống không có nghĩa là như vậy thì có nhiều điều hơn thế mà bạn cần phải thay đổi. Là một người yêu thích sự thay đổi, tác giả của bài viết đã rút ra một số việc cần phải làm để cuộc sống trở nên thực sự ý nghĩa và từ đó bạn có thể bắt đầu yêu từng khoảng khắc trong cuộc sống của mình lại một lần nữa. Mời các bạn cùng tham khảo 9 cách tận hưởng cuộc sống theo cách thực sự ý nghĩa!', '2', '1','2','1','1');
+Trừ khi bạn cảm thấy sâu thẳm bên trong mình rằng cuộc sống không có nghĩa là như vậy thì có nhiều điều hơn thế mà bạn cần phải thay đổi. Là một người yêu thích sự thay đổi, tác giả của bài viết đã rút ra một số việc cần phải làm để cuộc sống trở nên thực sự ý nghĩa và từ đó bạn có thể bắt đầu yêu từng khoảng khắc trong cuộc sống của mình lại một lần nữa. Mời các bạn cùng tham khảo 9 cách tận hưởng cuộc sống theo cách thực sự ý nghĩa!',N'Cuộc sống của mỗi người chúng ta giống như một chuyến đi dài vô tận không có bản đồ. Trong hành trình cuộc đời, bạn phải dừng chân tại nhiều nơi khác nhau, đổi hướng đi tới những con đường chưa hề biết đến. Thường xuyên thay đổi định hướng và có đôi khi bạn dường như bị lạc, mặc dù bạn ghét phải thừa nhận điều này.', '2', '1','2','1','1');
 update baiviet set AnhDaiDien=3 where ChuyenMuc='TS001';
 
 insert baiviet values ('BV002',N'Chào Hè tươi mát với trang phục họa tiết hoa quả nhiệt đới','Chao he tuoi mat voi trang phuc hoa qua nhiet doi','TT001','2019-05-10','1','Những họa tiết hoa quả phổ biến nhất trong thời trang Hè như họa tiết quả chanh, quả cherry hay quả dứa một lần nữa nằm trong ưu tiên hàng đầu của bạn.
@@ -178,4 +179,4 @@ HỌA TIẾT TRÁI CHANH
 HỌA TIẾT CHERRY
 Những trái cherry đỏ lịm thu hút ánh nhìn người đối diện. Bạn có thể diện trang phục cherry cùng những phụ kiện cùng tông để tạo tổng thể hài hòa. Từ áo sơmi, áo blouse đến những chiếc đầm quấn dịu dàng, thời trang mùa Hè của bạn trở nên ấn tượng hơn nhờ loại quả “ngon mắt” này.
 HỌA TIẾT QUẢ DỨA
-Họa tiết quả dứa giúp vẻ ngoài của bạn thêm nổi bật và trẻ trung hơn. Vì loại quả này có hình vẽ hơi phức tạp, bạn nên ưu tiên kết hợp cùng những món đồ đơn giản hoặc chọn họa tiết nhỏ để trang phục không bị rối mắt.', '4', '5','6','1','1');
+Họa tiết quả dứa giúp vẻ ngoài của bạn thêm nổi bật và trẻ trung hơn. Vì loại quả này có hình vẽ hơi phức tạp, bạn nên ưu tiên kết hợp cùng những món đồ đơn giản hoặc chọn họa tiết nhỏ để trang phục không bị rối mắt.',N'Những họa tiết hoa quả phổ biến nhất trong thời trang Hè như họa tiết quả chanh, quả cherry hay quả dứa một lần nữa nằm trong ưu tiên hàng đầu của bạn.', '4', '5','6','1','1');

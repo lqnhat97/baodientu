@@ -1,7 +1,8 @@
 var categoryRepos = require('../repository/main');
 
-module.exports =(req,res)=>{
+module.exports =(req,res,next)=>{
     categoryRepos.loadChuyenMuc().then(rows =>{
-        res.local._category = rows;
+        res.locals._category = rows;
+        next();
     })
 }
