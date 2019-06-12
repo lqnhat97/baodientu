@@ -19,7 +19,7 @@ create table NguoiDung
 	MatKhau varchar(50) not null,
 	HoTen varchar(50) CHARACTER SET utf8 ,
 	GioiTinh varchar(10) CHARACTER SET utf8 ,
-    AnhDaiDien varchar(255) not null,
+    AnhDaiDien varchar(255),
 	NgaySinh date,
 	Email varchar(50) not null unique,
 	SDT varchar(15) not null unique,
@@ -118,37 +118,37 @@ foreign key (IDBaiViet)
 references BaiViet(IDBaiViet);
 --------- THEM DU LIEU
 
-insert phanhenguoidung values (null,'Phong Vien');
-insert phanhenguoidung values (null,'Bien Tap Vien');
-insert phanhenguoidung values (null,'Admin');
-insert phanhenguoidung values (null,'Doc Gia');
-insert phanhenguoidung values (null,'Doc Gia Vang Lai');
+insert PhanHeNguoiDung values (null,'Phong Vien');
+insert PhanHeNguoiDung values (null,'Bien Tap Vien');
+insert PhanHeNguoiDung values (null,'Admin');
+insert PhanHeNguoiDung values (null,'Doc Gia');
+insert PhanHeNguoiDung values (null,'Doc Gia Vang Lai');
 
-insert nguoidung values (null,'lequangnhat','nhat123',' Le Quang Nhat', 'Nam','img/nguoidung.jpg', '1997-08-29', 'lqnhat@gmail.com', '0926803468', '1', '2019-05-06', '2024-05-06', 'Hoat Dong');
-insert nguoidung values (null,'hoanganhtuan','tuan123','Hoang Anh Tuan', 'Nam','img/nguoidung.jpg', '1995-10-17', 'hatuan@gmail.com', '0981828596', '2', '2019-05-05', '2024-05-05', 'Hoat Dong');
-insert nguoidung values (null,'vulamanh','anh123','Vu Lam Anh', 'Nu','img/nguoidung.jpg', '1995-05-25', 'lamanhpv@gmail.com', '0977713558', '1', '2019-05-10', '2024-05-10', 'Hoat Dong');
-insert nguoidung values (null,'nguyenanhthi','thi123','Nguyen Anh Thi', 'Nu','img/nguoidung.jpg', '1996-02-05', 'thithi@gmail.com', '0355688828', '1', '2019-05-15', '2024-05-15', 'Hoat Dong');
-insert nguoidung values (null,'trandonghoa','hoa123','Tran Dong Hoa', 'Nam','img/nguoidung.jpg', '1992-04-13', 'donghoatran@gmail.com', '0898981597', '2', '2019-05-21', '2024-05-21', 'Hoat Dong');
-insert nguoidung values (null,'hoanglean','an123','Hoang Le An', 'Nam','img/nguoidung.jpg', '1991-07-09', 'anlehoang@gmail.com', '0979845461', '1', '2019-06-02', '2024-06-02', 'Hoat Dong');
-insert nguoidung values (null,'dangthienminh','minh123','Dang Thien Minh', 'Nam','img/nguoidung.jpg', '1997-06-14', 'dtminh@gmail.com', '0762412871', '1', '2019-05-03', '2024-05-03', 'Hoat Dong');
-insert nguoidung values (null,'phanthimyduyen','duyen123','Phan Thi My Duyen', 'Nu','img/nguoidung.jpg', '1995-02-22', 'duyenphan@gmail.com', '0963512841', '2', '2019-06-09', '2024-06-09', 'Hoat Dong');
-insert nguoidung values (null,'tranhaonam','nam321','Tran Hao Nam', 'Nam','img/nguoidung.jpg', '1997-08-12', 'thnam@gmail.com', '0754125746', '4', '2019-06-05', '2024-06-05', 'Hoat Dong');
-insert nguoidung values (null,'nguyenthuynhien','nhien123','Nguyen Thuy Nhien', 'Nu','img/nguoidung.jpg', '1997-04-16', 'ntnhien@gmail.com', '092510741', '4', '2019-05-24', '2024-05-24', 'Hoat Dong');
+insert NguoiDung values (null,'lequangnhat','nhat123',' Le Quang Nhat', 'Nam','img/nguoidung.jpg', '1997-08-29', 'lqnhat@gmail.com', '0926803468', '1', '2019-05-06', '2024-05-06', 'Hoat Dong');
+insert NguoiDung values (null,'hoanganhtuan','tuan123','Hoang Anh Tuan', 'Nam','img/nguoidung.jpg', '1995-10-17', 'hatuan@gmail.com', '0981828596', '2', '2019-05-05', '2024-05-05', 'Hoat Dong');
+insert NguoiDung values (null,'vulamanh','anh123','Vu Lam Anh', 'Nu','img/nguoidung.jpg', '1995-05-25', 'lamanhpv@gmail.com', '0977713558', '1', '2019-05-10', '2024-05-10', 'Hoat Dong');
+insert NguoiDung values (null,'nguyenanhthi','thi123','Nguyen Anh Thi', 'Nu','img/nguoidung.jpg', '1996-02-05', 'thithi@gmail.com', '0355688828', '1', '2019-05-15', '2024-05-15', 'Hoat Dong');
+insert NguoiDung values (null,'trandonghoa','hoa123','Tran Dong Hoa', 'Nam','img/nguoidung.jpg', '1992-04-13', 'donghoatran@gmail.com', '0898981597', '2', '2019-05-21', '2024-05-21', 'Hoat Dong');
+insert NguoiDung values (null,'hoanglean','an123','Hoang Le An', 'Nam','img/nguoidung.jpg', '1991-07-09', 'anlehoang@gmail.com', '0979845461', '1', '2019-06-02', '2024-06-02', 'Hoat Dong');
+insert NguoiDung values (null,'dangthienminh','minh123','Dang Thien Minh', 'Nam','img/nguoidung.jpg', '1997-06-14', 'dtminh@gmail.com', '0762412871', '1', '2019-05-03', '2024-05-03', 'Hoat Dong');
+insert NguoiDung values (null,'phanthimyduyen','duyen123','Phan Thi My Duyen', 'Nu','img/nguoidung.jpg', '1995-02-22', 'duyenphan@gmail.com', '0963512841', '2', '2019-06-09', '2024-06-09', 'Hoat Dong');
+insert NguoiDung values (null,'tranhaonam','nam321','Tran Hao Nam', 'Nam','img/nguoidung.jpg', '1997-08-12', 'thnam@gmail.com', '0754125746', '4', '2019-06-05', '2024-06-05', 'Hoat Dong');
+insert NguoiDung values (null,'nguyenthuynhien','nhien123','Nguyen Thuy Nhien', 'Nu','img/nguoidung.jpg', '1997-04-16', 'ntnhien@gmail.com', '092510741', '4', '2019-05-24', '2024-05-24', 'Hoat Dong');
 
-insert chuyenmuc values ('GT1',N'Giải trí','Giai tri', null);
-insert chuyenmuc values ('DS1',N'Đời sống','Doi song', null);
-insert chuyenmuc values ('TT1',N'Thời trang','Thoi trang','GT1');
-insert chuyenmuc values ('TH1',N'Truyền hình','Truyen hinh','GT1');
-insert chuyenmuc values ('AN1',N'Âm nhạc','Am nhac','GT1');
-insert chuyenmuc values ('TS1',N'Tâm sự','Tam su','DS1');
-insert chuyenmuc values ('DL1',N'Du lịch','Du lich','DS1');
-insert chuyenmuc values ('TTA1',N'Thể thao','The thao',null);
-insert chuyenmuc values ('SK1',N'Sức khỏe','Suc khoe',null);
-insert chuyenmuc values ('CN1',N'Công nghệ','Cong nghe',null);
-insert chuyenmuc values ('GD1',N'Gia đình','Gia dinh','DS1');
-insert chuyenmuc values ('KD1',N'Kinh doanh','Kinh doanh',null);
-insert chuyenmuc values ('BDS1',N'Bất động sản','Bat dong san',null);
-insert chuyenmuc values ('PL1',N'Pháp luật','Phap luat',null);
+insert ChuyenMuc values ('GT1',N'Giải trí','Giai tri', null);
+insert ChuyenMuc values ('DS1',N'Đời sống','Doi song', null);
+insert ChuyenMuc values ('TT1',N'Thời trang','Thoi trang','GT1');
+insert ChuyenMuc values ('TH1',N'Truyền hình','Truyen hinh','GT1');
+insert ChuyenMuc values ('AN1',N'Âm nhạc','Am nhac','GT1');
+insert ChuyenMuc values ('TS1',N'Tâm sự','Tam su','DS1');
+insert ChuyenMuc values ('DL1',N'Du lịch','Du lich','DS1');
+insert ChuyenMuc values ('TTA1',N'Thể thao','The thao',null);
+insert ChuyenMuc values ('SK1',N'Sức khỏe','Suc khoe',null);
+insert ChuyenMuc values ('CN1',N'Công nghệ','Cong nghe',null);
+insert ChuyenMuc values ('GD1',N'Gia đình','Gia dinh','DS1');
+insert ChuyenMuc values ('KD1',N'Kinh doanh','Kinh doanh',null);
+insert ChuyenMuc values ('BDS1',N'Bất động sản','Bat dong san',null);
+insert ChuyenMuc values ('PL1',N'Pháp luật','Phap luat',null);
 
 /*
 insert urlhinhanh values (null,'https://www.elle.vn/wp-content/uploads/2019/01/19/elle-viet-nam-trang-phuc-tet-3.jpg');

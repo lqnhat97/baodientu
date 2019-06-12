@@ -5,7 +5,7 @@ delimiter //
 create procedure HienThiBaiVietTrangChu (IN idbaiviet int)
 BEGIN
 	select baiviet.AnhDaiDien, chuyenmuc.IDChuyenMuc, chuyenmuc.TenChuyenMuc, baiviet.IDBaiViet, baiviet.TieuDe, baiviet.XemTruoc
-	from baiviet inner join chuyenmuc on baiviet.ChuyenMuc = chuyenmuc.IDChuyenMuc
+	from BaiViet inner join chuyenmuc on baiviet.ChuyenMuc = chuyenmuc.IDChuyenMuc
 	where baiviet.IDBaiViet = idbaiviet;
 END //
 delimiter ;
@@ -17,7 +17,7 @@ delimiter //
 create procedure HienThiBaiVietChiTiet (in idbaiviet int)
 BEGIN
 	select baiviet.IDBaiViet, baiviet.AnhDaiDien, baiviet.TieuDe, baiviet.NoiDung, count(binhluan.IDBinhLuan) as slbinhluan, nguoidung.HoTen as nguoidang
-	from baiviet inner join binhluan on baiviet.IDBaiViet = binhluan.IDBaiViet
+	from BaiViet inner join binhluan on baiviet.IDBaiViet = binhluan.IDBaiViet
 				 inner join nguoidung on baiviet.phongvien = nguoidung.id
 	where baiviet.IDBaiViet = idbaiviet
     group by binhluan.IDBaiViet;
@@ -31,7 +31,7 @@ delimiter //
 create procedure HienThiBinhLuan (in idbaiviet int)
 BEGIN
 	select baiviet.idbaiviet, binhluan.idbinhluan, nguoidung.HoTen as nguoibinhluan, binhluan.noidung, binhluan.ngaydang
-	from baiviet inner join binhluan on baiviet.IDBaiViet = binhluan.IDBaiViet
+	from BaiViet inner join binhluan on baiviet.IDBaiViet = binhluan.IDBaiViet
 				 inner join nguoidung on binhluan.docgia = nguoidung.id
 	where baiviet.IDBaiViet = idbaiviet;
 END //
@@ -44,7 +44,7 @@ delimiter //
 create procedure HienThiNhan (in idbaiviet int)
 BEGIN
 	select baiviet.idbaiviet, nhan.idtag, nhan.tentag
-	from baiviet inner join nhan on baiviet.IDBaiViet = nhan.IDBaiViet
+	from BaiViet inner join nhan on baiviet.IDBaiViet = nhan.IDBaiViet
 	where baiviet.IDBaiViet = idbaiviet;
 END //
 delimiter ;
@@ -76,7 +76,7 @@ call ThemBaiViet(null, '8 điểm đến gần Hà Nội và dễ đi trong dị
 delimiter //
 create procedure LayIDBaiVietMoi (OUT idbaivietmoi int)
 begin 
-	select MAX(idbaiviet) as idbaivietmoi from baiviet;
+	select MAX(idbaiviet) as idbaivietmoi ;
 end //
 delimiter ;
 call LayIDBaiVietMoi(@idbaivietmoi);
