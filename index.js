@@ -58,6 +58,7 @@ var adminController = require('./controller/adminController');
 var userController = require('./controller/userController');
 var homeController = require('./controller/homeController');
 var categoryController = require('./controller/homeController');
+var postController = require('./controller/postController')
 
 var handle404 = require('./util/handle404');
 
@@ -67,6 +68,9 @@ app.use('/',homeController);
 
 //Category
 app.use('/category', categoryController);
+
+//Post
+app.use('/post', postController);
 
 //Contact
 app.get('/contact', function (req, res) {

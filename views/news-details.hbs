@@ -1,343 +1,393 @@
 <!--================Home Banner Area =================-->
-        <section class="banner_area">
-            <div class="banner_inner d-flex align-items-center">
-            	<div class="overlay bg-parallax" data-stellar-ratio="0.9" data-stellar-vertical-offset="0" data-background=""></div>
-				<div class="container">
-					<div class="banner_content text-center">
-						<h2>Bài viết chi tiết</h2>
-						<div class="page_link">
-							<a href="index.html">Trang chủ</a>
-							<a href="news-details.html">Bài viết chi tiết</a>
+<section class="banner_area">
+	<div class="banner_inner d-flex align-items-center">
+		<div class="overlay bg-parallax" data-stellar-ratio="0.9" data-stellar-vertical-offset="0" data-background="">
+		</div>
+		<div class="container">
+			<div class="banner_content text-center">
+				<h2>{{baiViet.TieuDe}}</h2>
+				<div class="page_link">
+					<a href="/">Trang chủ</a>
+					<a href="/post/{{baiViet.IDBaiViet}}">{{baiViet.TieuDe}}</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<!--================End Home Banner Area =================-->
+<!--================News Area =================-->
+<section class="news_area single-post-area p_100">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-8">
+				<div class="main_blog_details">
+					<img class="img-fluid" src="/{{baiViet.AnhDaiDien}}" alt="">
+					<a href="/post/{{baiViet.IDBaiViet}}">
+						<h4>{{baiViet.TieuDe}}</h4>
+					</a>
+					<div class="user_details">
+						<div class="float-left">
+							<a href="#">Phong cách sống</a>
+							<a href="#">Tiện ích</a>
+						</div>
+						<div class="float-right">
+							<div class="media">
+								<div class="media-body">
+									<h5>Lê Na</h5>
+									<p>{{baiViet.NgayDang}}</p>
+								</div>
+								<div class="d-flex">
+									<img src="/img/blog/user-img.jpg" alt="">
+								</div>
+							</div>
 						</div>
 					</div>
-				</div>
-            </div>
-        </section>
-        <!--================End Home Banner Area =================-->
-        <!--================News Area =================-->
-        <section class="news_area single-post-area p_100">
-        	<div class="container">
-        		<div class="row">
-        			<div class="col-lg-8">
-       					<div class="main_blog_details">
-       						<img class="img-fluid" src="img/blog/news-blog.jpg" alt="">
-       						<a href="#"><h4>9 cách tận hưởng cuộc sống theo cách thực sự ý nghĩa</h4></a>
-       						<div class="user_details">
-       							<div class="float-left">
-       								<a href="#">Phong cách sống</a>
-       								<a href="#">Tiện ích</a>
-       							</div>
-       							<div class="float-right">
-       								<div class="media">
-       									<div class="media-body">
-       										<h5>Lê Na</h5>
-       										<p>12 April, 2019 11:21 am</p>
-       									</div>
-       									<div class="d-flex">
-       										<img src="img/blog/user-img.jpg" alt="">
-       									</div>
-       								</div>
-       							</div>
-       						</div>
-       						<p>Cuộc sống của mỗi người chúng ta giống như một chuyến đi dài vô tận không có bản đồ. Trong hành trình cuộc đời, bạn phải dừng chân tại nhiều nơi khác nhau, đổi hướng đi tới những con đường chưa hề biết đến. Thường xuyên thay đổi định hướng và có đôi khi bạn dường như bị lạc, mặc dù bạn ghét phải thừa nhận điều này.</p>
+					<article class="result">
+						{{{baiViet.NoiDung}}}
+					</article>
+					{{!-- <p>Cuộc sống của mỗi người chúng ta giống như một chuyến đi dài vô tận không có bản đồ. Trong hành trình cuộc đời, bạn phải dừng chân tại nhiều nơi khác nhau, đổi hướng đi tới những con đường chưa hề biết đến. Thường xuyên thay đổi định hướng và có đôi khi bạn dường như bị lạc, mặc dù bạn ghét phải thừa nhận điều này.</p>
        						<p>Tuy nhiên, thật đáng buồn rằng có một số người kiên quyết mang theo bản đồ cho riêng mình để đảm bảo rằng bản thân luôn chắc chắn mọi điều. Tất cả các con đường đều có sẵn trên bản đồ và họ sẽ không bao giờ bị lạc.</p>
 							<blockquote class="blockquote">
 								<p class="mb-0">Nếu cuộc sống đơn giản chỉ là tồn tại thì nó giống như một chiếc máy bay điều khiển tự động, với đôi mắt mở to nhưng không nhìn thấy gì cả, cũng không thực sự cảm thấy hoặc trải nghiệm được gì. Bạn cứ bước đi hết bước này đến bước khác theo một hướng duy nhất. Không có cảm xúc, không có thách thức và chắc chắn không có được niềm vui nếu chỉ đơn giản lặp đi lặp lại một công việc mà bạn làm hàng ngày, trong khi mong đợi một điều gì khác.</p>
 							</blockquote>
-							<p>Trừ khi bạn cảm thấy sâu thẳm bên trong mình rằng cuộc sống không có nghĩa là như vậy thì có nhiều điều hơn thế mà bạn cần phải thay đổi. Là một người yêu thích sự thay đổi, tác giả của bài viết đã rút ra một số việc cần phải làm để cuộc sống trở nên thực sự ý nghĩa và từ đó bạn có thể bắt đầu yêu từng khoảng khắc trong cuộc sống của mình lại một lần nữa. Mời các bạn cùng tham khảo 9 cách tận hưởng cuộc sống theo cách thực sự ý nghĩa!</p>
-      						<div class="news_d_footer">
-      							<a href="#"><i class="lnr lnr lnr-heart"></i>Mai Ly and 4 người khác đã thích bài viết này</a>
-      							<a class="justify-content-center ml-auto" href="#"><i class="lnr lnr lnr-bubble"></i>06 Bình luận</a>
-      							<div class="news_socail ml-auto">
-									<a href="#"><i class="fa fa-facebook"></i></a>
-									<a href="#"><i class="fa fa-twitter"></i></a>
-									<a href="#"><i class="fa fa-youtube-play"></i></a>
-									<a href="#"><i class="fa fa-pinterest"></i></a>
-									<a href="#"><i class="fa fa-rss"></i></a>
+							<p>Trừ khi bạn cảm thấy sâu thẳm bên trong mình rằng cuộc sống không có nghĩa là như vậy thì có nhiều điều hơn thế mà bạn cần phải thay đổi. Là một người yêu thích sự thay đổi, tác giả của bài viết đã rút ra một số việc cần phải làm để cuộc sống trở nên thực sự ý nghĩa và từ đó bạn có thể bắt đầu yêu từng khoảng khắc trong cuộc sống của mình lại một lần nữa. Mời các bạn cùng tham khảo 9 cách tận hưởng cuộc sống theo cách thực sự ý nghĩa!</p> --}}
+					<div class="news_d_footer">
+						<a href="#"><i class="lnr lnr lnr-heart"></i>Mai Ly and 4 người khác đã thích bài viết này</a>
+						<a class="justify-content-center ml-auto" href="#"><i class="lnr lnr lnr-bubble"></i>06 Bình
+							luận</a>
+						<div class="news_socail ml-auto">
+							<a href="#"><i class="fa fa-facebook"></i></a>
+							<a href="#"><i class="fa fa-twitter"></i></a>
+							<a href="#"><i class="fa fa-youtube-play"></i></a>
+							<a href="#"><i class="fa fa-pinterest"></i></a>
+							<a href="#"><i class="fa fa-rss"></i></a>
+						</div>
+					</div>
+				</div>
+				<div class="navigation-area">
+					<div class="row">
+						<div
+							class="col-lg-6 col-md-6 col-12 nav-left flex-row d-flex justify-content-start align-items-center">
+							<div class="thumb">
+								<a href="#"><img class="img-fluid" src="/img/blog/prev.jpg" alt=""></a>
+							</div>
+							<div class="arrow">
+								<a href="#"><span class="lnr text-white lnr-arrow-left"></span></a>
+							</div>
+							<div class="detials">
+								<p>Bài viết trước</p>
+								<a href="#">
+									<h4>Luôn lắng nghe những gì trái tim mách bảo</h4>
+								</a>
+							</div>
+						</div>
+						<div
+							class="col-lg-6 col-md-6 col-12 nav-right flex-row d-flex justify-content-end align-items-center">
+							<div class="detials">
+								<p>Bài viết tiếp theo</p>
+								<a href="#">
+									<h4>Hãy là chính mình</h4>
+								</a>
+							</div>
+							<div class="arrow">
+								<a href="#"><span class="lnr text-white lnr-arrow-right"></span></a>
+							</div>
+							<div class="thumb">
+								<a href="#"><img class="img-fluid" src="/img/blog/next.jpg" alt=""></a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="comments-area">
+					<h4>05 Bình luận</h4>
+					<div class="comment-list">
+						<div class="single-comment justify-content-between d-flex">
+							<div class="user justify-content-between d-flex">
+								<div class="thumb">
+									<img src="/img/blog/c1.jpg" alt="">
 								</div>
-      						</div>
-       					</div>
-       					<div class="navigation-area">
-                            <div class="row">
-                                <div class="col-lg-6 col-md-6 col-12 nav-left flex-row d-flex justify-content-start align-items-center">
-                                    <div class="thumb">
-                                        <a href="#"><img class="img-fluid" src="img/blog/prev.jpg" alt=""></a>
-                                    </div>
-                                    <div class="arrow">
-                                        <a href="#"><span class="lnr text-white lnr-arrow-left"></span></a>
-                                    </div>
-                                    <div class="detials">
-                                        <p>Bài viết trước</p>
-                                        <a href="#"><h4>Luôn lắng nghe những gì trái tim mách bảo</h4></a>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 col-md-6 col-12 nav-right flex-row d-flex justify-content-end align-items-center">
-                                    <div class="detials">
-                                        <p>Bài viết tiếp theo</p>
-                                        <a href="#"><h4>Hãy là chính mình</h4></a>
-                                    </div>
-                                    <div class="arrow">
-                                        <a href="#"><span class="lnr text-white lnr-arrow-right"></span></a>
-                                    </div>
-                                    <div class="thumb">
-                                        <a href="#"><img class="img-fluid" src="img/blog/next.jpg" alt=""></a>
-                                    </div>										
-                                </div>									
-                            </div>
-                        </div>
-                        <div class="comments-area">
-                            <h4>05 Bình luận</h4>
-                            <div class="comment-list">
-                                <div class="single-comment justify-content-between d-flex">
-                                    <div class="user justify-content-between d-flex">
-                                        <div class="thumb">
-                                            <img src="img/blog/c1.jpg" alt="">
-                                        </div>
-                                        <div class="desc">
-                                            <h5><a href="#">Mai Ly</a></h5>
-                                            <p class="date">25 tháng 3, 2019 lúc 15:12 </p>
-                                            <p class="comment">
-                                                Viết ra câu chuyện của chính mình!
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="reply-btn">
-                                           <a href="" class="btn-reply text-uppercase">Phản hồi</a> 
-                                    </div>
-                                </div>
-                            </div>	
-                            <div class="comment-list left-padding">
-                                <div class="single-comment justify-content-between d-flex">
-                                    <div class="user justify-content-between d-flex">
-                                        <div class="thumb">
-                                            <img src="img/blog/c2.jpg" alt="">
-                                        </div>
-                                        <div class="desc">
-                                            <h5><a href="#">Trần My</a></h5>
-                                            <p class="date">25 tháng 3, 2019 lúc 15:12 </p>
-                                            <p class="comment">
-                                                Viết ra câu chuyện của chính mình!
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="reply-btn">
-                                           <a href="" class="btn-reply text-uppercase">Phản hồi</a> 
-                                    </div>
-                                </div>
-                            </div>	
-                            <div class="comment-list left-padding">
-                                <div class="single-comment justify-content-between d-flex">
-                                    <div class="user justify-content-between d-flex">
-                                        <div class="thumb">
-                                            <img src="img/blog/c3.jpg" alt="">
-                                        </div>
-                                        <div class="desc">
-                                            <h5><a href="#">Khải Minh Trần</a></h5>
-                                            <p class="date">25 tháng 3, 2019 lúc 15:12 </p>
-                                            <p class="comment">
-                                                Viết ra câu chuyện của chính mình!
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="reply-btn">
-                                           <a href="" class="btn-reply text-uppercase">Phản hồi</a> 
-                                    </div>
-                                </div>
-                            </div>	
-                            <div class="comment-list">
-                                <div class="single-comment justify-content-between d-flex">
-                                    <div class="user justify-content-between d-flex">
-                                        <div class="thumb">
-                                            <img src="img/blog/c4.jpg" alt="">
-                                        </div>
-                                        <div class="desc">
-                                            <h5><a href="#">Võ Diệp Chi</a></h5>
-                                            <p class="date">25 tháng 3, 2019 lúc 15:12 </p>
-                                            <p class="comment">
-                                                Viết ra câu chuyện của chính mình!
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="reply-btn">
-                                           <a href="" class="btn-reply text-uppercase">Phản hồi</a> 
-                                    </div>
-                                </div>
-                            </div>	
-                            <div class="comment-list">
-                                <div class="single-comment justify-content-between d-flex">
-                                    <div class="user justify-content-between d-flex">
-                                        <div class="thumb">
-                                            <img src="img/blog/c5.jpg" alt="">
-                                        </div>
-                                        <div class="desc">
-                                            <h5><a href="#">Kha Đỗ</a></h5>
-                                            <p class="date">25 tháng 3, 2019 lúc 15:12 </p>
-                                            <p class="comment">
-                                                Viết ra câu chuyện của chính mình!
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="reply-btn">
-                                           <a href="" class="btn-reply text-uppercase">Phản hồi</a> 
-                                    </div>
-                                </div>
-                            </div>	                                             				
-                        </div>
-                        <div class="comment-form">
-                            <h4>Để lại phản hồi</h4>
-                            <form>
-                                <div class="form-group form-inline">
-                                  <div class="form-group col-lg-6 col-md-6 name">
-                                    <input type="text" class="form-control" id="name" placeholder="Enter Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Name'">
-                                  </div>
-                                  <div class="form-group col-lg-6 col-md-6 email">
-                                    <input type="email" class="form-control" id="email" placeholder="Enter email address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter email address'">
-                                  </div>										
-                                </div>
-                                <div class="form-group">
-                                    <input type="text" class="form-control" id="subject" placeholder="Subject" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Subject'">
-                                </div>
-                                <div class="form-group">
-                                    <textarea class="form-control mb-10" rows="5" name="message" placeholder="Messege" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Messege'" required=""></textarea>
-                                </div>
-                                <a href="#" class="primary-btn submit_btn">Đăng bình luận</a>	
-                            </form>
-                        </div>
-        			</div>
-        			<div class="col-lg-4">
-        				<div class="right_sidebar">
-        					<aside class="r_widgets news_widgets">
-        						<div class="main_title2">
-        							<h2>Bài viết được xem nhiều nhất</h2>
-        						</div>
-        						<div class="choice_item">
-									<img class="img-fluid" src="img/blog/popular-post/pp-1.jpg" alt="">
+								<div class="desc">
+									<h5><a href="#">Mai Ly</a></h5>
+									<p class="date">25 tháng 3, 2019 lúc 15:12 </p>
+									<p class="comment">
+										Viết ra câu chuyện của chính mình!
+									</p>
+								</div>
+							</div>
+							<div class="reply-btn">
+								<a href="" class="btn-reply text-uppercase">Phản hồi</a>
+							</div>
+						</div>
+					</div>
+					<div class="comment-list left-padding">
+						<div class="single-comment justify-content-between d-flex">
+							<div class="user justify-content-between d-flex">
+								<div class="thumb">
+									<img src="/img/blog/c2.jpg" alt="">
+								</div>
+								<div class="desc">
+									<h5><a href="#">Trần My</a></h5>
+									<p class="date">25 tháng 3, 2019 lúc 15:12 </p>
+									<p class="comment">
+										Viết ra câu chuyện của chính mình!
+									</p>
+								</div>
+							</div>
+							<div class="reply-btn">
+								<a href="" class="btn-reply text-uppercase">Phản hồi</a>
+							</div>
+						</div>
+					</div>
+					<div class="comment-list left-padding">
+						<div class="single-comment justify-content-between d-flex">
+							<div class="user justify-content-between d-flex">
+								<div class="thumb">
+									<img src="/img/blog/c3.jpg" alt="">
+								</div>
+								<div class="desc">
+									<h5><a href="#">Khải Minh Trần</a></h5>
+									<p class="date">25 tháng 3, 2019 lúc 15:12 </p>
+									<p class="comment">
+										Viết ra câu chuyện của chính mình!
+									</p>
+								</div>
+							</div>
+							<div class="reply-btn">
+								<a href="" class="btn-reply text-uppercase">Phản hồi</a>
+							</div>
+						</div>
+					</div>
+					<div class="comment-list">
+						<div class="single-comment justify-content-between d-flex">
+							<div class="user justify-content-between d-flex">
+								<div class="thumb">
+									<img src="/img/blog/c4.jpg" alt="">
+								</div>
+								<div class="desc">
+									<h5><a href="#">Võ Diệp Chi</a></h5>
+									<p class="date">25 tháng 3, 2019 lúc 15:12 </p>
+									<p class="comment">
+										Viết ra câu chuyện của chính mình!
+									</p>
+								</div>
+							</div>
+							<div class="reply-btn">
+								<a href="" class="btn-reply text-uppercase">Phản hồi</a>
+							</div>
+						</div>
+					</div>
+					<div class="comment-list">
+						<div class="single-comment justify-content-between d-flex">
+							<div class="user justify-content-between d-flex">
+								<div class="thumb">
+									<img src="/img/blog/c5.jpg" alt="">
+								</div>
+								<div class="desc">
+									<h5><a href="#">Kha Đỗ</a></h5>
+									<p class="date">25 tháng 3, 2019 lúc 15:12 </p>
+									<p class="comment">
+										Viết ra câu chuyện của chính mình!
+									</p>
+								</div>
+							</div>
+							<div class="reply-btn">
+								<a href="" class="btn-reply text-uppercase">Phản hồi</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="comment-form">
+					<h4>Để lại phản hồi</h4>
+					<form>
+						<div class="form-group form-inline">
+							<div class="form-group col-lg-6 col-md-6 name">
+								<input type="text" class="form-control" id="name" placeholder="Enter Name"
+									onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Name'">
+							</div>
+							<div class="form-group col-lg-6 col-md-6 email">
+								<input type="email" class="form-control" id="email" placeholder="Enter email address"
+									onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter email address'">
+							</div>
+						</div>
+						<div class="form-group">
+							<input type="text" class="form-control" id="subject" placeholder="Subject"
+								onfocus="this.placeholder = ''" onblur="this.placeholder = 'Subject'">
+						</div>
+						<div class="form-group">
+							<textarea class="form-control mb-10" rows="5" name="message" placeholder="Messege"
+								onfocus="this.placeholder = ''" onblur="this.placeholder = 'Messege'"
+								required=""></textarea>
+						</div>
+						<a href="#" class="primary-btn submit_btn">Đăng bình luận</a>
+					</form>
+				</div>
+			</div>
+			<div class="col-lg-4">
+				<div class="right_sidebar">
+					<aside class="r_widgets news_widgets">
+						<div class="main_title2">
+							<h2>Bài viết được xem nhiều nhất</h2>
+						</div>
+						<div class="choice_item">
+							<img class="img-fluid" src="/img/blog/popular-post/pp-1.jpg" alt="">
+							<div class="choice_text">
+								<div class="date">
+									<!-- <a class="gad_btn" href="#">Gadgets</a> -->
+									<a href="#"><i class="fa fa-calendar" aria-hidden="true"></i>April 20, 2019</a>
+									<a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i>05</a>
+								</div>
+								<a href="news-details.html">
+									<h4>9 cách tận hưởng cuộc sống theo cách thực sự ý nghĩa</h4>
+								</a>
+								<p>Cuộc sống giống như một chuyến đi không có bản đồ. Trong suốt hành trình của cuộc
+									đời, ai trong số chúng ta cũng sẽ dừng chân ở nhiều địa điểm khác nhau,...</p>
+							</div>
+						</div>
+						<div class="news_slider owl-carousel">
+							<div class="item">
+								<div class="choice_item">
+									<img src="/img/blog/popular-post/pp-2.jpg" alt="">
 									<div class="choice_text">
+										<a href="news-details.html">
+											<h4>9 cách tận hưởng cuộc sống theo cách thực sự ý nghĩa</h4>
+										</a>
 										<div class="date">
 											<!-- <a class="gad_btn" href="#">Gadgets</a> -->
-											<a href="#"><i class="fa fa-calendar" aria-hidden="true"></i>April 20, 2019</a>
+											<a href="#"><i class="fa fa-calendar" aria-hidden="true"></i>April 20,
+												2019</a>
 											<a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i>05</a>
 										</div>
-										<a href="news-details.html"><h4>9 cách tận hưởng cuộc sống theo cách thực sự ý nghĩa</h4></a>
-										<p>Cuộc sống giống như một chuyến đi không có bản đồ. Trong suốt hành trình của cuộc đời, ai trong số chúng ta cũng sẽ dừng chân ở nhiều địa điểm khác nhau,...</p>
 									</div>
 								</div>
-       							<div class="news_slider owl-carousel">
-       								<div class="item">
-       									<div class="choice_item">
-											<img src="img/blog/popular-post/pp-2.jpg" alt="">
-											<div class="choice_text">
-												<a href="news-details.html"><h4>9 cách tận hưởng cuộc sống theo cách thực sự ý nghĩa</h4></a>
-												<div class="date">
-													<!-- <a class="gad_btn" href="#">Gadgets</a> -->
-													<a href="#"><i class="fa fa-calendar" aria-hidden="true"></i>April 20, 2019</a>
-													<a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i>05</a>
-												</div>
-											</div>
+							</div>
+							<div class="item">
+								<div class="choice_item">
+									<img src="/img/blog/popular-post/pp-3.jpg" alt="">
+									<div class="choice_text">
+										<a href="news-details.html">
+											<h4>9 cách tận hưởng cuộc sống theo cách thực sự ý nghĩa</h4>
+										</a>
+										<div class="date">
+											<!-- <a class="gad_btn" href="#">Gadgets</a> -->
+											<a href="#"><i class="fa fa-calendar" aria-hidden="true"></i>April 20,
+												2019</a>
+											<a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i>05</a>
 										</div>
-       								</div>
-       								<div class="item">
-       									<div class="choice_item">
-											<img src="img/blog/popular-post/pp-3.jpg" alt="">
-											<div class="choice_text">
-												<a href="news-details.html"><h4>9 cách tận hưởng cuộc sống theo cách thực sự ý nghĩa</h4></a>
-												<div class="date">
-													<!-- <a class="gad_btn" href="#">Gadgets</a> -->
-													<a href="#"><i class="fa fa-calendar" aria-hidden="true"></i>April 20, 2019</a>
-													<a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i>05</a>
-												</div>
-											</div>
+									</div>
+								</div>
+							</div>
+							<div class="item">
+								<div class="choice_item">
+									<img src="/img/blog/popular-post/pp-2.jpg" alt="">
+									<div class="choice_text">
+										<a href="news-details.html">
+											<h4>9 cách tận hưởng cuộc sống theo cách thực sự ý nghĩa</h4>
+										</a>
+										<div class="date">
+											<!-- <a class="gad_btn" href="#">Gadgets</a> -->
+											<a href="#"><i class="fa fa-calendar" aria-hidden="true"></i>April 20,
+												2019</a>
+											<a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i>05</a>
 										</div>
-       								</div>
-       								<div class="item">
-       									<div class="choice_item">
-											<img src="img/blog/popular-post/pp-2.jpg" alt="">
-											<div class="choice_text">
-												<a href="news-details.html"><h4>9 cách tận hưởng cuộc sống theo cách thực sự ý nghĩa</h4></a>
-												<div class="date">
-													<!-- <a class="gad_btn" href="#">Gadgets</a> -->
-													<a href="#"><i class="fa fa-calendar" aria-hidden="true"></i>April 20, 2019</a>
-													<a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i>05</a>
-												</div>
-											</div>
+									</div>
+								</div>
+							</div>
+							<div class="item">
+								<div class="choice_item">
+									<img src="/img/blog/popular-post/pp-3.jpg" alt="">
+									<div class="choice_text">
+										<a href="news-details.html">
+											<h4>9 cách tận hưởng cuộc sống theo cách thực sự ý nghĩa</h4>
+										</a>
+										<div class="date">
+											<!-- <a class="gad_btn" href="#">Gadgets</a> -->
+											<a href="#"><i class="fa fa-calendar" aria-hidden="true"></i>April 20,
+												2019</a>
+											<a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i>05</a>
 										</div>
-       								</div>
-       								<div class="item">
-       									<div class="choice_item">
-											<img src="img/blog/popular-post/pp-3.jpg" alt="">
-											<div class="choice_text">
-												<a href="news-details.html"><h4>9 cách tận hưởng cuộc sống theo cách thực sự ý nghĩa</h4></a>
-												<div class="date">
-													<!-- <a class="gad_btn" href="#">Gadgets</a> -->
-													<a href="#"><i class="fa fa-calendar" aria-hidden="true"></i>April 20, 2019</a>
-													<a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i>05</a>
-												</div>
-											</div>
+									</div>
+								</div>
+							</div>
+							<div class="item">
+								<div class="choice_item">
+									<img src="/img/blog/popular-post/pp-2.jpg" alt="">
+									<div class="choice_text">
+										<a href="news-details.html">
+											<h4>9 cách tận hưởng cuộc sống theo cách thực sự ý nghĩa</h4>
+										</a>
+										<div class="date">
+											<!-- <a class="gad_btn" href="#">Gadgets</a> -->
+											<a href="#"><i class="fa fa-calendar" aria-hidden="true"></i>April 20,
+												2019</a>
+											<a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i>05</a>
 										</div>
-       								</div>
-       								<div class="item">
-       									<div class="choice_item">
-											<img src="img/blog/popular-post/pp-2.jpg" alt="">
-											<div class="choice_text">
-												<a href="news-details.html"><h4>9 cách tận hưởng cuộc sống theo cách thực sự ý nghĩa</h4></a>
-												<div class="date">
-													<!-- <a class="gad_btn" href="#">Gadgets</a> -->
-													<a href="#"><i class="fa fa-calendar" aria-hidden="true"></i>April 20, 2019</a>
-													<a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i>05</a>
-												</div>
-											</div>
+									</div>
+								</div>
+							</div>
+							<div class="item">
+								<div class="choice_item">
+									<img src="/img/blog/popular-post/pp-3.jpg" alt="">
+									<div class="choice_text">
+										<a href="news-details.html">
+											<h4>9 cách tận hưởng cuộc sống theo cách thực sự ý nghĩa</h4>
+										</a>
+										<div class="date">
+											<!-- <a class="gad_btn" href="#">Gadgets</a> -->
+											<a href="#"><i class="fa fa-calendar" aria-hidden="true"></i>April 20,
+												2019</a>
+											<a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i>05</a>
 										</div>
-       								</div>
-       								<div class="item">
-       									<div class="choice_item">
-											<img src="img/blog/popular-post/pp-3.jpg" alt="">
-											<div class="choice_text">
-												<a href="news-details.html"><h4>9 cách tận hưởng cuộc sống theo cách thực sự ý nghĩa</h4></a>
-												<div class="date">
-													<!-- <a class="gad_btn" href="#">Gadgets</a> -->
-													<a href="#"><i class="fa fa-calendar" aria-hidden="true"></i>April 20, 2019</a>
-													<a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i>05</a>
-												</div>
-											</div>
-										</div>
-       								</div>
-       							</div>
-        					</aside>
-        					<!-- <aside class="r_widgets add_widgets text-center">
-        						<img class="img-fluid" src="img/blog/add-1.jpg" alt="">
+									</div>
+								</div>
+							</div>
+						</div>
+					</aside>
+					<!-- <aside class="r_widgets add_widgets text-center">
+        						<img class="img-fluid" src="/img/blog/add-1.jpg" alt="">
         					</aside> -->
-        					<aside class="r_widgets social_widgets">
-        						<div class="main_title2">
-        							<h2>Mạng xã hội</h2>
-        						</div>
-        						<ul class="list">
-        							<li><a href="#"><i class="fa fa-facebook"></i> 983Likes <span>Like our page</span></a></li>
-        							<li><a href="#"><i class="fa fa-twitter"></i> 983Followers <span>Follow Us</span></a></li>
-        							<li><a href="#"><i class="fa fa-youtube-play"></i> 9835Subscriber <span>Subscribe</span></a></li>
-        							<li><a href="#"><i class="fa fa-vimeo"></i> 59874Subscriber <span>Subscribe</span></a></li>
-        							<li><a href="#"><i class="fa fa-pinterest"></i> 36958Followers <span>Follow Us</span></a></li>
-        							<li><a href="#"><i class="fa fa-rss"></i>RSS Subscribe <span>Subscribe</span></a></li>
-        						</ul>
-        					</aside>
-        					<aside class="r_widgets newsleter_widgets">
-        						<div class="main_title2">
-        							<h2>Bản tin</h2>
-        						</div>
-        						<div class="nsl_inner">
-        							<i class="fa fa-envelope"></i>
-        							<h4>Theo dõi bản tin của chúng tôi</h4>
-									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua adipisicing</p>
-									<div class="form-group d-flex flex-row">
-										<div class="input-group">
-											<input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Enter your email address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter email'">
-										</div>
-										<a href="#" class="bbtns">Subcribe</a>
-									</div>	
-        						</div>
-        					</aside>
-        				</div>
-        			</div>
-        		</div>
-        	</div>
-        </section>
-        <!--================End News Area =================-->
+					<aside class="r_widgets social_widgets">
+						<div class="main_title2">
+							<h2>Mạng xã hội</h2>
+						</div>
+						<ul class="list">
+							<li><a href="#"><i class="fa fa-facebook"></i> 983Likes <span>Like our page</span></a></li>
+							<li><a href="#"><i class="fa fa-twitter"></i> 983Followers <span>Follow Us</span></a></li>
+							<li><a href="#"><i class="fa fa-youtube-play"></i> 9835Subscriber <span>Subscribe</span></a>
+							</li>
+							<li><a href="#"><i class="fa fa-vimeo"></i> 59874Subscriber <span>Subscribe</span></a></li>
+							<li><a href="#"><i class="fa fa-pinterest"></i> 36958Followers <span>Follow Us</span></a>
+							</li>
+							<li><a href="#"><i class="fa fa-rss"></i>RSS Subscribe <span>Subscribe</span></a></li>
+						</ul>
+					</aside>
+					<aside class="r_widgets newsleter_widgets">
+						<div class="main_title2">
+							<h2>Bản tin</h2>
+						</div>
+						<div class="nsl_inner">
+							<i class="fa fa-envelope"></i>
+							<h4>Theo dõi bản tin của chúng tôi</h4>
+							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+								incididunt ut labore et dolore magna aliqua adipisicing</p>
+							<div class="form-group d-flex flex-row">
+								<div class="input-group">
+									<input type="text" class="form-control" id="inlineFormInputGroup"
+										placeholder="Enter your email address" onfocus="this.placeholder = ''"
+										onblur="this.placeholder = 'Enter email'">
+								</div>
+								<a href="#" class="bbtns">Subcribe</a>
+							</div>
+						</div>
+					</aside>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<!-- Include the Quill library -->
+<script>
+	$(document).ready(() => {
+		
+	})
+</script>
+<!--================End News Area =================-->

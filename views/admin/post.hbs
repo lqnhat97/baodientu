@@ -2,39 +2,100 @@
     <div class="breadcrumb-holder">
       <div class="container-fluid">
         <ul class="breadcrumb">
-          <li class="breadcrumb-item"><a href="index.html">Trang chủ</a></li>
+          <li class="breadcrumb-item"><a href="/admin">Trang chủ</a></li>
           <li class="breadcrumb-item active">Đăng bài </li>
         </ul>
       </div>
     </div>
     <section class="editor">
-      <div class="container-fluid">
-        <!-- Page Header-->
-        <div id="editor">
-          <p>Hello World!</p>
-          <p>Some initial <strong>bold</strong> text</p>
-        </div>
+      <form id="uploadForm" enctype="multipart/form-data" action="/admin/post/upload" method="post">
 
-        <!-- Include the Quill library -->
-        <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
-
-        <!-- Initialize Quill editor -->
-        <script>
-          var quill = new Quill('#editor', {
-            theme: 'snow'
-          });
-        </script>
-        <div style="display:flex;justify-content:end">
-          <button class="btn btn-success text-center" id="post">Đăng bài</button>
+        <div class="container-fluid">
+          <!-- Page Header-->
+          <div style="display:flex;justify-content:space-between">
+            <table class="table table-striped">
+              <tbody>
+                <tr>
+                  <td colspan="1">
+                    <div class="well form-horizontal">
+                      <fieldset>
+                        <div class="form-group">
+                          <label class="col-md-4 control-label">Chuyên mục</label>
+                          <div class="col-md-8 inputGroupContainer">
+                            <div class="input-group">
+                              <span class="input-group-addon" style="max-width: 100%;"></i></span>
+                              <select class="selectpicker form-control" id="chuyenMuc" name="chuyenMuc">
+                                {{#each chuyenMuc}}
+                                <option value="{{IDChuyenMuc}}">{{TenChuyenMuc}}</option>
+                                {{/each}}
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label class="col-md-4 control-label">Xem trước</label>
+                          <div class="col-md-8 inputGroupContainer">
+                            <div class="input-group"><span class="input-group-addon"></span><textarea id="xemTruoc"
+                                name="xemTruoc" class="form-control" rows="2"
+                                placeholder="Nội dung tóm tắt được xem trước"></textarea>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label class="col-md-4 control-label">Ảnh bài viết</label>
+                          <div class="custom-file col-md-8 inputGroupContainer">
+                            <div class="input-group">
+                              <input type="file" class="custom-file-input" id="postImg" name="file" required="true">
+                              <label class="custom-file-label" for="customFile">Chọn ảnh</label>
+                            </div>
+                          </div>
+                          <script>
+                            $(".custom-file-input").on("change", function () {
+                              var fileName = $(this).val().split("\\").pop();
+                              $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+                            });
+                          </script>
+                        </div>
+                      </fieldset>
+                    </div>
+                  </td>
+                  <td colspan="1">
+                    <div class="well form-horizontal">
+                      <fieldset>
+                        <div class="form-group">
+                          <label class="col-md-4 control-label">Tiêu đề</label>
+                          <div class="col-md-12 inputGroupContainer">
+                            <div class="input-group"><span class="input-group-addon"></span><input id="tieuDe"
+                                name="tieuDe" placeholder="Tiêu đề" class="form-control" required="true" type="text">
+                            </div>
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label class="col-md-4 control-label">Nhãn</label>
+                          <div class="col-md-12 inputGroupContainer">
+                            <div class="input-group"><span class="input-group-addon"></span><input id="tag" name="nhan"
+                                placeholder="Nhãn" class="form-control" required="true" value="" type="text"></div>
+                          </div>
+                        </div>
+                      </fieldset>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div id="editor">
+            <p>Hello World!</p>
+            <p>Some initial <strong>bold</strong> text</p>
+          </div>
+          <div style="display:flex;justify-content:end">
+            <button type="submit" class="btn btn-success text-center" id="post">Đăng bài</button>
+          </div>
         </div>
-      </div>
+      </form>
+      <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+
+      <script src="/admin/js/admin_post.js"></script>
     </section>
-    <script>
-      $(document).ready(()=> {
-        $('#post').click(() => {
-          console.log(quill.getContents())
-        })
-      })
-    </script>
 
     </html>

@@ -62,11 +62,11 @@
 					<img class="img-fluid" src="img/blog/choice/choice-1.jpg" alt="" style="width:300px;height:200px">
 					<div class="choice_text">
 						<div class="date">
-							<a class="gad_btn" href="#">Thời trang</a>
+							<a class="gad_btn" href="#">{{ChuyenMuc}}</a>
 							<br><a href="#"><i class="fa fa-calendar" aria-hidden="true"></i>{{NgayDang}}</a>
 							<a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i>05</a>
 						</div>
-						<a href="news-details.html">
+						<a href="/post/{{IDBaiViet}}">
 							<h4>{{TieuDe}}</h4>
 						</a>
 						<p>
@@ -93,7 +93,7 @@
 					{{#each tinMoiNhat}}
 					<div class="media">
 						<div class="d-flex">
-							<img class="img-fluid" src="img/my/p1.jpg" alt="" style="width:300px;height:200px">
+							<img class="img-fluid" src="{{AnhDaiDien}}" alt="" style="width:300px;height:200px">
 						</div>
 						<div class="media-body">
 							<div class="choice_text">
@@ -102,7 +102,7 @@
 									<a href="#"><i class="fa fa-calendar" aria-hidden="true"></i>{{NgayDang}}</a>
 									<a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i>05</a>
 								</div>
-								<a href="news-details.html">
+								<a href="/post/{{IDBaiViet}}">
 									<h4>{{TieuDe}}</h4>
 								</a>
 								<p>
