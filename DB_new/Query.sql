@@ -63,7 +63,7 @@ call HienThiTopChuyenMuc();
 delimiter //
 create procedure HienThiBaiVietChiTiet (in idbaiviet int)
 BEGIN
-	select baiviet.IDBaiViet, baiviet.AnhDaiDien, baiviet.TieuDe, baiviet.NoiDung, count(binhluan.IDBinhLuan) as slbinhluan, nguoidung.HoTen as nguoidang, baiviet.NgayDang,
+	select baiviet.IDBaiViet, baiviet.AnhDaiDien, baiviet.TieuDe, baiviet.NoiDung,  count(binhluan.IDBinhLuan) as slbinhluan, nguoidung.HoTen as nguoidang, baiviet.NgayDang,
 		   chuyenmuc.IDChuyenMuc, chuyenmuc.TenChuyenMuc
 	from baiviet left join binhluan on baiviet.IDBaiViet = binhluan.IDBaiViet
 				 inner join nguoidung on baiviet.phongvien = nguoidung.id
@@ -84,7 +84,7 @@ BEGIN
 	from baiviet 
 	where baiviet.ChuyenMuc = idchuyenmuc
     order by rand()
-    limit 5;
+    limit 4;
 END //
 delimiter ;
 call HienThiBaiVietCungChuyenMuc('TTA1');

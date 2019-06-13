@@ -32,7 +32,6 @@ create table NguoiDung
 create table ChuyenMuc #category
 ( IDChuyenMuc varchar(15) not null  primary KEY ,
 	TenChuyenMuc varchar(50) CHARACTER SET utf8 not null ,
-	TenChuyenMuc_KhongDau varchar(50),
 	ChuyenMucCha varchar(10)
 	);
 
@@ -138,20 +137,20 @@ insert nguoidung values (null,'tranhaonam','nam321','Tran Hao Nam', 'Nam','img/n
 insert nguoidung values (null,'nguyenthuynhien','nhien123','Nguyen Thuy Nhien', 'Nu','img/nguoidung.jpg', '1997-04-16', 'ntnhien@gmail.com', '092510741', '4', '2019-05-24', '2024-05-24', 'Hoat Dong');
 insert nguoidung values (null,'phamhoangnhat','phnhat123','Pham Hoang Nhat', 'Nam','img/nguoidung.jpg', '1998-07-12', 'hoangnhat@gmail.com', '0889457135', '4', '2019-06-13', '2024-06-13', 'Hoat Dong');
 
-insert chuyenmuc values ('GT1',N'Giải trí','Giai tri', null);
-insert chuyenmuc values ('DS1',N'Đời sống','Doi song', null);
-insert chuyenmuc values ('TT1',N'Thời trang','Thoi trang','GT1');
-insert chuyenmuc values ('TH1',N'Truyền hình','Truyen hinh','GT1');
-insert chuyenmuc values ('AN1',N'Âm nhạc','Am nhac','GT1');
-insert chuyenmuc values ('TS1',N'Tâm sự','Tam su','DS1');
-insert chuyenmuc values ('DL1',N'Du lịch','Du lich','DS1');
-insert chuyenmuc values ('TTA1',N'Thể thao','The thao',null);
-insert chuyenmuc values ('SK1',N'Sức khỏe','Suc khoe',null);
-insert chuyenmuc values ('CN1',N'Công nghệ','Cong nghe',null);
-insert chuyenmuc values ('GD1',N'Gia đình','Gia dinh','DS1');
-insert chuyenmuc values ('KD1',N'Kinh doanh','Kinh doanh',null);
-insert chuyenmuc values ('BDS1',N'Bất động sản','Bat dong san',null);
-insert chuyenmuc values ('PL1',N'Pháp luật','Phap luat',null);
+insert chuyenmuc values ('GT1',N'Giải trí', null);
+insert chuyenmuc values ('DS1',N'Đời sống', null);
+insert chuyenmuc values ('TT1',N'Thời trang','GT1');
+insert chuyenmuc values ('TH1',N'Truyền hình','GT1');
+insert chuyenmuc values ('AN1',N'Âm nhạc','GT1');
+insert chuyenmuc values ('TS1',N'Tâm sự','DS1');
+insert chuyenmuc values ('DL1',N'Du lịch','DS1');
+insert chuyenmuc values ('TTA1',N'Thể thao',null);
+insert chuyenmuc values ('SK1',N'Sức khỏe',null);
+insert chuyenmuc values ('CN1',N'Công nghệ',null);
+insert chuyenmuc values ('GD1',N'Gia đình','DS1');
+insert chuyenmuc values ('KD1',N'Kinh doanh',null);
+insert chuyenmuc values ('BDS1',N'Bất động sản',null);
+insert chuyenmuc values ('PL1',N'Pháp luật',null);
 
 insert urlhinhanh values (null,'https://www.elle.vn/wp-content/uploads/2019/01/19/elle-viet-nam-trang-phuc-tet-3.jpg');
 insert urlhinhanh values (null,'https://st.quantrimang.com/photos/image/2017/08/31/song-co-y-nghia-7.jpg');
