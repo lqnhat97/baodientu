@@ -8,10 +8,11 @@ BEGIN
 	select baiviet.AnhDaiDien, chuyenmuc.IDChuyenMuc, chuyenmuc.TenChuyenMuc,baiviet.IDBaiViet, baiviet.TieuDe, baiviet.XemTruoc, baiviet.LuotXem, baiviet.NgayDang, count(binhluan.IDBinhLuan) as slbinhluan
 	from baiviet inner join chuyenmuc on baiviet.ChuyenMuc = chuyenmuc.IDChuyenMuc
 				left join binhluan on baiviet.IDBaiViet = binhluan.IDBaiViet
-                group by baiviet.idbaiviet
-	/*where baiviet.DaDuyet = 1 and XuatBan = 1*/
+                
+	where baiviet.XuatBan = 1
+    group by baiviet.idbaiviet
 	order by baiviet.NgayDang DESC 
-    limit 3;
+    limit 10;
 END //
 delimiter ;
 
@@ -27,7 +28,7 @@ BEGIN
     baiviet.TieuDe, baiviet.XemTruoc, baiviet.NgayDang, baiviet.LuotXem,  count(binhluan.IDBinhLuan) as slbinhluan
 	from baiviet inner join chuyenmuc on baiviet.ChuyenMuc = chuyenmuc.IDChuyenMuc
     left join binhluan on baiviet.IDBaiViet = binhluan.IDBaiViet
-	where baiviet.IDBaiViet = idbaiviet and baiviet.DaDuyet = 1 and XuatBan = 1
+	where baiviet.XuatBan = 1
     group by baiviet.idbaiviet
 	order by baiviet.LuotXem DESC 
     limit 10;
@@ -45,7 +46,7 @@ BEGIN
 	select baiviet.AnhDaiDien, chuyenmuc.IDChuyenMuc, chuyenmuc.TenChuyenMuc, baiviet.IDBaiViet, baiviet.TieuDe, baiviet.XemTruoc, baiviet.NgayDang, baiviet.LuotXem,  count(binhluan.IDBinhLuan) as slbinhluan
 	from baiviet inner join chuyenmuc on baiviet.ChuyenMuc = chuyenmuc.IDChuyenMuc
     left join binhluan on baiviet.IDBaiViet = binhluan.IDBaiViet
-	where baiviet.IDBaiViet = idbaiviet and baiviet.TinNoiBat = 1 and baiviet.DaDuyet = 1 and XuatBan = 1
+	where baiviet.TinNoiBat = 1 and baiviet.XuatBan = 1
 	group by baiviet.idbaiviet
     ORDER BY RAND() LIMIT 3;
 END //
@@ -62,7 +63,7 @@ BEGIN
 	from baiviet left join binhluan on baiviet.IDBaiViet = binhluan.IDBaiViet,( select  chuyenmuc.IDChuyenMuc, chuyenmuc.TenChuyenMuc, max(baiviet.NgayDang) as NgayMoiNhat
 					 from chuyenmuc inner join baiviet on chuyenmuc.IDChuyenMuc = baiviet.ChuyenMuc
 					 group by baiviet.ChuyenMuc ) as a
-	where baiviet.ChuyenMuc = a.IDChuyenMuc and baiviet.NgayDang = a.NgayMoiNhat
+	where baiviet.ChuyenMuc = a.IDChuyenMuc and baiviet.NgayDang = a.NgayMoiNhat and baiviet.XuatBan = 1
     group by baiviet.idbaiviet
 	order by rand() limit 9;
 END //
@@ -80,7 +81,7 @@ BEGIN
 	from baiviet left join binhluan on baiviet.IDBaiViet = binhluan.IDBaiViet
 				 inner join nguoidung on baiviet.phongvien = nguoidung.id
                  inner join chuyenmuc on baiviet.ChuyenMuc = chuyenmuc.IDChuyenMuc
-	where baiviet.IDBaiViet = idbaiviet
+	where baiviet.IDBaiViet = idbaiviet and baiviet.XuatBan = 1
     group by binhluan.IDBaiViet;
 END //
 delimiter ;
@@ -95,7 +96,7 @@ create procedure HienThiBaiVietCungChuyenMuc (in idchuyenmuc varchar(15))
 BEGIN
 	select baiviet.ChuyenMuc, baiviet.idbaiviet, baiviet.AnhDaiDien, baiviet.TieuDe, baiviet.NgayDang
 	from baiviet 
-	where baiviet.ChuyenMuc = idchuyenmuc
+	where baiviet.ChuyenMuc = idchuyenmuc and baiviet.XuatBan = 1
     order by rand()
     limit 4;
 END //
@@ -156,11 +157,14 @@ delimiter ;
 
 /* PROCEDURE Thêm nhãn */
 /* DROP PROCEDURE IF EXISTS ThemNhan;
-call ThemNhan(2,'hiendai'); */
+call ThemNhan(2,'Phi tang xác'); */
 delimiter //
 create procedure ThemNhan (in idbaiviet int, in tentag varchar(20))
 begin 
-	insert nhan values (idbaiviet,tentag);
+	if not exists (select * from nhan where nhan.IDBaiViet = idbaiviet and nhan.TenTag = tentag)
+    then  
+		insert nhan values (idbaiviet,tentag);
+	end if;
 end //
 delimiter ;
 
@@ -185,6 +189,8 @@ begin
 	update BaiViet set LuotXem = LuotXem+1 where BaiViet.idbaiviet = idbaiviet; 
 end //
 delimiter ;
+
+
 
 
 
