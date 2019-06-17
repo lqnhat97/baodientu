@@ -4,7 +4,7 @@ use baodientu;
 
 create table PhanHeNguoiDung
 (	IDPhanHe int primary KEY auto_increment,
-	TenPhanHe varchar(50) not null
+	TenPhanHe varchar(50) CHARACTER SET utf8  not null
 	);
 
 create table TaiKhoanThe
@@ -48,6 +48,7 @@ create table BaiViet
 	BienTapVien int,
 	BinhLuan int default 0,
 	DaDuyet int default 0,
+    XuatBan int default 0,
 	TinNoiBat int default 0
     );
 
@@ -118,24 +119,24 @@ references BaiViet(IDBaiViet);
 
 
 --------- THEM DU LIEU
-/*
-insert phanhenguoidung values (null,'Phong Vien');
-insert phanhenguoidung values (null,'Bien Tap Vien');
-insert phanhenguoidung values (null,'Admin');
-insert phanhenguoidung values (null,'Doc Gia');
-insert phanhenguoidung values (null,'Doc Gia Vang Lai');
 
-insert nguoidung values (null,'lequangnhat','nhat123',' Le Quang Nhat', 'Nam','img/nguoidung.jpg', '1997-08-29', 'lqnhat@gmail.com', '0926803468', '1', '2019-05-06', '2024-05-06', 'Hoat Dong');
-insert nguoidung values (null,'hoanganhtuan','tuan123','Hoang Anh Tuan', 'Nam','img/nguoidung.jpg', '1995-10-17', 'hatuan@gmail.com', '0981828596', '2', '2019-05-05', '2024-05-05', 'Hoat Dong');
-insert nguoidung values (null,'vulamanh','anh123','Vu Lam Anh', 'Nu','img/nguoidung.jpg', '1995-05-25', 'lamanhpv@gmail.com', '0977713558', '1', '2019-05-10', '2024-05-10', 'Hoat Dong');
-insert nguoidung values (null,'nguyenanhthi','thi123','Nguyen Anh Thi', 'Nu','img/nguoidung.jpg', '1996-02-05', 'thithi@gmail.com', '0355688828', '1', '2019-05-15', '2024-05-15', 'Hoat Dong');
-insert nguoidung values (null,'trandonghoa','hoa123','Tran Dong Hoa', 'Nam','img/nguoidung.jpg', '1992-04-13', 'donghoatran@gmail.com', '0898981597', '2', '2019-05-21', '2024-05-21', 'Hoat Dong');
-insert nguoidung values (null,'hoanglean','an123','Hoang Le An', 'Nam','img/nguoidung.jpg', '1991-07-09', 'anlehoang@gmail.com', '0979845461', '1', '2019-06-02', '2024-06-02', 'Hoat Dong');
-insert nguoidung values (null,'dangthienminh','minh123','Dang Thien Minh', 'Nam','img/nguoidung.jpg', '1997-06-14', 'dtminh@gmail.com', '0762412871', '1', '2019-05-03', '2024-05-03', 'Hoat Dong');
-insert nguoidung values (null,'phanthimyduyen','duyen123','Phan Thi My Duyen', 'Nu','img/nguoidung.jpg', '1995-02-22', 'duyenphan@gmail.com', '0963512841', '2', '2019-06-09', '2024-06-09', 'Hoat Dong');
-insert nguoidung values (null,'tranhaonam','nam321','Tran Hao Nam', 'Nam','img/nguoidung.jpg', '1997-08-12', 'thnam@gmail.com', '0754125746', '4', '2019-06-05', '2024-06-05', 'Hoat Dong');
-insert nguoidung values (null,'nguyenthuynhien','nhien123','Nguyen Thuy Nhien', 'Nu','img/nguoidung.jpg', '1997-04-16', 'ntnhien@gmail.com', '092510741', '4', '2019-05-24', '2024-05-24', 'Hoat Dong');
-insert nguoidung values (null,'phamhoangnhat','phnhat123','Pham Hoang Nhat', 'Nam','img/nguoidung.jpg', '1998-07-12', 'hoangnhat@gmail.com', '0889457135', '4', '2019-06-13', '2024-06-13', 'Hoat Dong');
+insert phanhenguoidung values (null,N'Phóng viên');
+insert phanhenguoidung values (null,N'Biên tập viên');
+insert phanhenguoidung values (null,N'Quản trị');
+insert phanhenguoidung values (null,N'Độc giả');
+insert phanhenguoidung values (null,N'Độc giả vãng lai');
+
+insert nguoidung values (null,'lequangnhat','nhat123',N'Lê Quang Nhật', 'Nam','img/nguoidung.jpg', '1997-08-29', 'lqnhat@gmail.com', '0926803468', '1', '2019-05-06', '2024-05-06', 'Hoat Dong');
+insert nguoidung values (null,'hoanganhtuan','tuan123',N'Hoàng Anh Tuấn', 'Nam','img/nguoidung.jpg', '1995-10-17', 'hatuan@gmail.com', '0981828596', '2', '2019-05-05', '2024-05-05', 'Hoat Dong');
+insert nguoidung values (null,'vulamanh','anh123',N'Vũ Lam Anh', 'Nu','img/nguoidung.jpg', '1995-05-25', 'lamanhpv@gmail.com', '0977713558', '1', '2019-05-10', '2024-05-10', 'Hoat Dong');
+insert nguoidung values (null,'nguyenanhthi','thi123',N'Nguyễn Anh Thi', 'Nu','img/nguoidung.jpg', '1996-02-05', 'thithi@gmail.com', '0355688828', '1', '2019-05-15', '2024-05-15', 'Hoat Dong');
+insert nguoidung values (null,'trandonghoa','hoa123',N'Trần Đông Hòa', 'Nam','img/nguoidung.jpg', '1992-04-13', 'donghoatran@gmail.com', '0898981597', '2', '2019-05-21', '2024-05-21', 'Hoat Dong');
+insert nguoidung values (null,'hoanglean','an123',N'Hoàng Lê An', 'Nam','img/nguoidung.jpg', '1991-07-09', 'anlehoang@gmail.com', '0979845461', '1', '2019-06-02', '2024-06-02', 'Hoat Dong');
+insert nguoidung values (null,'dangthienminh','minh123',N'Đặng Thiên Minh', 'Nam','img/nguoidung.jpg', '1997-06-14', 'dtminh@gmail.com', '0762412871', '1', '2019-05-03', '2024-05-03', 'Hoat Dong');
+insert nguoidung values (null,'phanthimyduyen','duyen123',N'Phan Thị Mỹ Duyên', 'Nu','img/nguoidung.jpg', '1995-02-22', 'duyenphan@gmail.com', '0963512841', '2', '2019-06-09', '2024-06-09', 'Hoat Dong');
+insert nguoidung values (null,'tranhaonam','nam321',N'Trần Hạo Nam', 'Nam','img/nguoidung.jpg', '1997-08-12', 'thnam@gmail.com', '0754125746', '4', '2019-06-05', '2024-06-05', 'Hoat Dong');
+insert nguoidung values (null,'nguyenthuynhien','nhien123',N'Nguyễn Thùy Nhiên', 'Nu','img/nguoidung.jpg', '1997-04-16', 'ntnhien@gmail.com', '092510741', '4', '2019-05-24', '2024-05-24', 'Hoat Dong');
+insert nguoidung values (null,'phamhoangnhat','phnhat123',N'Phạm Hoàng Nhật', 'Nam','img/nguoidung.jpg', '1998-07-12', 'hoangnhat@gmail.com', '0889457135', '4', '2019-06-13', '2024-06-13', 'Hoat Dong');
 
 insert chuyenmuc values ('GT1',N'Giải trí', null);
 insert chuyenmuc values ('DS1',N'Đời sống', null);
@@ -152,6 +153,7 @@ insert chuyenmuc values ('KD1',N'Kinh doanh',null);
 insert chuyenmuc values ('BDS1',N'Bất động sản',null);
 insert chuyenmuc values ('PL1',N'Pháp luật',null);
 
+/*
 insert urlhinhanh values (null,'https://www.elle.vn/wp-content/uploads/2019/01/19/elle-viet-nam-trang-phuc-tet-3.jpg');
 insert urlhinhanh values (null,'https://st.quantrimang.com/photos/image/2017/08/31/song-co-y-nghia-7.jpg');
 insert urlhinhanh values (null,'https://toquoc.mediacdn.vn/2019/5/28/55680190819212708456033345622057033138176n-1553665256897912346264-15572998912451218198859-1559062386415263211674.jpg');
@@ -162,7 +164,6 @@ insert urlhinhanh values (null,'https://vnn-imgs-f.vgcloud.vn/2019/06/09/14/sam-
 insert urlhinhanh values (null,'https://vnn-imgs-f.vgcloud.vn/2019/06/10/10/thanh-ha-truc-trao-bat-khoc-khi-nghe-thi-sinh-hat-nhu-ke-chuyen.jpg');
 insert urlhinhanh values (null,'https://vnn-imgs-f.vgcloud.vn/2019/06/10/16/hanh-phuc.jpg');
 insert urlhinhanh values (null,'https://vnn-imgs-f.vgcloud.vn/2019/06/10/10/dieu-hoa.jpg');
-
 
 insert baiviet values (null,N'9 cách tận hưởng cuộc sống theo cách thực sự ý nghĩa','TS1','2019-05-10','2','Cuộc sống của mỗi người chúng ta giống như một chuyến đi dài vô tận không có bản đồ. Trong hành trình cuộc đời, bạn phải dừng chân tại nhiều nơi khác nhau, đổi hướng đi tới những con đường chưa hề biết đến. Thường xuyên thay đổi định hướng và có đôi khi bạn dường như bị lạc, mặc dù bạn ghét phải thừa nhận điều này.
 Tuy nhiên, thật đáng buồn rằng có một số người kiên quyết mang theo bản đồ cho riêng mình để đảm bảo rằng bản thân luôn chắc chắn mọi điều. Tất cả các con đường đều có sẵn trên bản đồ và họ sẽ không bao giờ bị lạc.

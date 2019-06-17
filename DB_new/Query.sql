@@ -1,65 +1,77 @@
 
 /* PROCEDURE Hiển thị 3 bài viết mới nhất */
-/* DROP PROCEDURE IF EXISTS HienThiBaiVietMoiNhat; */
+/* DROP PROCEDURE IF EXISTS HienThiBaiVietMoiNhat; 
+call HienThiBaiVietMoiNhat (); */
 delimiter //
 create procedure HienThiBaiVietMoiNhat ()
 BEGIN
-	select baiviet.AnhDaiDien, chuyenmuc.IDChuyenMuc, chuyenmuc.TenChuyenMuc, baiviet.IDBaiViet, baiviet.TieuDe, baiviet.XemTruoc, baiviet.NgayDang
+	select baiviet.AnhDaiDien, chuyenmuc.IDChuyenMuc, chuyenmuc.TenChuyenMuc,baiviet.IDBaiViet, baiviet.TieuDe, baiviet.XemTruoc, baiviet.LuotXem, baiviet.NgayDang, count(binhluan.IDBinhLuan) as slbinhluan
 	from baiviet inner join chuyenmuc on baiviet.ChuyenMuc = chuyenmuc.IDChuyenMuc
-	where baiviet.IDBaiViet = idbaiviet
+				left join binhluan on baiviet.IDBaiViet = binhluan.IDBaiViet
+                group by baiviet.idbaiviet
+	/*where baiviet.DaDuyet = 1 and XuatBan = 1*/
 	order by baiviet.NgayDang DESC 
     limit 3;
 END //
 delimiter ;
-call HienThiBaiVietMoiNhat ();
+
 /*-----------------------------------*/
 
 /* PROCEDURE Hiển thị 3 bài viết được xem nhiều nhất */
-/* DROP PROCEDURE IF EXISTS HienThiBaiVietXemNhieuNhat; */
+/* DROP PROCEDURE IF EXISTS HienThiBaiVietXemNhieuNhat; 
+call HienThiBaiVietXemNhieuNhat (); */
 delimiter //
 create procedure HienThiBaiVietXemNhieuNhat ()
 BEGIN
 	select baiviet.AnhDaiDien, chuyenmuc.IDChuyenMuc, chuyenmuc.TenChuyenMuc, baiviet.IDBaiViet, 
-    baiviet.TieuDe, baiviet.XemTruoc, baiviet.NgayDang, baiviet.LuotXem
+    baiviet.TieuDe, baiviet.XemTruoc, baiviet.NgayDang, baiviet.LuotXem,  count(binhluan.IDBinhLuan) as slbinhluan
 	from baiviet inner join chuyenmuc on baiviet.ChuyenMuc = chuyenmuc.IDChuyenMuc
-	where baiviet.IDBaiViet = idbaiviet
+    left join binhluan on baiviet.IDBaiViet = binhluan.IDBaiViet
+	where baiviet.IDBaiViet = idbaiviet and baiviet.DaDuyet = 1 and XuatBan = 1
+    group by baiviet.idbaiviet
 	order by baiviet.LuotXem DESC 
-    limit 3;
+    limit 10;
 END //
 delimiter ;
-call HienThiBaiVietXemNhieuNhat ();
+
 /*-----------------------------------*/
 
 /* PROCEDURE Hiển thị 3 bài viết nổi bật*/
-/* DROP PROCEDURE IF EXISTS HienThiBaiVietNoiBat; */
+/* DROP PROCEDURE IF EXISTS HienThiBaiVietNoiBat;
+call HienThiBaiVietNoiBat(); */
 delimiter //
 create procedure HienThiBaiVietNoiBat()
 BEGIN
-	select baiviet.AnhDaiDien, chuyenmuc.IDChuyenMuc, chuyenmuc.TenChuyenMuc, baiviet.IDBaiViet, baiviet.TieuDe, baiviet.XemTruoc, baiviet.NgayDang
+	select baiviet.AnhDaiDien, chuyenmuc.IDChuyenMuc, chuyenmuc.TenChuyenMuc, baiviet.IDBaiViet, baiviet.TieuDe, baiviet.XemTruoc, baiviet.NgayDang, baiviet.LuotXem,  count(binhluan.IDBinhLuan) as slbinhluan
 	from baiviet inner join chuyenmuc on baiviet.ChuyenMuc = chuyenmuc.IDChuyenMuc
-	where baiviet.IDBaiViet = idbaiviet and baiviet.TinNoiBat = 1
+    left join binhluan on baiviet.IDBaiViet = binhluan.IDBaiViet
+	where baiviet.IDBaiViet = idbaiviet and baiviet.TinNoiBat = 1 and baiviet.DaDuyet = 1 and XuatBan = 1
+	group by baiviet.idbaiviet
     ORDER BY RAND() LIMIT 3;
 END //
 delimiter ;
-call HienThiBaiVietNoiBat();
+
 /*-----------------------------------*/
 /* PROCEDURE Hiển thị top 10 chuyên mục, mỗi chuyên mục 1 bài mới nhất*/
-/* DROP PROCEDURE IF EXISTS HienThiTopChuyenMuc; */
+/* DROP PROCEDURE IF EXISTS HienThiTopChuyenMuc; 
+call HienThiTopChuyenMuc(); */
 delimiter //
 create procedure HienThiTopChuyenMuc()
 BEGIN
-	select baiviet.AnhDaiDien, a.IDChuyenMuc, a.TenChuyenMuc, baiviet.IDBaiViet, baiviet.TieuDe, baiviet.NgayDang
-	from baiviet , ( select  chuyenmuc.IDChuyenMuc, chuyenmuc.TenChuyenMuc, max(baiviet.NgayDang) as NgayMoiNhat
+	select baiviet.AnhDaiDien, a.IDChuyenMuc, a.TenChuyenMuc, baiviet.IDBaiViet, baiviet.TieuDe, baiviet.NgayDang, baiviet.LuotXem,  count(binhluan.IDBinhLuan) as slbinhluan
+	from baiviet left join binhluan on baiviet.IDBaiViet = binhluan.IDBaiViet,( select  chuyenmuc.IDChuyenMuc, chuyenmuc.TenChuyenMuc, max(baiviet.NgayDang) as NgayMoiNhat
 					 from chuyenmuc inner join baiviet on chuyenmuc.IDChuyenMuc = baiviet.ChuyenMuc
 					 group by baiviet.ChuyenMuc ) as a
 	where baiviet.ChuyenMuc = a.IDChuyenMuc and baiviet.NgayDang = a.NgayMoiNhat
-	order by rand() limit 10;
+    group by baiviet.idbaiviet
+	order by rand() limit 9;
 END //
 delimiter ;
-call HienThiTopChuyenMuc();
+
 /*-----------------------------------*/
 /* PROCEDURE Hiển thị bài viết chi tiết */
-/* DROP PROCEDURE IF EXISTS HienThiBaiVietChiTiet; */
+/* DROP PROCEDURE IF EXISTS HienThiBaiVietChiTiet;
+call HienThiBaiVietChiTiet('1'); */
 delimiter //
 create procedure HienThiBaiVietChiTiet (in idbaiviet int)
 BEGIN
@@ -72,26 +84,28 @@ BEGIN
     group by binhluan.IDBaiViet;
 END //
 delimiter ;
-call HienThiBaiVietChiTiet('10');
+
 /*-----------------------------------*/
 
 /* PROCEDURE Hiển thị 5 bài viết cùng chuyên mục */
-/* DROP PROCEDURE IF EXISTS HienThiBaiVietCungChuyenMuc; */
+/* DROP PROCEDURE IF EXISTS HienThiBaiVietCungChuyenMuc; 
+call HienThiBaiVietCungChuyenMuc('TTA1'); */
 delimiter //
 create procedure HienThiBaiVietCungChuyenMuc (in idchuyenmuc varchar(15))
 BEGIN
-	select baiviet.ChuyenMuc, baiviet.idbaiviet, baiviet.AnhDaiDien, baiviet.TieuDe 
+	select baiviet.ChuyenMuc, baiviet.idbaiviet, baiviet.AnhDaiDien, baiviet.TieuDe, baiviet.NgayDang
 	from baiviet 
 	where baiviet.ChuyenMuc = idchuyenmuc
     order by rand()
     limit 4;
 END //
 delimiter ;
-call HienThiBaiVietCungChuyenMuc('TTA1');
+
 /*-----------------------------------*/
 
 /* PROCEDURE Hiển thị bình luận */
-/* DROP PROCEDURE IF EXISTS HienThiBinhLuan; */
+/* DROP PROCEDURE IF EXISTS HienThiBinhLuan; 
+call HienThiBinhLuan('2'); */
 delimiter //
 create procedure HienThiBinhLuan (in idbaiviet int)
 BEGIN
@@ -101,11 +115,12 @@ BEGIN
 	where baiviet.IDBaiViet = idbaiviet;
 END //
 delimiter ;
-call HienThiBinhLuan('2');
+
 /*-----------------------------------*/
 
 /* PROCEDURE Hiển thị nhãn */
-/* DROP PROCEDURE IF EXISTS HienThiNhan; */
+/* DROP PROCEDURE IF EXISTS HienThiNhan; 
+call HienThiNhan('2'); */
 delimiter //
 create procedure HienThiNhan (in idbaiviet int)
 BEGIN
@@ -114,7 +129,7 @@ BEGIN
 	where baiviet.IDBaiViet = idbaiviet;
 END //
 delimiter ;
-call HienThiNhan('2');
+
 /*-----------------------------------*/
 
 /* PROCEDURE Thêm bài viết */
@@ -127,34 +142,32 @@ BEGIN
 	insert baiviet (IDBaiViet,TieuDe,ChuyenMuc,AnhDaiDien,NoiDung,XemTruoc,PhongVien) values (idbaiviet,tieude,ChuyenMuc,AnhDaiDien,NoiDung,XemTruoc,PhongVien);
 END //
 delimiter ;
-call ThemBaiViet(null, 'Chào Hè tươi mát với trang phục họa tiết hoa quả nhiệt đới','TT1','img/song-co-y-nghia-7.jpg',
-'Những họa tiết hoa quả phổ biến nhất trong thời trang Hè như họa tiết quả chanh, quả cherry hay quả dứa một lần nữa nằm trong ưu tiên hàng đầu của bạn.',
-'Những họa tiết hoa quả phổ biến nhất trong thời trang Hè như họa tiết quả chanh,...','1');
 
 /* PROCEDURE Lấy ID bài viết mới nhất */
-/* DROP PROCEDURE IF EXISTS LayIDBaiVietMoi; */
+/* DROP PROCEDURE IF EXISTS LayIDBaiVietMoi;
+call LayIDBaiVietMoi(@idbaivietmoi); */
 delimiter //
 create procedure LayIDBaiVietMoi (OUT idbaivietmoi int)
 begin 
 	select MAX(idbaiviet) as idbaivietmoi from baiviet;
 end //
 delimiter ;
-call LayIDBaiVietMoi(@idbaivietmoi);
 /*-----------------------------------*/
 
 /* PROCEDURE Thêm nhãn */
-/* DROP PROCEDURE IF EXISTS ThemNhan; */
+/* DROP PROCEDURE IF EXISTS ThemNhan;
+call ThemNhan(2,'hiendai'); */
 delimiter //
 create procedure ThemNhan (in idbaiviet int, in tentag varchar(20))
 begin 
 	insert nhan values (idbaiviet,tentag);
 end //
 delimiter ;
-call ThemNhan(2,'hiendai');
 
 /*-----------------------------------*/
 /* PROCEDURE Thêm bình luận */
-/* DROP PROCEDURE IF EXISTS ThemBinhLuan; */
+/* DROP PROCEDURE IF EXISTS ThemBinhLuan; 
+call ThemBinhLuan(null,2,'9','Xuat sac!'); */
 delimiter //
 create procedure ThemBinhLuan (in idbinhluan int, in idbaiviet int, in docgia int, in noidung text  CHARACTER SET utf8)
 begin 
@@ -162,7 +175,17 @@ begin
 end //
 delimiter ;
 
-call ThemBinhLuan(null,2,'9','Xuat sac!');
+/*-----------------------------------*/
+/* PROCEDURE Tăng lượt xem */
+/* DROP PROCEDURE IF EXISTS TangLuotXem; 
+call TangLuotXem('1'); */
+delimiter //
+create procedure TangLuotXem (in idbaiviet int)
+begin 
+	update BaiViet set LuotXem = LuotXem+1 where BaiViet.idbaiviet = idbaiviet; 
+end //
+delimiter ;
+
 
 
 
