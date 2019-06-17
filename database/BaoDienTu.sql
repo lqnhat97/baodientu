@@ -134,6 +134,7 @@ insert NguoiDung values (null,'dangthienminh','minh123','Dang Thien Minh', 'Nam'
 insert NguoiDung values (null,'phanthimyduyen','duyen123','Phan Thi My Duyen', 'Nu','img/nguoidung.jpg', '1995-02-22', 'duyenphan@gmail.com', '0963512841', '2', '2019-06-09', '2024-06-09', 'Hoat Dong');
 insert NguoiDung values (null,'tranhaonam','nam321','Tran Hao Nam', 'Nam','img/nguoidung.jpg', '1997-08-12', 'thnam@gmail.com', '0754125746', '4', '2019-06-05', '2024-06-05', 'Hoat Dong');
 insert NguoiDung values (null,'nguyenthuynhien','nhien123','Nguyen Thuy Nhien', 'Nu','img/nguoidung.jpg', '1997-04-16', 'ntnhien@gmail.com', '092510741', '4', '2019-05-24', '2024-05-24', 'Hoat Dong');
+insert NguoiDung values (null,'vyvy71','vyVy7197','Dang Thi Thuy Vy', 'Nu','img/nguoidung.jpg', '1997-01-07', 'vydangnguyen71@gmail.com', '0867434527', '3', '2019-05-07', '2024-05-07', 'Hoat Dong');
 
 insert ChuyenMuc values ('GT1',N'Giải trí','Giai tri', null);
 insert ChuyenMuc values ('DS1',N'Đời sống','Doi song', null);
