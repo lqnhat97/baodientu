@@ -1,16 +1,25 @@
 <form method="POST" class="container margin-top-170 mb-5 bg-light rounded shadow-lg p-5">
+    {{#if err_message}}
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        {{err_message}}
+    </div>
+    {{/if}}
     <div class="form-group mt-3">
         <h2 class="text-uppercase text-center text-primary">Đăng nhập</h2>
     </div>
     <div class="form-group">
         <label for="txtusername" class="text-dark">
-            <h4 class="font-weight-light">Tên đăng nhập</h4> 
+            <h4 class="font-weight-light">Tên đăng nhập</h4>
         </label>
-        <input name="username" type="text" class="form-control" id="txtusername" placeholder="Nhập tên đăng nhập" required>
+        <input name="username" type="text" class="form-control" id="txtusername" placeholder="Nhập tên đăng nhập"
+            required>
     </div>
     <div class="form-group">
         <label for="password" class="text-dark">
-            <h4 class="font-weight-light">Mật khẩu</h4> 
+            <h4 class="font-weight-light">Mật khẩu</h4>
         </label>
         <input name="password" type="password" class="form-control" id="password" placeholder="Nhập mật khẩu" required>
     </div>

@@ -35,7 +35,7 @@
 							<div class="media">
 								<div class="media-body">
 									<h5>{{baiViet.nguoidang}}</h5>
-									<p>{{baiViet.NgayDang}}</p>
+									<p>{{format baiViet.NgayDang}}</p>
 								</div>
 								<div class="d-flex">
 									<img src="/img/blog/user-img.jpg" alt="">
@@ -68,7 +68,7 @@
 								</div>
 								<div class="desc">
 									<h5><a href="#">{{nguoibinhluan}}</a></h5>
-									<p class="date">{{ngaydang}}</p>
+									<p class="date">{{format NgayDang}}</p>
 									<p class="comment">
 										{{noidung}}
 									</p>
@@ -104,7 +104,7 @@
 							<div class="choice_text">
 								<div class="date">
 									<!-- <a class="gad_btn" href="#">Gadgets</a> -->
-									<a href="#"><i class="fa fa-calendar" aria-hidden="true"></i>{{random1bai.NgayDang}}</a>
+									<a href="#"><i class="fa fa-calendar" aria-hidden="true"></i>{{format random1bai.NgayDang}}</a>
 								</div>
 								<a href="/post/{{random1bai.idbaiviet}}">
 									<h4>{{random1bai.TieuDe}}</h4>
@@ -123,7 +123,7 @@
 										</a>
 										<div class="date">
 											<!-- <a class="gad_btn" href="#">Gadgets</a> -->
-											<a href="#"><i class="fa fa-calendar" aria-hidden="true"></i>{{NgayDang}}</a>
+											<a href="#"><i class="fa fa-calendar" aria-hidden="true"></i>{{format NgayDang}}</a>
 										</div>
 									</div>
 								</div>

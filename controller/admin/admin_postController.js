@@ -19,6 +19,9 @@ var upload = multer({
 
 router.post("/upload", upload.single('file'), function (req, res) {
     let data = req.body;
+    let tag = data.nhan.split(",");
+    data.nhan=tag;
+    let len = data.nhan.length;
     var file = './public/img/' + req.file.filename;
     fs.rename(req.file.path, file, function (err) {
         if (err) {
@@ -29,10 +32,12 @@ router.post("/upload", upload.single('file'), function (req, res) {
             (async ()=>{
                 var dangBai = await postRepo.themBaiViet(data);
                 var idMax = await postRepo.idBaiVietMoiNhat();
-                var themNhan = await postRepo.themNhan({
-                    id:idMax[0][0].idbaivietmoi,
-                    nhan:data.nhan
-                })
+                for(let i=0;i<len;i++){
+                    var themNhan = await postRepo.themNhan({
+                        id:idMax[0][0].idbaivietmoi,
+                        nhan:data.nhan[i].trim()
+                    })
+                }
                 res.redirect('/');
             })();
             

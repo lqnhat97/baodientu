@@ -1,67 +1,59 @@
 var express = require('express')
 // var bcrypt = require('bcrypt')
 // var moment = require('moment')
-var bodyParser = require ('body-parser')
-var passport = require('passport')
-var localStrategy = require ('passport-local').Strategy
-var session = require ('express-session')
+var passport = require('passport');
 var userModel = require('../repository/user')
-
+var restrict = require('../util/restrict');
 var router = express.Router()
 
-//Lay du lieu tu from
-router.use(bodyParser.urlencoded({extended: true}))
-//Thong bao su dung passport
-router.use(passport.initialize())
-router.use(session ({
+/*router.use(session ({
     secret: 'somthing',
     cookie: {
         maxAge: 1000 * 50 * 5
     }
-}))
-router.use(passport.session())
+}))*/
 
 router.get('/login', (req, res) => {
-    res.render("login", {
-        layout: 'main.hbs'
-    })
+    if (req.session.passport.hasOwnProperty('user'))
+        res.redirect('/');
+    else
+        res.render("login", {
+            layout: 'main.hbs'
+        })
 })
 
-passport.use(new localStrategy (
-    (username, password, done) => {
-        if (username == 'vyvy71') {
-            if (password == 'vyVy7197') {
-                return done(null, username)
-            } else {
-                return done(null, false)
-            }
-        } else {
-            return done(null, false)
+
+
+router.post('/login', (req, res, next) => {
+    passport.authenticate('local', (err, user, info) => {
+        if (err)
+            return next(err);
+
+        if (!user) {
+            return res.render('login', {
+                layout: 'main.hbs',
+                err_message: info.message
+            })
         }
-    }
-))
-passport.serializeUser((username, done) => {
-    done(null, username)
-})
-passport.deserializeUser((name, done) => {
-    if (name == 'vyVy7197') {
-        return done(null, name)
-    } else {
-        return done(null, fase)
-    }
-})
 
-router.post(passport.authenticate('local', {
-    failureRedirect: '/login',
-    successRedirect: '/loginOk'
-}))
+        req.logIn(user, err => {
+            if (err)
+                return next(err);
+            var url = '/';
+            if (req.query.retUrl) {
+                url = req.query.retUrl;
+            }
+            console.log(url);
 
-router.get('/loginOk', (req, res) => res.send('success!!'))
+            return res.redirect(url);
+        });
+    })(req, res, next);
+})
 
 router.get('/signup', (req, res) => {
     res.render("signup", {
         layout: 'main.hbs'
-    })   
+    })
 })
 
 router.post('/signup', (req, res) => {
@@ -86,4 +78,8 @@ router.post('/signup', (req, res) => {
     })
 })
 
+router.get('/logout', (req, res, next) => {
+    req.logout();
+    res.redirect(req.headers.referer);
+})
 module.exports = router

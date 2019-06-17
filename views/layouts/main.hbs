@@ -26,12 +26,22 @@
 									<li><a href="./#"><i class="fa fa-behance"></i></a></li> -->
 					</ul>
 				</div>
+				{{#if _user}}
+				<div class="float-right">
+					<ul class="list header_social">
+						<li>Xin chào: </li>
+						<li><a href="/user/profile" >{{_user.passport.user.HoTen}}</a></li>
+						<li><a href="/user/logout"  style="font-size:12px">Đăng xuất</a></li>
+					</ul>
+				</div>
+				{{else}}
 				<div class="float-right">
 					<ul class="list header_social">
 						<li><a href="/user/signup">Đăng ký</a></li>
-						<li><a href="./login">Đăng nhập</a></li>
+						<li><a href="/user/login">Đăng nhập</a></li>
 					</ul>
 				</div>
+				{{/if}}
 			</div>
 		</div>
 		<div class="logo_part">
