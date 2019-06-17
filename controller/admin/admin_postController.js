@@ -10,26 +10,32 @@ var storage = multer.diskStorage({
         callback(null, './public/img');
     },
     filename: function (req, file, callback) {
-        callback(null,file.originalname);
+        callback(null, file.originalname);
     }
 });
 var upload = multer({
-    storage:storage
+    storage: storage
 });
 
 router.post("/upload", upload.single('file'), function (req, res) {
-    let data=req.body;
-    var file = './public/img/'+ req.file.filename;
+    let data = req.body;
+    var file = './public/img/' + req.file.filename;
     fs.rename(req.file.path, file, function (err) {
         if (err) {
             console.log(err);
             res.send(500);
         } else {
             data.img = file.slice(9);
-           console.log(data);
-           postRepo.themBaiViet(data).then(rows=>{
-               console.log(rows);
-           })
+            (async ()=>{
+                var dangBai = await postRepo.themBaiViet(data);
+                var idMax = await postRepo.idBaiVietMoiNhat();
+                var themNhan = await postRepo.themNhan({
+                    id:idMax[0][0].idbaivietmoi,
+                    nhan:data.nhan
+                })
+                res.redirect('/');
+            })();
+            
         }
     });
 });
