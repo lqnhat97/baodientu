@@ -14,12 +14,12 @@ module.exports = (req, res, next) => {
                 return cm.ChuyenMucCha == value.IDChuyenMuc;
             });
             if (dataChild.length!=0){
-                rows[index].ChuyenMucCon = []
-                rows[index].ChuyenMucCon.push(dataChild)
-                rows[index].ChuyenMucCon = rows[index].ChuyenMucCon[0];
+                data1[index].ChuyenMucCon = []
+                data1[index].ChuyenMucCon.push(dataChild)
+                data1[index].ChuyenMucCon = rows[index].ChuyenMucCon[0];
             }
         }
-        res.locals._category = rows;
+        res.locals._category = data1;
         next();
     })
 }
