@@ -14,7 +14,6 @@
 							<div class="date">
 								<a class="gad_btn" href="#">Thời trang</a>
 								<a href="#"><i class="fa fa-calendar" aria-hidden="true"></i>20 tháng 4, 2019</a>
-								<a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i>05</a>
 							</div>
 							<h3>Chào Hè tươi mát với trang phục họa tiết hoa quả nhiệt đới</h3>
 							</p>
@@ -25,7 +24,6 @@
 							<div class="date">
 								<a class="gad_btn" href="#">Du lịch</a>
 								<a href="#"><i class="fa fa-calendar" aria-hidden="true"></i>20 tháng 4, 2019</a>
-								<a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i>05</a>
 							</div>
 							<h3>8 điểm đến gần Hà Nội và dễ đi trong dịp 30/4</h3>
 
@@ -36,7 +34,6 @@
 							<div class="date">
 								<a class="gad_btn" href="#">Tâm sự và cuộc sống</a>
 								<a href="#"><i class="fa fa-calendar" aria-hidden="true"></i>20 tháng 4, 2019</a>
-								<a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i>05</a>
 							</div>
 							<h3>9 cách tận hưởng cuộc sống theo cách thực sự ý nghĩa</h3>
 
@@ -56,15 +53,15 @@
 			<h2>Bài viết nổi bật</h2>
 		</div>
 		<div class="row choice_inner">
+			{{#if tinNoiBat }}
 			{{#each tinNoiBat}}
 			<div class="col-lg-3 col-md-6">
 				<div class="choice_item">
-					<img class="img-fluid" src="img/blog/choice/choice-1.jpg" alt="" style="width:300px;height:200px">
+					<img class="img-fluid" src="/{{this.AnhDaiDien}}" alt="" style="width:300px;height:200px">
 					<div class="choice_text">
 						<div class="date">
-							<a class="gad_btn" href="#">{{ChuyenMuc}}</a>
-							<br><a href="#"><i class="fa fa-calendar" aria-hidden="true"></i>{{NgayDang}}</a>
-							<a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i>05</a>
+							<a class="gad_btn" href="#">{{TenChuyenMuc}}</a>
+							<a href="#"><i class="fa fa-calendar" aria-hidden="true"></i>{{NgayDang}}</a>
 						</div>
 						<a href="/post/{{IDBaiViet}}">
 							<h4>{{TieuDe}}</h4>
@@ -76,6 +73,10 @@
 				</div>
 			</div>
 			{{/each}}
+			{{else}}
+			<h3>Không có bài viết nổi bật hiển thị</h3>
+			{{/if}}
+
 		</div>
 	</div>
 </section>
@@ -98,7 +99,7 @@
 						<div class="media-body">
 							<div class="choice_text">
 								<div class="date">
-									<a class="gad_btn" href="#">Thời trang</a>
+									<a class="gad_btn" href="#">{{TenChuyenMuc}}</a>
 									<a href="#"><i class="fa fa-calendar" aria-hidden="true"></i>{{NgayDang}}</a>
 									<a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i>05</a>
 								</div>
@@ -113,7 +114,6 @@
 					</div>
 					{{/each}}
 				</div>
-
 			</div>
 			<div class="col-lg-4">
 				<div class="right_sidebar">
@@ -122,126 +122,37 @@
 							<h2>Bài viết được xem nhiều nhất</h2>
 						</div>
 						<div class="choice_item">
-							<img class="img-fluid" src="img/blog/popular-post/pp-1.jpg" alt="">
+							<img class="img-fluid" src="/{{tinXemNhieu1.AnhDaiDien}}" alt="">
 							<div class="choice_text">
 								<div class="date">
-									<a class="gad_btn" href="#">Tâm sự và cuộc sống</a>
-									<a href="#"><i class="fa fa-calendar" aria-hidden="true"></i>20 tháng 4,
-										2019</a>
+									<a class="gad_btn" href="#">{{tinXemNhieu1.TenChuyenMuc}}</a>
+									<a href="#"><i class="fa fa-calendar"
+											aria-hidden="true"></i>{{tinXemNhieu1.NgayDang}}</a>
 									<a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i>05</a>
 								</div>
 								<a href="news-details.html">
-									<h4>9 cách tận hưởng cuộc sống theo cách thực sự ý nghĩa</h4>
+									<h4>{{tinXemNhieu1.TieuDe}}</h4>
 								</a>
-								<p>Cuộc sống giống như một chuyến đi không có bản đồ. Trong suốt hành trình của
-									cuộc
-									đời, ai trong số chúng ta cũng sẽ dừng chân ở nhiều địa điểm khác nhau,...
+								<p>{{tinXemNhieu1.XemTruoc}}
 								</p>
 							</div>
 						</div>
 						<div class="news_slider owl-carousel">
+							{{#each tinXemNhieu}}
 							<div class="item">
 								<div class="choice_item">
-									<img src="img/blog/popular-post/pp-2.jpg" alt="">
+									<img src="/{{AnhDaiDien}}" alt="">
 									<div class="choice_text">
-										<a href="news-details.html">
-											<h4>9 cách tận hưởng cuộc sống theo cách thực sự ý nghĩa</h4>
+										<a href="/post/{{IDBaiViet}}">
+											<h4>{{TieuDe}}</h4>
 										</a>
 										<div class="date">
-											<!-- <a class="gad_btn" href="#">Gadgets</a> -->
-											<a href="#"><i class="fa fa-calendar" aria-hidden="true"></i>20
-												tháng 4,
-												2019</a>
-											<a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i>05</a>
+											<a href="#"><i class="fa fa-calendar" aria-hidden="true"></i>{{NgayDang}}</a>
 										</div>
 									</div>
 								</div>
 							</div>
-							<div class="item">
-								<div class="choice_item">
-									<img src="img/blog/popular-post/pp-3.jpg" alt="">
-									<div class="choice_text">
-										<a href="news-details.html">
-											<h4>9 cách tận hưởng cuộc sống theo cách thực sự ý nghĩa</h4>
-										</a>
-										<div class="date">
-											<!-- <a class="gad_btn" href="#">Gadgets</a> -->
-											<a href="#"><i class="fa fa-calendar" aria-hidden="true"></i>20
-												tháng 4,
-												2019</a>
-											<a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i>05</a>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="item">
-								<div class="choice_item">
-									<img src="img/blog/popular-post/pp-2.jpg" alt="">
-									<div class="choice_text">
-										<a href="news-details.html">
-											<h4>9 cách tận hưởng cuộc sống theo cách thực sự ý nghĩa</h4>
-										</a>
-										<div class="date">
-											<!-- <a class="gad_btn" href="#">Gadgets</a> -->
-											<a href="#"><i class="fa fa-calendar" aria-hidden="true"></i>20
-												tháng 4,
-												2019</a>
-											<a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i>05</a>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="item">
-								<div class="choice_item">
-									<img src="img/blog/popular-post/pp-3.jpg" alt="">
-									<div class="choice_text">
-										<a href="news-details.html">
-											<h4>9 cách tận hưởng cuộc sống theo cách thực sự ý nghĩa</h4>
-										</a>
-										<div class="date">
-											<!-- <a class="gad_btn" href="#">Gadgets</a> -->
-											<a href="#"><i class="fa fa-calendar" aria-hidden="true"></i>20
-												tháng 4,
-												2019</a>
-											<a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i>05</a>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="item">
-								<div class="choice_item">
-									<img src="img/blog/popular-post/pp-2.jpg" alt="">
-									<div class="choice_text">
-										<a href="news-details.html">
-											<h4>9 cách tận hưởng cuộc sống theo cách thực sự ý nghĩa</h4>
-										</a>
-										<div class="date">
-											<!-- <a class="gad_btn" href="#">Gadgets</a> -->
-											<a href="#"><i class="fa fa-calendar" aria-hidden="true"></i>20
-												tháng 4,
-												2019</a>
-											<a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i>05</a>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="item">
-								<div class="choice_item">
-									<img src="img/blog/popular-post/pp-3.jpg" alt="">
-									<div class="choice_text">
-										<a href="news-details.html">
-											<h4>9 cách tận hưởng cuộc sống theo cách thực sự ý nghĩa</h4>
-										</a>
-										<div class="date">
-											<!-- <a class="gad_btn" href="#">Gadgets</a> -->
-											<a href="#"><i class="fa fa-calendar" aria-hidden="true"></i>20
-												tháng 4,
-												2019</a>
-											<a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i>05</a>
-										</div>
-									</div>
-								</div>
-							</div>
+							{{/each}}							
 						</div>
 					</aside>
 					<!-- <aside class="r_widgets add_widgets text-center">
@@ -321,60 +232,6 @@
 							</div>
 						</div>
 					</div>
-					<div class="media">
-						<div class="d-flex">
-							<img src="img/product/product-2.jpg" alt="">
-						</div>
-						<div class="media-body">
-							<div class="choice_text">
-								<a href="#">
-									<h4>Không phải Steve Jobs, Tim Cook mới là CEO tốt nhất Apple từng có</h4>
-								</a>
-								<div class="date">
-									<a class="gad_btn" href="#">Công nghệ</a>
-									<br><a href="#"><i class="fa fa-calendar" aria-hidden="true"></i>20 tháng 4,
-										2019</a>
-									<a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i>05</a>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="media">
-						<div class="d-flex">
-							<img src="img/product/product-3.jpg" alt="">
-						</div>
-						<div class="media-body">
-							<div class="choice_text">
-								<a href="#">
-									<h4>Không phải Steve Jobs, Tim Cook mới là CEO tốt nhất Apple từng có</h4>
-								</a>
-								<div class="date">
-									<a class="gad_btn" href="#">Công nghệ</a>
-									<br><a href="#"><i class="fa fa-calendar" aria-hidden="true"></i>20 tháng 4,
-										2019</a>
-									<a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i>05</a>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="media">
-						<div class="d-flex">
-							<img src="img/product/product-4.jpg" alt="">
-						</div>
-						<div class="media-body">
-							<div class="choice_text">
-								<a href="#">
-									<h4>Không phải Steve Jobs, Tim Cook mới là CEO tốt nhất Apple từng có</h4>
-								</a>
-								<div class="date">
-									<a class="gad_btn" href="#">Công nghệ</a>
-									<br><a href="#"><i class="fa fa-calendar" aria-hidden="true"></i>20 tháng 4,
-										2019</a>
-									<a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i>05</a>
-								</div>
-							</div>
-						</div>
-					</div>
 				</div>
 			</div>
 			<div class="col-lg-4">
@@ -385,60 +242,6 @@
 					<div class="media">
 						<div class="d-flex">
 							<img src="img/product/product-5.jpg" alt="">
-						</div>
-						<div class="media-body">
-							<div class="choice_text">
-								<a href="#">
-									<h4>Không phải Steve Jobs, Tim Cook mới là CEO tốt nhất Apple từng có</h4>
-								</a>
-								<div class="date">
-									<a class="gad_btn" href="#">Công nghệ</a>
-									<br><a href="#"><i class="fa fa-calendar" aria-hidden="true"></i>20 tháng 4,
-										2019</a>
-									<a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i>05</a>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="media">
-						<div class="d-flex">
-							<img src="img/product/product-6.jpg" alt="">
-						</div>
-						<div class="media-body">
-							<div class="choice_text">
-								<a href="#">
-									<h4>Không phải Steve Jobs, Tim Cook mới là CEO tốt nhất Apple từng có</h4>
-								</a>
-								<div class="date">
-									<a class="gad_btn" href="#">Công nghệ</a>
-									<br><a href="#"><i class="fa fa-calendar" aria-hidden="true"></i>20 tháng 4,
-										2019</a>
-									<a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i>05</a>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="media">
-						<div class="d-flex">
-							<img src="img/product/product-7.jpg" alt="">
-						</div>
-						<div class="media-body">
-							<div class="choice_text">
-								<a href="#">
-									<h4>Không phải Steve Jobs, Tim Cook mới là CEO tốt nhất Apple từng có</h4>
-								</a>
-								<div class="date">
-									<a class="gad_btn" href="#">Công nghệ</a>
-									<br><a href="#"><i class="fa fa-calendar" aria-hidden="true"></i>20 tháng 4,
-										2019</a>
-									<a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i>05</a>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="media">
-						<div class="d-flex">
-							<img src="img/product/product-8.jpg" alt="">
 						</div>
 						<div class="media-body">
 							<div class="choice_text">
@@ -474,61 +277,6 @@
 									<a class="gad_btn" href="#">Công nghệ</a>
 									<br><a href="#"><i class="fa fa-calendar" aria-hidden="true"></i>20 tháng 4,
 										2019</a>
-									<a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i>05</a>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="media">
-						<div class="d-flex">
-							<img src="img/product/product-10.jpg" alt="">
-						</div>
-						<div class="media-body">
-							<div class="choice_text">
-								<a href="#">
-									<h4>Không phải Steve Jobs, Tim Cook mới là CEO tốt nhất Apple từng có</h4>
-								</a>
-								<div class="date">
-									<a class="gad_btn" href="#">Công nghệ</a>
-									<br><a href="#"><i class="fa fa-calendar" aria-hidden="true"></i>20 tháng 4,
-										2019</a>
-									<a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i>05</a>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="media">
-						<div class="d-flex">
-							<img src="img/product/product-11.jpg" alt="">
-						</div>
-						<div class="media-body">
-							<div class="choice_text">
-								<a href="#">
-									<h4>Không phải Steve Jobs, Tim Cook mới là CEO tốt nhất Apple từng có</h4>
-								</a>
-								<div class="date">
-									<a class="gad_btn" href="#">Công nghệ</a>
-									<br><a href="#"><i class="fa fa-calendar" aria-hidden="true"></i>20 tháng 4,
-										2019</a>
-									<a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i>05</a>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="media">
-						<div class="d-flex">
-							<img src="img/product/product-12.jpg" alt="">
-						</div>
-						<div class="media-body">
-							<div class="choice_text">
-								<a href="#">
-									<h4>Không phải Steve Jobs, Tim Cook mới là CEO tốt nhất Apple từng có</h4>
-								</a>
-								<div class="date">
-									<a class="gad_btn" href="#">Công nghệ</a>
-									<br><a href="#"><i class="fa fa-calendar" aria-hidden="true"></i>20 tháng 4,
-										2019</a>
-									<a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i>05</a>
 								</div>
 							</div>
 						</div>

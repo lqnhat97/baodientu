@@ -1,14 +1,18 @@
 var db = require('../database/db');
 
 exports.loadBaiVietNoiBat=()=>{
-    let sql = 'select * from BaiViet where TinNoiBat = 1;';
+    let sql = 'call HienThiBaiVietNoiBat();';
     return db.load(sql);
 }
 exports.loadXemNhieuNhat=()=>{
-    let sql = `select * from BaiViet order by luotxem desc limit 10;`;
+    let sql = `call HienThiBaiVietXemNhieuNhat ();`;
     return db.load(sql);
 }
 exports.loadMoiNhat=()=>{
-    let sql = `select * from BaiViet order by ngaydang desc limit 10;`;
+    let sql = `call HienThiBaiVietMoiNhat ();`;
+    return db.load(sql);
+}
+exports.loadTopChuyenMuc=()=>{
+    let sql = `call HienThiTopChuyenMuc();`;
     return db.load(sql);
 }

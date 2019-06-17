@@ -57,7 +57,8 @@ app.set('view option', {
 var adminController = require('./controller/adminController');
 var userController = require('./controller/userController');
 var homeController = require('./controller/homeController');
-var categoryController = require('./controller/homeController');
+var categoryController = require('./controller/categoryController');
+var tagController = require('./controller/tagController');
 var postController = require('./controller/postController')
 
 var handle404 = require('./util/handle404');
@@ -68,6 +69,9 @@ app.use('/',homeController);
 
 //Category
 app.use('/category', categoryController);
+
+//tag
+app.use('/tag', tagController);
 
 //Post
 app.use('/post', postController);
