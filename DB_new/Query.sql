@@ -157,7 +157,7 @@ delimiter ;
 
 /* PROCEDURE Thêm nhãn */
 /* DROP PROCEDURE IF EXISTS ThemNhan;
-call ThemNhan(2,'Phi tang xác'); */
+call ThemNhan(3,'Phi tang xác'); */
 delimiter //
 create procedure ThemNhan (in idbaiviet int, in tentag varchar(20))
 begin 

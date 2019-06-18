@@ -14,7 +14,7 @@ var router = express.Router()
 }))*/
 
 router.get('/login', (req, res) => {
-    if (req.session.passport.hasOwnProperty('user'))
+    if (req.session.passport.user)
         res.redirect('/');
     else
         res.render("login", {

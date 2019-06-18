@@ -20,7 +20,7 @@ module.exports = (req, res, next) => {
             }
         }
         res.locals._category = data1;
-        if (req.session.passport.hasOwnProperty('user'))
+        if (req.session.passport.user)
             res.locals._user = req.session;
         next();
     })
