@@ -54,7 +54,7 @@ create table BaiViet
 
 create table Nhan #tag
 (	IDBaiViet int,
-	TenTag varchar(20),
+	TenTag varchar(20) CHARACTER SET utf8,
     primary key(IDBaiViet,TenTag)
 	);
 
