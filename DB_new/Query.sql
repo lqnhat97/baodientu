@@ -1,18 +1,30 @@
 
 /* PROCEDURE Hiển thị 4 bài viết mới nhất */
 /* DROP PROCEDURE IF EXISTS HienThiBaiVietMoiNhat; 
-call HienThiBaiVietMoiNhat (); */
+call HienThiBaiVietMoiNhat (11); */
 delimiter //
-create procedure HienThiBaiVietMoiNhat ()
+create procedure HienThiBaiVietMoiNhat (in iddangnhap int)
 BEGIN
-	select baiviet.AnhDaiDien, chuyenmuc.IDChuyenMuc, chuyenmuc.TenChuyenMuc,baiviet.IDBaiViet, baiviet.TieuDe, baiviet.XemTruoc, baiviet.LuotXem, baiviet.NgayDang, count(binhluan.IDBinhLuan) as slbinhluan
-	from baiviet inner join chuyenmuc on baiviet.ChuyenMuc = chuyenmuc.IDChuyenMuc
+	if exists (select * from nguoidung where nguoidung.id = iddangnhap and nguoidung.NgayHetHan >= now())
+    then 
+		select baiviet.AnhDaiDien, chuyenmuc.IDChuyenMuc, chuyenmuc.TenChuyenMuc,baiviet.IDBaiViet, baiviet.TieuDe, 
+        baiviet.XemTruoc, baiviet.LuotXem, baiviet.NgayDang, count(binhluan.IDBinhLuan) as slbinhluan, baiviet.premium
+		from baiviet inner join chuyenmuc on baiviet.ChuyenMuc = chuyenmuc.IDChuyenMuc
 				left join binhluan on baiviet.IDBaiViet = binhluan.IDBaiViet
-                
-	where baiviet.XuatBan = 1
-    group by baiviet.idbaiviet
-	order by baiviet.NgayDang DESC 
-    limit 4;
+		where baiviet.XuatBan = 1 
+		group by baiviet.idbaiviet
+		order by baiviet.premium DESC,baiviet.NgayDang DESC 
+		limit 4;
+	else 
+		select baiviet.AnhDaiDien, chuyenmuc.IDChuyenMuc, chuyenmuc.TenChuyenMuc,baiviet.IDBaiViet, baiviet.TieuDe, 
+        baiviet.XemTruoc, baiviet.LuotXem, baiviet.NgayDang, count(binhluan.IDBinhLuan) as slbinhluan, baiviet.premium
+		from baiviet inner join chuyenmuc on baiviet.ChuyenMuc = chuyenmuc.IDChuyenMuc
+				left join binhluan on baiviet.IDBaiViet = binhluan.IDBaiViet
+		where baiviet.XuatBan = 1
+		group by baiviet.idbaiviet
+		order by baiviet.NgayDang DESC 
+		limit 4;
+    end if;
 END //
 delimiter ;
 
@@ -22,31 +34,55 @@ delimiter ;
 /* DROP PROCEDURE IF EXISTS HienThiBaiVietXemNhieuNhat; 
 call HienThiBaiVietXemNhieuNhat (); */
 delimiter //
-create procedure HienThiBaiVietXemNhieuNhat ()
+create procedure HienThiBaiVietXemNhieuNhat (in iddangnhap int)
 BEGIN
-	select baiviet.AnhDaiDien, chuyenmuc.IDChuyenMuc, chuyenmuc.TenChuyenMuc, baiviet.IDBaiViet, 
-    baiviet.TieuDe, baiviet.XemTruoc, baiviet.NgayDang, baiviet.LuotXem,  count(binhluan.IDBinhLuan) as slbinhluan
-	from baiviet inner join chuyenmuc on baiviet.ChuyenMuc = chuyenmuc.IDChuyenMuc
-    left join binhluan on baiviet.IDBaiViet = binhluan.IDBaiViet
-	where baiviet.XuatBan = 1
-    group by baiviet.idbaiviet
-	order by baiviet.LuotXem DESC 
-    limit 4;
+	if exists (select * from nguoidung where nguoidung.id = iddangnhap and nguoidung.NgayHetHan >= now())
+    then 
+		select baiviet.AnhDaiDien, chuyenmuc.IDChuyenMuc, chuyenmuc.TenChuyenMuc, baiviet.IDBaiViet, baiviet.TieuDe, 
+        baiviet.XemTruoc, baiviet.NgayDang, baiviet.LuotXem,  count(binhluan.IDBinhLuan) as slbinhluan, baiviet.premium
+		from baiviet inner join chuyenmuc on baiviet.ChuyenMuc = chuyenmuc.IDChuyenMuc
+			left join binhluan on baiviet.IDBaiViet = binhluan.IDBaiViet
+		where baiviet.XuatBan = 1
+		group by baiviet.idbaiviet
+		order by baiviet.premium desc, baiviet.LuotXem DESC 
+		limit 10;
+	else 
+		select baiviet.AnhDaiDien, chuyenmuc.IDChuyenMuc, chuyenmuc.TenChuyenMuc, baiviet.IDBaiViet, baiviet.TieuDe,
+        baiviet.XemTruoc, baiviet.NgayDang, baiviet.LuotXem,  count(binhluan.IDBinhLuan) as slbinhluan, baiviet.premium
+		from baiviet inner join chuyenmuc on baiviet.ChuyenMuc = chuyenmuc.IDChuyenMuc
+			left join binhluan on baiviet.IDBaiViet = binhluan.IDBaiViet
+		where baiviet.XuatBan = 1 
+		group by baiviet.idbaiviet
+		order by baiviet.LuotXem DESC 
+		limit 10;
+	end if;
 END //
 delimiter ;
 /*-----------------------------------*/
-/* PROCEDURE Hiển thị 3 bài viết nổi bật*/
+/* PROCEDURE Hiển thị 4 bài viết nổi bật*/
 /* DROP PROCEDURE IF EXISTS HienThiBaiVietNoiBat;
 call HienThiBaiVietNoiBat(); */
 delimiter //
-create procedure HienThiBaiVietNoiBat()
+create procedure HienThiBaiVietNoiBat(in iddangnhap int)
 BEGIN
-	select baiviet.AnhDaiDien, chuyenmuc.IDChuyenMuc, chuyenmuc.TenChuyenMuc, baiviet.IDBaiViet, baiviet.TieuDe, baiviet.XemTruoc, baiviet.NgayDang, baiviet.LuotXem,  count(binhluan.IDBinhLuan) as slbinhluan
-	from baiviet inner join chuyenmuc on baiviet.ChuyenMuc = chuyenmuc.IDChuyenMuc
-    left join binhluan on baiviet.IDBaiViet = binhluan.IDBaiViet
-	where baiviet.TinNoiBat = 1 and baiviet.XuatBan = 1
-	group by baiviet.idbaiviet
-    ORDER BY RAND() LIMIT 3;
+	if exists (select * from nguoidung where nguoidung.id = iddangnhap and nguoidung.NgayHetHan >= now())
+    then
+		select baiviet.AnhDaiDien, chuyenmuc.IDChuyenMuc, chuyenmuc.TenChuyenMuc, baiviet.IDBaiViet, baiviet.TieuDe, 
+        baiviet.XemTruoc, baiviet.NgayDang, baiviet.LuotXem,  count(binhluan.IDBinhLuan) as slbinhluan, baiviet.premium
+		from baiviet inner join chuyenmuc on baiviet.ChuyenMuc = chuyenmuc.IDChuyenMuc
+				left join binhluan on baiviet.IDBaiViet = binhluan.IDBaiViet
+		where baiviet.TinNoiBat = 1 and baiviet.XuatBan = 1
+		group by baiviet.idbaiviet
+		ORDER BY baiviet.premium desc,RAND() LIMIT 4;
+	else 
+		select baiviet.AnhDaiDien, chuyenmuc.IDChuyenMuc, chuyenmuc.TenChuyenMuc, baiviet.IDBaiViet, baiviet.TieuDe,
+        baiviet.XemTruoc, baiviet.NgayDang, baiviet.LuotXem,  count(binhluan.IDBinhLuan) as slbinhluan, baiviet.premium
+		from baiviet inner join chuyenmuc on baiviet.ChuyenMuc = chuyenmuc.IDChuyenMuc
+				left join binhluan on baiviet.IDBaiViet = binhluan.IDBaiViet
+		where baiviet.TinNoiBat = 1 and baiviet.XuatBan = 1 
+		group by baiviet.idbaiviet
+		ORDER BY RAND() LIMIT 4;
+        end if;
 END //
 delimiter ;
 
@@ -55,31 +91,57 @@ delimiter ;
 /* DROP PROCEDURE IF EXISTS HienThiTopChuyenMuc; 
 call HienThiTopChuyenMuc(); */
 delimiter //
-create procedure HienThiTopChuyenMuc()
+create procedure HienThiTopChuyenMuc(in iddangnhap int)
 BEGIN
-	select baiviet.AnhDaiDien, a.IDChuyenMuc, a.TenChuyenMuc, baiviet.IDBaiViet, baiviet.TieuDe, baiviet.NgayDang, baiviet.LuotXem,  count(binhluan.IDBinhLuan) as slbinhluan
-	from baiviet left join binhluan on baiviet.IDBaiViet = binhluan.IDBaiViet,( select  chuyenmuc.IDChuyenMuc, chuyenmuc.TenChuyenMuc, max(baiviet.NgayDang) as NgayMoiNhat
-					 from chuyenmuc inner join baiviet on chuyenmuc.IDChuyenMuc = baiviet.ChuyenMuc
-					 group by baiviet.ChuyenMuc ) as a
-	where baiviet.ChuyenMuc = a.IDChuyenMuc and baiviet.NgayDang = a.NgayMoiNhat and baiviet.XuatBan = 1
-    group by baiviet.idbaiviet
-	order by rand() limit 9;
+	if exists (select * from nguoidung where nguoidung.id = iddangnhap and nguoidung.NgayHetHan >= now())
+    then
+		select baiviet.AnhDaiDien, a.IDChuyenMuc, a.TenChuyenMuc, baiviet.IDBaiViet, baiviet.TieuDe, baiviet.NgayDang, baiviet.LuotXem,  
+        count(binhluan.IDBinhLuan) as slbinhluan, baiviet.premium
+		from baiviet left join binhluan on baiviet.IDBaiViet = binhluan.IDBaiViet,( select  chuyenmuc.IDChuyenMuc, chuyenmuc.TenChuyenMuc, max(baiviet.NgayDang) as NgayMoiNhat
+						from chuyenmuc inner join baiviet on chuyenmuc.IDChuyenMuc = baiviet.ChuyenMuc
+						group by baiviet.ChuyenMuc ) as a
+		where baiviet.ChuyenMuc = a.IDChuyenMuc and baiviet.NgayDang = a.NgayMoiNhat and baiviet.XuatBan = 1
+		group by baiviet.idbaiviet
+		order by baiviet.premium desc,rand() limit 9;
+	else 
+		select baiviet.AnhDaiDien, a.IDChuyenMuc, a.TenChuyenMuc, baiviet.IDBaiViet, baiviet.TieuDe, baiviet.NgayDang, 
+        baiviet.LuotXem,  count(binhluan.IDBinhLuan) as slbinhluan, baiviet.premium
+		from baiviet left join binhluan on baiviet.IDBaiViet = binhluan.IDBaiViet,( select  chuyenmuc.IDChuyenMuc, chuyenmuc.TenChuyenMuc, max(baiviet.NgayDang) as NgayMoiNhat
+						from chuyenmuc inner join baiviet on chuyenmuc.IDChuyenMuc = baiviet.ChuyenMuc
+						group by baiviet.ChuyenMuc ) as a
+		where baiviet.ChuyenMuc = a.IDChuyenMuc and baiviet.NgayDang = a.NgayMoiNhat and baiviet.XuatBan = 1 
+		group by baiviet.idbaiviet
+		order by rand() limit 9;
+	end if;
 END //
 delimiter ;
 /*-----------------------------------*/
 /* PROCEDURE Hiển thị bài viết theo chuyên mục*/
 /* DROP PROCEDURE IF EXISTS HienThiBaiVietChuyenMuc; 
-call HienThiBaiVietChuyenMuc('PL1',5,0); */
+call HienThiBaiVietChuyenMuc(); */
 delimiter //
-create procedure HienThiBaiVietChuyenMuc(in idchuyenmuc varchar(20), in lim int, in os int)
+create procedure HienThiBaiVietChuyenMuc(in iddangnhap int,in idchuyenmuc varchar(20), in lim int, in os int)
 BEGIN
-	select baiviet.AnhDaiDien, chuyenmuc.IDChuyenMuc, chuyenmuc.TenChuyenMuc, baiviet.IDBaiViet, baiviet.TieuDe, baiviet.NgayDang, baiviet.LuotXem,  count(binhluan.IDBinhLuan) as slbinhluan, baiviet.XemTruoc
-	from baiviet inner join chuyenmuc on chuyenmuc.IDChuyenMuc = baiviet.ChuyenMuc
-    left join binhluan on baiviet.IDBaiViet = binhluan.IDBaiViet 
-	where baiviet.ChuyenMuc = idchuyenmuc and baiviet.XuatBan = 1
-    group by baiviet.idbaiviet
-    order by baiviet.NgayDang
-    limit lim offset os;
+	if exists (select * from nguoidung where nguoidung.id = iddangnhap and nguoidung.NgayHetHan >= now())
+    then
+		select baiviet.AnhDaiDien, chuyenmuc.IDChuyenMuc, chuyenmuc.TenChuyenMuc, baiviet.IDBaiViet, baiviet.TieuDe, 
+        baiviet.NgayDang, baiviet.LuotXem,  count(binhluan.IDBinhLuan) as slbinhluan, baiviet.XemTruoc, baiviet.premium
+		from baiviet inner join chuyenmuc on chuyenmuc.IDChuyenMuc = baiviet.ChuyenMuc
+				left join binhluan on baiviet.IDBaiViet = binhluan.IDBaiViet 
+		where baiviet.ChuyenMuc = idchuyenmuc and baiviet.XuatBan = 1
+		group by baiviet.idbaiviet
+		order by baiviet.premium desc, baiviet.NgayDang desc
+		limit lim offset os;
+	else 
+		select baiviet.AnhDaiDien, chuyenmuc.IDChuyenMuc, chuyenmuc.TenChuyenMuc, baiviet.IDBaiViet, baiviet.TieuDe, 
+        baiviet.NgayDang, baiviet.LuotXem,  count(binhluan.IDBinhLuan) as slbinhluan, baiviet.XemTruoc, baiviet.premium
+		from baiviet inner join chuyenmuc on chuyenmuc.IDChuyenMuc = baiviet.ChuyenMuc
+				left join binhluan on baiviet.IDBaiViet = binhluan.IDBaiViet 
+		where baiviet.ChuyenMuc = idchuyenmuc and baiviet.XuatBan = 1 
+		group by baiviet.idbaiviet
+		order by baiviet.NgayDang desc
+		limit lim offset os;
+    end if;
 END //
 delimiter ;
 /*-----------------------------------*/
@@ -87,51 +149,82 @@ delimiter ;
 /* DROP PROCEDURE IF EXISTS HienThiBaiVietTheoNhan; 
 call HienThiBaiVietTheoNhan('Phi tang xác',2,0); */
 delimiter //
-create procedure HienThiBaiVietTheoNhan(in tentag varchar(20), in lim int, in os int)
+create procedure HienThiBaiVietTheoNhan(in iddangnhap int,in tentag varchar(20), in lim int, in os int)
 BEGIN
-	select baiviet.AnhDaiDien, chuyenmuc.IDChuyenMuc, chuyenmuc.TenChuyenMuc, baiviet.IDBaiViet, baiviet.TieuDe, baiviet.NgayDang, baiviet.LuotXem,  count(binhluan.IDBinhLuan) as slbinhluan, baiviet.XemTruoc
-	from baiviet inner join chuyenmuc on chuyenmuc.IDChuyenMuc = baiviet.ChuyenMuc
-    left join binhluan on baiviet.IDBaiViet = binhluan.IDBaiViet 
-    left join nhan on baiviet.IDBaiViet = nhan.IDBaiViet
-	where nhan.TenTag = tentag and baiviet.XuatBan = 1
-    group by baiviet.idbaiviet
-    order by baiviet.NgayDang
-    limit lim offset os;
+	if exists (select * from nguoidung where nguoidung.id = iddangnhap and nguoidung.NgayHetHan >= now())
+	then
+		select baiviet.AnhDaiDien, chuyenmuc.IDChuyenMuc, chuyenmuc.TenChuyenMuc, baiviet.IDBaiViet, baiviet.TieuDe, 
+        baiviet.NgayDang, baiviet.LuotXem,  count(binhluan.IDBinhLuan) as slbinhluan, baiviet.XemTruoc, baiviet.premium
+		from baiviet inner join chuyenmuc on chuyenmuc.IDChuyenMuc = baiviet.ChuyenMuc
+				left join binhluan on baiviet.IDBaiViet = binhluan.IDBaiViet 
+				left join nhan on baiviet.IDBaiViet = nhan.IDBaiViet
+		where nhan.TenTag = tentag and baiviet.XuatBan = 1
+		group by baiviet.idbaiviet
+		order by baiviet.premium desc, baiviet.NgayDang desc
+		limit lim offset os;
+	else 
+		select baiviet.AnhDaiDien, chuyenmuc.IDChuyenMuc, chuyenmuc.TenChuyenMuc, baiviet.IDBaiViet, baiviet.TieuDe, 
+        baiviet.NgayDang, baiviet.LuotXem,  count(binhluan.IDBinhLuan) as slbinhluan, baiviet.XemTruoc, baiviet.premium
+		from baiviet inner join chuyenmuc on chuyenmuc.IDChuyenMuc = baiviet.ChuyenMuc
+				left join binhluan on baiviet.IDBaiViet = binhluan.IDBaiViet 
+				left join nhan on baiviet.IDBaiViet = nhan.IDBaiViet
+		where nhan.TenTag = tentag and baiviet.XuatBan = 1 
+		group by baiviet.idbaiviet
+		order by baiviet.NgayDang desc
+		limit lim offset os;
+    end if;
 END //
 delimiter ;
 /*-----------------------------------*/
+
 /* PROCEDURE Hiển thị bài viết chi tiết */
 /* DROP PROCEDURE IF EXISTS HienThiBaiVietChiTiet;
-call HienThiBaiVietChiTiet('2'); */
+call HienThiBaiVietChiTiet(iddangnhap,idbaiviet); */
 delimiter //
-create procedure HienThiBaiVietChiTiet (in idbaiviet int)
+create procedure HienThiBaiVietChiTiet (in iddangnhap int,in idbaiviet int)
 BEGIN
-	select baiviet.IDBaiViet, baiviet.AnhDaiDien, baiviet.TieuDe, baiviet.NoiDung,  count(binhluan.IDBinhLuan) as slbinhluan, nguoidung.HoTen as nguoidang, baiviet.NgayDang,
-		   chuyenmuc.IDChuyenMuc, chuyenmuc.TenChuyenMuc
-	from baiviet left join binhluan on baiviet.IDBaiViet = binhluan.IDBaiViet
+	if exists (select * from nguoidung where nguoidung.id = iddangnhap and nguoidung.NgayHetHan >= now())
+	then
+		select baiviet.IDBaiViet, baiviet.AnhDaiDien, baiviet.TieuDe, baiviet.NoiDung,  count(binhluan.IDBinhLuan) as slbinhluan, nguoidung.HoTen as nguoidang, baiviet.NgayDang,
+		chuyenmuc.IDChuyenMuc, chuyenmuc.TenChuyenMuc
+		from baiviet left join binhluan on baiviet.IDBaiViet = binhluan.IDBaiViet
 				 inner join nguoidung on baiviet.phongvien = nguoidung.id
                  inner join chuyenmuc on baiviet.ChuyenMuc = chuyenmuc.IDChuyenMuc
-	where baiviet.IDBaiViet = idbaiviet and baiviet.XuatBan = 1
-    group by binhluan.IDBaiViet;
+		where baiviet.IDBaiViet = idbaiviet and baiviet.XuatBan = 1
+		group by binhluan.IDBaiViet;
+	else 
+		select baiviet.IDBaiViet, baiviet.AnhDaiDien, baiviet.TieuDe, baiviet.NoiDung,  count(binhluan.IDBinhLuan) as slbinhluan, nguoidung.HoTen as nguoidang, baiviet.NgayDang,
+		chuyenmuc.IDChuyenMuc, chuyenmuc.TenChuyenMuc
+		from baiviet left join binhluan on baiviet.IDBaiViet = binhluan.IDBaiViet
+				 inner join nguoidung on baiviet.phongvien = nguoidung.id
+                 inner join chuyenmuc on baiviet.ChuyenMuc = chuyenmuc.IDChuyenMuc
+		where baiviet.IDBaiViet = idbaiviet and baiviet.XuatBan = 1 and baiviet.premium = 0
+		group by binhluan.IDBaiViet;
+    end if;
 END //
 delimiter ;
-
 /*-----------------------------------*/
 
 /* PROCEDURE Hiển thị 5 bài viết cùng chuyên mục */
 /* DROP PROCEDURE IF EXISTS HienThiBaiVietCungChuyenMuc; 
 call HienThiBaiVietCungChuyenMuc('TTA1'); */
 delimiter //
-create procedure HienThiBaiVietCungChuyenMuc (in idchuyenmuc varchar(15))
+create procedure HienThiBaiVietCungChuyenMuc (in iddangnhap int,in idchuyenmuc varchar(15))
 BEGIN
-	select baiviet.ChuyenMuc, baiviet.idbaiviet, baiviet.AnhDaiDien, baiviet.TieuDe, baiviet.NgayDang
-	from baiviet 
-	where baiviet.ChuyenMuc = idchuyenmuc and baiviet.XuatBan = 1
-    order by rand()
-    limit 4;
+	if exists (select * from nguoidung where nguoidung.id = iddangnhap and nguoidung.NgayHetHan >= now())
+	then
+		select baiviet.ChuyenMuc, baiviet.idbaiviet, baiviet.AnhDaiDien, baiviet.TieuDe, baiviet.NgayDang
+		from baiviet 
+		where baiviet.ChuyenMuc = idchuyenmuc and baiviet.XuatBan = 1
+		order by baiviet.premium desc, rand() limit 4;
+	else
+        select baiviet.ChuyenMuc, baiviet.idbaiviet, baiviet.AnhDaiDien, baiviet.TieuDe, baiviet.NgayDang
+		from baiviet 
+		where baiviet.ChuyenMuc = idchuyenmuc and baiviet.XuatBan = 1 
+		order by rand() limit 4;
+    end if;    
 END //
 delimiter ;
-
 /*-----------------------------------*/
 
 /* PROCEDURE Hiển thị bình luận */
@@ -146,7 +239,6 @@ BEGIN
 	where baiviet.IDBaiViet = idbaiviet;
 END //
 delimiter ;
-
 /*-----------------------------------*/
 
 /* PROCEDURE Hiển thị nhãn */
@@ -160,7 +252,17 @@ BEGIN
 	where baiviet.IDBaiViet = idbaiviet;
 END //
 delimiter ;
+/*-----------------------------------*/
 
+/* PROCEDURE Lấy ID bài viết mới nhất */
+/* DROP PROCEDURE IF EXISTS LayIDBaiVietMoi;
+call LayIDBaiVietMoi(@idbaivietmoi); */
+delimiter //
+create procedure LayIDBaiVietMoi (OUT idbaivietmoi int)
+begin 
+	select MAX(idbaiviet) as idbaivietmoi from baiviet;
+end //
+delimiter ;
 /*-----------------------------------*/
 
 /* PROCEDURE Thêm bài viết */
@@ -173,16 +275,6 @@ create procedure ThemBaiViet (IN idbaiviet int, IN tieude varchar(255) CHARACTER
 BEGIN
 	insert baiviet (IDBaiViet,TieuDe,ChuyenMuc,AnhDaiDien,NoiDung,XemTruoc,PhongVien) values (idbaiviet,tieude,ChuyenMuc,AnhDaiDien,NoiDung,XemTruoc,PhongVien);
 END //
-delimiter ;
-
-/* PROCEDURE Lấy ID bài viết mới nhất */
-/* DROP PROCEDURE IF EXISTS LayIDBaiVietMoi;
-call LayIDBaiVietMoi(@idbaivietmoi); */
-delimiter //
-create procedure LayIDBaiVietMoi (OUT idbaivietmoi int)
-begin 
-	select MAX(idbaiviet) as idbaivietmoi from baiviet;
-end //
 delimiter ;
 /*-----------------------------------*/
 
@@ -210,8 +302,8 @@ begin
 	insert binhluan(idbinhluan,idbaiviet,docgia,noidung) values (idbinhluan,idbaiviet,docgia,noidung);
 end //
 delimiter ;
-
 /*-----------------------------------*/
+
 /* PROCEDURE Tăng lượt xem */
 /* DROP PROCEDURE IF EXISTS TangLuotXem; 
 call TangLuotXem('1'); */
@@ -221,9 +313,9 @@ begin
 	update BaiViet set LuotXem = LuotXem+1 where BaiViet.idbaiviet = idbaiviet; 
 end //
 delimiter ;
-
 /*-----------------------------------*/
-/* PROCEDURE Hiệu chỉnh bài viết */
+
+/* PROCEDURE Sửa bài viết */
 /* DROP PROCEDURE IF EXISTS SuaBaiViet;
 call SuaBaiViet(1,'tieude','ChuyenMuc','AnhDaiDien','NoiDung','XemTruoc') */
 delimiter //
@@ -234,8 +326,23 @@ begin
 	where baiviet.IDBaiViet = idbaiviet;
 end //
 delimiter ;
-
 /*-----------------------------------*/
+
+/* PROCEDURE Sửa chuyên mục */
+/* DROP PROCEDURE IF EXISTS SuaChuyenMuc ; 
+call SuaChuyenMuc('TS1','Tâm sự và cuộc sống','DS1') ; */
+delimiter //
+create procedure SuaChuyenMuc(in idchuyenmuc varchar(15), in tenchuyenmuc varchar(50), in chuyenmuccha varchar(15) )
+begin 
+	if exists (select * from chuyenmuc where chuyenmuc.IDChuyenMuc = idchuyenmuc)
+    then 
+		update chuyenmuc set chuyenmuc.TenChuyenMuc = tenchuyenmuc, chuyenmuc.ChuyenMucCha = chuyenmuccha
+        where chuyenmuc.IDChuyenMuc = idchuyenmuc;
+	end if;
+end //
+delimiter ;
+/*-----------------------------------*/
+
 /* PROCEDURE Xóa  nhãn */
 /* DROP PROCEDURE IF EXISTS XoaNhan; 
 call XoaNhan('15'); */
@@ -248,33 +355,6 @@ begin
 	end if;
 end //
 delimiter ;
-
-/*-----------------------------------*/
-/* PROCEDURE Xem danh sách bài viết  trong chuyên mục do mình quản lý */
-/* DROP PROCEDURE IF EXISTS XemBaiVietDoMinhQuanLy; 
-call XemBaiVietDoMinhQuanLy(6); */
-delimiter //
-create procedure XemBaiVietDoMinhQuanLy(in idbtv int)
-begin 
-	select baiviet.TieuDe, chuyenmuc.TenChuyenMuc, baiviet.NgayViet
-    from baiviet inner join chuyenmuc on baiviet.ChuyenMuc = chuyenmuc.IDChuyenMuc
-    inner join bientap_chuyenmuc on chuyenmuc.IDChuyenMuc = bientap_chuyenmuc.IDChuyenMuc
-    where bientap_chuyenmuc.IDBTV = idbtv;
-end //
-delimiter ;
-
-/*-----------------------------------*/
-/* PROCEDURE Duyệt bài và xác định ngày xuất bản */
-/* DROP PROCEDURE IF EXISTS DuyetBaiVaXacDinhNgayXuatBan ; 
-call DuyetBaiVaXacDinhNgayXuatBan  */
-delimiter //
-create procedure DuyetBaiVaXacDinhNgayXuatBan (in idbtv int,in idbaiviet int, in ngayxuatban datetime)
-begin 
-	update baiviet set baiviet.DaDuyet = '1', baiviet.NgayDang = ngayxuatban 
-    where baiviet.IDBaiViet = idbaiviet;
-end //
-delimiter ;
-
 /*-----------------------------------*/
 /* PROCEDURE Xóa bài viết */
 /* DROP PROCEDURE IF EXISTS XoaBaiViet ; 
@@ -304,11 +384,30 @@ begin
 end //
 delimiter ;
 
-
-
-
-
-
+/*-----------------------------------*/
+/* PROCEDURE Xem danh sách bài viết  trong chuyên mục do mình quản lý */
+/* DROP PROCEDURE IF EXISTS XemBaiVietDoMinhQuanLy; 
+call XemBaiVietDoMinhQuanLy(6); */
+delimiter //
+create procedure XemBaiVietDoMinhQuanLy(in idbtv int)
+begin 
+	select baiviet.TieuDe, chuyenmuc.TenChuyenMuc, baiviet.NgayViet
+    from baiviet inner join chuyenmuc on baiviet.ChuyenMuc = chuyenmuc.IDChuyenMuc
+    inner join bientap_chuyenmuc on chuyenmuc.IDChuyenMuc = bientap_chuyenmuc.IDChuyenMuc
+    where bientap_chuyenmuc.IDBTV = idbtv;
+end //
+delimiter ;
+/*-----------------------------------*/
+/* PROCEDURE Duyệt bài và xác định ngày xuất bản */
+/* DROP PROCEDURE IF EXISTS DuyetBaiVaXacDinhNgayXuatBan ; 
+call DuyetBaiVaXacDinhNgayXuatBan  */
+delimiter //
+create procedure DuyetBaiVaXacDinhNgayXuatBan (in idbtv int,in idbaiviet int, in ngayxuatban datetime)
+begin 
+	update baiviet set baiviet.DaDuyet = '1', baiviet.NgayDang = ngayxuatban 
+    where baiviet.IDBaiViet = idbaiviet;
+end //
+delimiter ;
 
 
 

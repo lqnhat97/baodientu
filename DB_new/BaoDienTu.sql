@@ -24,9 +24,8 @@ create table NguoiDung
 	Email varchar(50) not null unique,
 	SDT varchar(15) not null unique,
 	PhanHe int,
-	NgayDangKy datetime,
-	NgayHetHan datetime,
-	TinhTrang varchar(20)
+	NgayDangKy datetime default current_timestamp,
+	NgayHetHan datetime default null
 	 );
 
 create table ChuyenMuc #category
@@ -45,7 +44,7 @@ create table BaiViet
 (	IDBaiViet INT  primary KEY auto_increment,
 	TieuDe varchar(255) CHARACTER SET utf8  not null,
 	ChuyenMuc varchar(10),
-	NgayDang datetime default current_timestamp,
+	NgayDang datetime default null,
 	AnhDaiDien varchar(255) not null,
 	NoiDung text CHARACTER SET utf8,
 	XemTruoc text CHARACTER SET utf8,
