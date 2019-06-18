@@ -131,9 +131,9 @@
 									<a class="gad_btn" href="#">{{tinXemNhieu1.TenChuyenMuc}}</a>
 									<a href="#"><i class="fa fa-calendar"
 											aria-hidden="true"></i>{{format tinXemNhieu1.NgayDang}}</a>
-									<a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i>05</a>
+									<a href="#"><i class="fa fa-eye"></i>{{tinXemNhieu1.LuotXem}}</a>
 								</div>
-								<a href="news-details.html">
+								<a href="/post/{{tinXemNhieu1.IDBaiViet}}">
 									<h4>{{tinXemNhieu1.TieuDe}}</h4>
 								</a>
 								<p>{{tinXemNhieu1.XemTruoc}}
@@ -144,7 +144,7 @@
 							{{#each tinXemNhieu}}
 							<div class="item">
 								<div class="choice_item">
-									<img src="/{{AnhDaiDien}}" alt="">
+									<img src="/{{AnhDaiDien}}" alt="" style="width:165px;heigh:116.47px">
 									<div class="choice_text">
 										<a href="/post/{{IDBaiViet}}">
 											<h4>{{TieuDe}}</h4>
@@ -152,6 +152,8 @@
 										<div class="date">
 											<a href="#"><i class="fa fa-calendar"
 													aria-hidden="true"></i>{{format NgayDang}}</a>
+									<a href="#"><i class="fa fa-eye"></i>{{LuotXem}}</a>
+
 										</div>
 									</div>
 								</div>
@@ -218,24 +220,26 @@
 					<h2>Top chuyên mục</h2>
 				</div>
 				<div class="product_list">
+					{{#each top1}}
 					<div class="media">
 						<div class="d-flex">
-							<img src="img/product/product-1.jpg" alt="">
+							<img src="/{{AnhDaiDien}}" alt="" style="width:100px;heigh:80px">
 						</div>
 						<div class="media-body">
 							<div class="choice_text">
-								<a href="#">
-									<h4>Không phải Steve Jobs, Tim Cook mới là CEO tốt nhất Apple từng có</h4>
+								<a href="/post/{{IDBaiViet}}">
+									<h4>{{TieuDe}}</h4>
 								</a>
 								<div class="date">
-									<a class="gad_btn" href="#">Công nghệ</a>
-									<br><a href="#"><i class="fa fa-calendar" aria-hidden="true"></i>20 tháng 4,
-										2019</a>
-									<a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i>05</a>
+									<a class="gad_btn" href="/category/{{IDChuyenMuc}}">{{TenChuyenMuc}}</a>
+									<br><a href="#"><i class="fa fa-calendar"
+											aria-hidden="true"></i>{{format NgayDang}}</a>
+									<a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i>{{slbinhluan}}</a>
 								</div>
 							</div>
 						</div>
 					</div>
+					{{/each}}
 				</div>
 			</div>
 			<div class="col-lg-4">
@@ -243,24 +247,26 @@
 					<h2>Top chuyên mục</h2>
 				</div>
 				<div class="product_list">
+					{{#each top2}}
 					<div class="media">
 						<div class="d-flex">
-							<img src="img/product/product-5.jpg" alt="">
+							<img src="/{{AnhDaiDien}}" alt="" style="width:100px;heigh:80px">
 						</div>
 						<div class="media-body">
 							<div class="choice_text">
-								<a href="#">
-									<h4>Không phải Steve Jobs, Tim Cook mới là CEO tốt nhất Apple từng có</h4>
+								<a href="/post/{{IDBaiViet}}">
+									<h4>{{TieuDe}}</h4>
 								</a>
 								<div class="date">
-									<a class="gad_btn" href="#">Công nghệ</a>
-									<br><a href="#"><i class="fa fa-calendar" aria-hidden="true"></i>20 tháng 4,
-										2019</a>
-									<a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i>05</a>
+									<a class="gad_btn" href="/category/{{IDChuyenMuc}}">{{TenChuyenMuc}}</a>
+									<br><a href="#"><i class="fa fa-calendar"
+											aria-hidden="true"></i>{{format NgayDang}}</a>
+									<a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i>{{slbinhluan}}</a>
 								</div>
 							</div>
 						</div>
 					</div>
+					{{/each}}
 				</div>
 			</div>
 			<div class="col-lg-4">
@@ -268,23 +274,26 @@
 					<h2>Top chuyên mục</h2>
 				</div>
 				<div class="product_list">
+					{{#each top3}}
 					<div class="media">
 						<div class="d-flex">
-							<img src="img/product/product-9.jpg" alt="">
+							<img src="/{{AnhDaiDien}}" alt="" style="width:100px;heigh:80px">
 						</div>
 						<div class="media-body">
 							<div class="choice_text">
-								<a href="#">
-									<h4>Không phải Steve Jobs, Tim Cook mới là CEO tốt nhất Apple từng có</h4>
+								<a href="/post/{{IDBaiViet}}">
+									<h4>{{TieuDe}}</h4>
 								</a>
 								<div class="date">
-									<a class="gad_btn" href="#">Công nghệ</a>
-									<br><a href="#"><i class="fa fa-calendar" aria-hidden="true"></i>20 tháng 4,
-										2019</a>
+									<a class="gad_btn" href="/category/{{IDChuyenMuc}}">{{TenChuyenMuc}}</a>
+									<br><a href="#"><i class="fa fa-calendar"
+											aria-hidden="true"></i>{{format NgayDang}}</a>
+									<a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i>{{slbinhluan}}</a>
 								</div>
 							</div>
 						</div>
 					</div>
+					{{/each}}
 				</div>
 			</div>
 		</div>

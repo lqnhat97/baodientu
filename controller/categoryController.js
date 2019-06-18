@@ -3,6 +3,10 @@ var router = express.Router();
 var categoryRepo = require('../repository/categoryRepos')
 
 router.get('/:idCategory', function (req, res,next) {
+    let idUser = 0;
+    if (req.session.passport)
+        if (req.session.passport.user)
+        idUser = req.session.passport.user.ID;
     var id = req.params.idCategory;
     var page = req.query.page || 1;
     if (page < 1) page = 1;
@@ -10,7 +14,7 @@ router.get('/:idCategory', function (req, res,next) {
     var limit = 1;
     var offset = (page - 1) * limit;
     Promise.all([
-        categoryRepo.pageByCat(id, limit, offset),
+        categoryRepo.pageByCat(idUser,id, limit, offset),
         categoryRepo.countByCat(id),
         categoryRepo.chuyenmuc(id),
     ]).then(([rows, count_rows,cm]) => {

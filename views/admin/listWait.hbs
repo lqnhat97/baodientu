@@ -1,0 +1,63 @@
+      <!-- Breadcrumb-->
+      <div class="breadcrumb-holder">
+        <div class="container-fluid">
+          <ul class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">Trang chủ</a></li>
+            <li class="breadcrumb-item active">Danh sách bài viết</li>
+          </ul>
+        </div>
+      </div>
+      <section>
+
+        <div class="container-fluid">
+          <!-- Page Header-->
+          <header>
+            <h1 class="h3 display">{{title}}</h1>
+          </header>
+          <div class="row">
+            <div class="col-lg-12 col-sm-6">
+              <div class="card">
+                <div class="card-header">
+                  <h4>Danh sách bài viết</h4>
+                </div>
+                {{#if rows}}
+                <div class="card-body">
+                  <div class="table-responsive">
+                    <table class="table table-striped table-hover">
+                      <thead>
+                        <tr style="text-align:left">
+                          <th>#</th>
+                          <th>Tên Bài Viết</th>
+                          <th>Chuyên Mục</th>
+                          <th style="text-align:center">Thời gian viết</th>
+                          <th style="text-align:center">Tình trạng xuất bản</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {{#each rows}}
+                        <tr>
+                          <td>{{@index}}</td>
+                          <td>{{TieuDe}}</a></td>
+                          <td>{{TenChuyenMuc}}</td>
+                          <td style="text-align:center">{{format NgayViet}}</td>  
+                          {{#if NgayDang}}                        
+                          <td style="text-align:center;color:blue">Xuất bản vào ngày: {{formatDate NgayDang}}</td> 
+                          {{else}}
+                          <td style="text-align:center;color:red">Chờ xuất bản</td> 
+                          {{/if}}                         
+                        </tr>
+                        {{/each}}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+                {{else}}
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                  Không có bài viết bị từ chối
+                </div>
+                {{/if}}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>

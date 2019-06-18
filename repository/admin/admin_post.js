@@ -25,6 +25,11 @@ exports.suaBaiViet=(data)=>{
     return db.load(sql);
 }
 
+exports.xoaBaiViet=(id)=>{
+    let sql = `call XoaBaiViet(${id});`;
+    return db.load(sql);
+}
+
 exports.idBaiVietMoiNhat=()=>{
     let sql = `call LayIDBaiVietMoi(@idbaivietmoi);`;
     return db.load(sql);

@@ -16,7 +16,7 @@ var router = express.Router()
 router.get('/login', (req, res) => {
     if (req.session.passport) {
         if (req.session.passport.user)
-            res.redirect('/');
+            res.redirect('/').end();
         res.render("login", {
             layout: 'main.hbs'
         })
@@ -74,7 +74,7 @@ router.post('/signup', (req, res) => {
     }
 
     userModel.add(entity).then(id => {
-        res.render('/user/login')
+        res.redirect('/user/login')
     }).catch(err => {
         console.log(err)
     })
@@ -83,5 +83,9 @@ router.post('/signup', (req, res) => {
 router.get('/logout', (req, res, next) => {
     req.logout();
     res.redirect(req.headers.referer);
+})
+
+router.get('/profile', (req, res, next) => {
+    res.render('/user/login')
 })
 module.exports = router

@@ -1,18 +1,18 @@
 var db = require('../database/db');
 
-exports.loadBaiVietNoiBat=()=>{
-    let sql = 'call HienThiBaiVietNoiBat();';
+exports.loadBaiVietNoiBat=(id)=>{
+    let sql = `call HienThiBaiVietNoiBat(${id});`;
     return db.load(sql);
 }
-exports.loadXemNhieuNhat=()=>{
-    let sql = `call HienThiBaiVietXemNhieuNhat ();`;
+exports.loadXemNhieuNhat=(id)=>{
+    let sql = `call HienThiBaiVietXemNhieuNhat (${id});`;
     return db.load(sql);
 }
-exports.loadMoiNhat=()=>{
-    let sql = `call HienThiBaiVietMoiNhat ();`;
+exports.loadMoiNhat=(id)=>{
+    let sql = `call HienThiBaiVietMoiNhat (${id});`;
     return db.load(sql);
 }
-exports.loadTopChuyenMuc=()=>{
-    let sql = `call HienThiTopChuyenMuc();`;
+exports.loadTopChuyenMuc=(id)=>{
+    let sql = `call HienThiTopChuyenMuc(${id});`;
     return db.load(sql);
 }

@@ -42,7 +42,6 @@ router.post("/upload", upload.single('file'), function (req, res) {
                 }
                 res.redirect('/');
             })();
-
         }
     });
 });
@@ -111,4 +110,19 @@ router.post("/edit", upload.single('file'), function (req, res) {
     });
 });
 
+router.get('/delete',(req,res)=>{
+    let id = req.query.idBaiViet;
+    let delPost = postRepo.xoaBaiViet(id)
+    let delTag = postRepo.xoaNhan(id);
+    Promise.all([delPost,delTag]).then(([delPostRes,delTagRes])=>{
+        try {
+            res.redirect(req.headers.referer);
+        } catch (error) {
+            render('admin/listpost',{
+                layout:'mainAdmin.hbs',
+                message:"Thao tác bị lỗi"
+            })
+        }
+    })
+})
 module.exports = router;

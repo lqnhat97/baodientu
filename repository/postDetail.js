@@ -1,7 +1,7 @@
 var db = require('../database/db');
 
-exports.loadBaiViet=(idBaiViet)=>{
-    let sql = `call HienThiBaiVietChiTiet('${idBaiViet}')`;
+exports.loadBaiViet=(id,idBaiViet)=>{
+    let sql = `call HienThiBaiVietChiTiet(${id},'${idBaiViet}')`;
     return db.load(sql);
 }
 
@@ -14,8 +14,8 @@ exports.loadRandom1Bai=(idChuyenMuc)=>{
     return db.load(sql);
 }
 
-exports.loadBaiVietCungChuyenMuc=(idChuyenMuc)=>{
-    let sql = `call HienThiBaiVietCungChuyenMuc('${idChuyenMuc}')`;
+exports.loadBaiVietCungChuyenMuc=(id,idChuyenMuc)=>{
+    let sql = `call HienThiBaiVietCungChuyenMuc(${id},'${idChuyenMuc}')`;
     return db.load(sql);
 }
 

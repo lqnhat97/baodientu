@@ -9,6 +9,9 @@ module.exports = function (app) {
       format: val => {
         return moment(val).format("DD/MM/YYYY hh:MM:ss");
       },
+      formatDate: val => {
+        return moment(val).format("DD/MM/YYYY");
+      },
       ifCond: function (v1, operator, v2, options) {
         switch (operator) {
           case '==':

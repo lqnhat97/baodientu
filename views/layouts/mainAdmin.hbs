@@ -62,27 +62,25 @@
       <div class="main-menu">
         <h5 class="sidenav-heading">Menu</h5>
         <ul id="side-main-menu" class="side-menu list-unstyled">
-          <li><a href="./"> <i class="icon-home"></i>Trang chủ </a></li>
-          <li><a href="./post"> <i class="icon-form"></i>Đăng bài viết </a></li>
+          <li><a href="/admin"> <i class="icon-home"></i>Trang chủ </a></li>
+          <li><a href="/admin/post"> <i class="icon-form"></i>Đăng bài viết </a></li>
           <li><a href="#dsBaiViet" aria-expanded="false" data-toggle="collapse"> <i
                 class="icon-interface-windows"></i>Danh sách bài viết </a>
             <ul id="dsBaiViet" class="collapse list-unstyled ">
-              <li><a href="./listpost">Đã được duyệt & chờ xuất bản
-                  <div class="badge badge-warning">6 New</div></a>
-              </li>
-              <li><a href="./listpost">Đã xuất bản</a></li>
-              <li><a href="./listpost">Bị từ chối</a></li>
-              <li><a href="./listpost">Chưa được duyệt</a></li>
+              <li><a href="/admin/listpost">Chưa được duyệt</a></li>
+              <li><a href="/admin/listpost/exported">Đã xuất bản</a></li>
+              <li><a href="/admin/listpost/refuse">Bị từ chối</a></li>
+              <li><a href="/admin/listpost/waitExport">Đã được duyệt & chờ xuất bản</a></li>
             </ul>
           </li>
           {{#ifCond _user.passport.user.PhanHe '>' 3}}
           <li><a href="#qly" aria-expanded="false" data-toggle="collapse"> <i class="icon-interface-windows"></i>Quản lý
             </a>
             <ul id="qly" class="collapse list-unstyled ">
-              <li><a href="./listpost">Quản lý chuyên mục</a></li>
-              <li><a href="./listpost">Quản lý nhãn</a></li>
-              <li><a href="./listpost">Quản lý bài viết</a></li>
-              <li><a href="./listpost">Quản lý danh sách người dùng</a></li>
+              <li><a href="/admin/listpost">Quản lý chuyên mục</a></li>
+              <li><a href="/admin/listpost">Quản lý nhãn</a></li>
+              <li><a href="/admin/listpost">Quản lý bài viết</a></li>
+              <li><a href="/admin/listpost">Quản lý danh sách người dùng</a></li>
             </ul>
           </li>
           {{/ifCond}}
