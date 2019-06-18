@@ -9,14 +9,14 @@ insert phanhenguoidung values (null,N'Quản trị');
 
 insert nguoidung values (null,'lequangnhat','nhat123',N'Lê Quang Nhật', 'Nam','img/nguoidung.jpg', '1997-08-29', 'lqnhat@gmail.com', '0926803468', '4', '2019-06-16', null);
 insert nguoidung values (null,'hoanganhtuan','tuan123',N'Hoàng Anh Tuấn', 'Nam','img/nguoidung.jpg', '1995-10-17', 'hatuan@gmail.com', '0981828596', '2', '2019-06-04', null);
-insert nguoidung values (null,'vulamanh','anh123',N'Vũ Lam Anh', 'Nu','img/nguoidung.jpg', '1995-05-25', 'lamanhpv@gmail.com', '0977713558', '2', '2019-06-10', null);
-insert nguoidung values (null,'nguyenanhthi','thi123',N'Nguyễn Anh Thi', 'Nu','img/nguoidung.jpg', '1996-02-05', 'thithi@gmail.com', '0355688828', '2', '2019-06-15',null);
+insert nguoidung values (null,'vulamanh','anh123',N'Vũ Lam Anh', N'Nữ','img/nguoidung.jpg', '1995-05-25', 'lamanhpv@gmail.com', '0977713558', '2', '2019-06-10', null);
+insert nguoidung values (null,'nguyenanhthi','thi123',N'Nguyễn Anh Thi', N'Nữ','img/nguoidung.jpg', '1996-02-05', 'thithi@gmail.com', '0355688828', '2', '2019-06-15',null);
 insert nguoidung values (null,'trandonghoa','hoa123',N'Trần Đông Hòa', 'Nam','img/nguoidung.jpg', '1992-04-13', 'donghoatran@gmail.com', '0898981597', '2', '2019-06-11',null);
 insert nguoidung values (null,'hoanglean','an123',N'Hoàng Lê An', 'Nam','img/nguoidung.jpg', '1991-07-09', 'anlehoang@gmail.com', '0979845461', '3', '2019-06-07',null);
 insert nguoidung values (null,'dangthienminh','minh123',N'Đặng Thiên Minh', 'Nam','img/nguoidung.jpg', '1997-06-14', 'dtminh@gmail.com', '0762412871', '3', '2019-06-03', null);
-insert nguoidung values (null,'phanthimyduyen','duyen123',N'Phan Thị Mỹ Duyên', 'Nu','img/nguoidung.jpg', '1995-02-22', 'duyenphan@gmail.com', '0963512841', '1', '2019-06-09', null);
+insert nguoidung values (null,'phanthimyduyen','duyen123',N'Phan Thị Mỹ Duyên',N'Nữ','img/nguoidung.jpg', '1995-02-22', 'duyenphan@gmail.com', '0963512841', '1', '2019-06-09', null);
 insert nguoidung values (null,'tranhaonam','nam321',N'Trần Hạo Nam', 'Nam','img/nguoidung.jpg', '1997-08-12', 'thnam@gmail.com', '0754125746', '1', '2019-06-05',null);
-insert nguoidung values (null,'nguyenthuynhien','nhien123',N'Nguyễn Thùy Nhiên', 'Nu','img/nguoidung.jpg', '1997-04-16', 'ntnhien@gmail.com', '092510741', '1', '2019-06-17', null);
+insert nguoidung values (null,'nguyenthuynhien','nhien123',N'Nguyễn Thùy Nhiên', N'Nữ','img/nguoidung.jpg', '1997-04-16', 'ntnhien@gmail.com', '092510741', '1', '2019-06-17', null);
 insert nguoidung values (null,'phamhoangnhat','phnhat123',N'Phạm Hoàng Nhật', 'Nam','img/nguoidung.jpg', '1998-07-12', 'hoangnhat@gmail.com', '0889457135', '1', '2019-06-13','2019-06-20');
 
 insert chuyenmuc values ('GT1',N'Giải trí', null);

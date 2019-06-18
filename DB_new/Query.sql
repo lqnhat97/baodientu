@@ -409,6 +409,62 @@ begin
 end //
 delimiter ;
 
+/*-----------------------------------*/
+/* PROCEDURE Thêm người dùng */
+/* DROP PROCEDURE IF EXISTS ThemNguoiDung ; 
+call ThemNguoiDung('abc','abc','abc','abc','abc','1997-06-10','abc','abc');  */
+delimiter //
+create procedure ThemNguoiDung (in username varchar(50), in matkhau varchar(50), in hoten varchar(50) CHARACTER SET utf8, in gioitinh varchar(10) CHARACTER SET utf8,
+								in anhdaidien varchar(255), in ngaysinh datetime , in email varchar(50), in sdt varchar(15) )
+begin 
+	insert nguoidung values (null,username,matkhau,hoten,gioitinh,anhdaidien,ngaysinh,email,sdt,1,curdate(),null);
+end //
+delimiter ;
+
+/*-----------------------------------*/
+/* PROCEDURE Xóa người dùng */
+/* DROP PROCEDURE IF EXISTS XoaNguoiDung ; 
+call XoaNguoiDung(9);  */
+delimiter //
+create procedure XoaNguoiDung (in idnguoidung int )
+begin 
+	delete from nguoidung where nguoidung.id = idnguoidung;
+end //
+delimiter ;
+
+/*-----------------------------------*/
+/* PROCEDURE Sửa người dùng */
+/* DROP PROCEDURE IF EXISTS SuaNguoiDung ; 
+call SuaNguoiDung();  */
+create procedure SuaNguoiDung (in idnguoidung int, in username varchar(50), in matkhau varchar(50), in hoten varchar(50) CHARACTER SET utf8, in gioitinh varchar(10) CHARACTER SET utf8,
+								in anhdaidien varchar(255), in ngaysinh datetime , in email varchar(50), in sdt varchar(15), in phanhe int )
+begin 
+	update nguoidung set nguoidung.username = username,nguoidung.matkhau = matkhau, nguoidung.hoten = hoten ,nguoidung.gioitinh = gioitinh,
+    nguoidung.anhdaidien = anhdaidien,nguoidung.ngaysinh = ngaysinh, nguoidung.email,nguoidung.sdt = sdt, nguoidung.phanhe = phanhe
+    where nguoidung.id = idnguoidung
+end //
+delimiter ;
+
+/* PROCEDURE Gia hạn cho độc giả */
+/* DROP PROCEDURE IF EXISTS GiaHanDocGia ; 
+call GiaHanDocGia(10,'2019-06-21');  */
+delimiter //
+create procedure GiaHanDocGia(in iddocgia int, in ngaygiahan date )
+begin
+	update nguoidung set nguoidung.NgayHetHan = ngaygiahan
+    where nguoidung.ID = iddocgia;
+end //
+delimiter ;
+
+/* PROCEDURE Phân công chuyên mục cho biên tập viên */
+/* DROP PROCEDURE IF EXISTS PhanCongChuyenMuc ; 
+call PhanCongChuyenMuc(7,'TH1');  */
+delimiter //
+create procedure PhanCongChuyenMuc(in idbtv int, in idchuyenmuc varchar(15) )
+begin
+	insert bientap_chuyenmuc values  (idbtv, idchuyenmuc);
+end //
+delimiter ;
 
 
 
