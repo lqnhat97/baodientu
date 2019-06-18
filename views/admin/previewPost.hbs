@@ -1,0 +1,69 @@
+    <!-- Breadcrumb-->
+    <div class="breadcrumb-holder">
+      <div class="container-fluid">
+        <ul class="breadcrumb">
+          <li class="breadcrumb-item"><a href="/admin">Trang chủ</a></li>
+          <li class="breadcrumb-item active">Sửa bài </li>
+        </ul>
+      </div>
+    </div>
+    <section class="editor">
+      <form id="uploadFormEdit" enctype="multipart/form-data" method="post">
+
+        <div class="container-fluid">
+          <!-- Page Header-->
+          <div id="editor" style="border:1px solid black">
+          </div>
+          <div style="display:flex;justify-content:end">
+            <button type="button" class="btn btn-success text-center" data-toggle="modal"
+              data-target="#exampleModal">Duyệt</button>
+          </div>
+        </div>
+        <!-- Button trigger modal -->
+
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+          aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Thông báo</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Đóng">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                Bạn có đồng ý duyệt bài này ? ?
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                <button type="submit" class="btn btn-success text-center" id="post">Lưu những thay đổi</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+
+      <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+      <script>
+        $(document).ready(() => {
+          var quill = new Quill('#editor');
+          var data = {{{json baiViet.NoiDung}}};
+          quill.setContents(data);
+          quill.root.innerHTML;
+          quill.disable(true);
+          $('#uploadFormEdit').submit((e) => {
+            console.log(quill.root.innerHTML);
+            $("<input />").attr("type", "hidden")
+              .attr("name", "noiDung")
+              .attr("value", quill.root.innerHTML)
+              .appendTo("#uploadFormEdit");
+            alert("ok");
+            return true;
+          })
+        })
+      </script>
+    </section>
+
+    </html>
