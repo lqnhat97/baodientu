@@ -14,10 +14,12 @@ var router = express.Router()
 }))*/
 
 router.get('/login', (req, res) => {
+    console.log(req.session);
     if (req.session.passport) {
-        if (req.session.passport.user)
-            res.redirect('/').end();
-        res.render("login", {
+        if (req.session.passport.user) {
+            res.redirect('/');
+        }
+        else res.render("login", {
             layout: 'main.hbs'
         })
     } else
@@ -86,6 +88,16 @@ router.get('/logout', (req, res, next) => {
 })
 
 router.get('/profile', (req, res, next) => {
-    res.render('/user/login')
+    if (!req.session.passport) {
+        res.redirect('/user/login').end();
+
+    } else {
+        if (req.session.passport.user)
+            res.render("profile", {
+                layout: 'main.hbs'
+            })
+        else
+            res.redirect('/user/login');
+    }
 })
 module.exports = router

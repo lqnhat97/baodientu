@@ -3,7 +3,7 @@ var router = express.Router();
 var listPostRepo = require('../../repository/admin/admin_listPost')
 
 router.get('/',(req,res)=>{
-    listPostRepo.dsBaiVietByWriterID(req.session.passport.user.PhanHe).then(rows=>{
+    listPostRepo.dsBaiVietByWriterID(req.session.passport.user.ID).then(rows=>{
         resData = {
             layout:'mainAdmin.hbs',
             rows,
@@ -15,7 +15,7 @@ router.get('/',(req,res)=>{
 })
 
 router.get('/refuse',(req,res)=>{
-    listPostRepo.dsBaiVietTuChoiByWriterID(req.session.passport.user.PhanHe).then(rows=>{
+    listPostRepo.dsBaiVietTuChoiByWriterID(req.session.passport.user.ID).then(rows=>{
         resData = {
             layout:'mainAdmin.hbs',
             rows,
@@ -27,7 +27,7 @@ router.get('/refuse',(req,res)=>{
 })
 
 router.get('/exported',(req,res)=>{
-    listPostRepo.dsBaiVietXuatBanByWriterID(req.session.passport.user.PhanHe).then(rows=>{
+    listPostRepo.dsBaiVietXuatBanByWriterID(req.session.passport.user.ID).then(rows=>{
         resData = {
             layout:'mainAdmin.hbs',
             rows,
@@ -38,7 +38,7 @@ router.get('/exported',(req,res)=>{
 })
 
 router.get('/waitExport',(req,res)=>{
-    listPostRepo.dsBaiVietChoXuatBanByWriterID(req.session.passport.user.PhanHe).then(rows=>{
+    listPostRepo.dsBaiVietChoXuatBanByWriterID(req.session.passport.user.ID).then(rows=>{
         resData = {
             layout:'mainAdmin.hbs',
             rows,

@@ -73,6 +73,15 @@
               <li><a href="/admin/listpost/waitExport">Đã được duyệt & chờ xuất bản</a></li>
             </ul>
           </li>
+          {{#ifCond _user.passport.user.PhanHe '>' 2}}
+          <li><a href="#dsBaiVietQuanLy" aria-expanded="false" data-toggle="collapse"> <i
+                class="icon-interface-windows"></i>Quản lí bài viết</a>
+            <ul id="dsBaiVietQuanLy" class="collapse list-unstyled ">
+              <li><a href="/admin/handlePost">Danh sách bài viết chưa xử lý</a></li>
+              <li><a href="/admin/listpost/exported">Danh sách bài viết đã xử lý</a></li>
+            </ul>
+          </li>
+          {{/ifCond}}
           {{#ifCond _user.passport.user.PhanHe '>' 3}}
           <li><a href="#qly" aria-expanded="false" data-toggle="collapse"> <i class="icon-interface-windows"></i>Quản lý
             </a>

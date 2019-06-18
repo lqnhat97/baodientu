@@ -125,4 +125,28 @@ router.get('/delete',(req,res)=>{
         }
     })
 })
+
+router.get('/preview',(req,res)=>{
+    var id = req.query.idBaiViet;
+    let baiViet = postRepo.loadBaiVietDeSua(id)
+    let tag = postRepo.loadNhan(id);
+    let chuyenMuc = postRepo.loadChuyenMuc()
+
+    Promise.all([baiViet, tag, chuyenMuc]).then(([baiVietRes, tagRes, chuyenMucRes]) => {
+        baiVietRes[0].NoiDung = convertHtmlToDelta(baiVietRes[0].NoiDung);
+        if (tagRes.length > 0)
+            var tags = tagRes.reduce((tags, value, index, tagRes) => {
+                if (index == tagRes.length - 1)
+                    return tags += value.TenTag;
+                return tags += value.TenTag + ",";
+            }, "")
+        let resData = {
+            layout: 'mainAdmin.hbs',
+            baiViet: baiVietRes[0],
+            tags,
+            chuyenMuc: chuyenMucRes
+        }
+        res.render('admin/previewPost', resData)
+    })
+})
 module.exports = router;

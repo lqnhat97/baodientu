@@ -5,6 +5,7 @@ var moment = require('moment');
 
 var admin_postController = require('./admin/admin_postController');
 var admin_listPostController = require('./admin/admin_listPostController');
+var admin_handlePostController = require('./admin/admin_handlePostController');
 
 router.get('/',(req,res)=>{
     let thanhVien = adminHomeRepo.countThanhVien();
@@ -28,6 +29,9 @@ router.get('/',(req,res)=>{
 
 router.use('/post',admin_postController);
 
-router.use('/listPost',admin_listPostController)
+router.use('/listPost',admin_listPostController);
+
+router.use('/handlePost',admin_handlePostController);
+
 
 module.exports=router;
