@@ -12,7 +12,7 @@ BEGIN
 	where baiviet.XuatBan = 1
     group by baiviet.idbaiviet
 	order by baiviet.NgayDang DESC 
-    limit 10;
+    limit 4;
 END //
 delimiter ;
 
@@ -31,12 +31,10 @@ BEGIN
 	where baiviet.XuatBan = 1
     group by baiviet.idbaiviet
 	order by baiviet.LuotXem DESC 
-    limit 10;
+    limit 4;
 END //
 delimiter ;
-
 /*-----------------------------------*/
-
 /* PROCEDURE Hiển thị 3 bài viết nổi bật*/
 /* DROP PROCEDURE IF EXISTS HienThiBaiVietNoiBat;
 call HienThiBaiVietNoiBat(); */
@@ -68,11 +66,43 @@ BEGIN
 	order by rand() limit 9;
 END //
 delimiter ;
-
+/*-----------------------------------*/
+/* PROCEDURE Hiển thị bài viết theo chuyên mục*/
+/* DROP PROCEDURE IF EXISTS HienThiBaiVietChuyenMuc; 
+call HienThiBaiVietChuyenMuc('PL1',5,0); */
+delimiter //
+create procedure HienThiBaiVietChuyenMuc(in idchuyenmuc varchar(20), in lim int, in os int)
+BEGIN
+	select baiviet.AnhDaiDien, chuyenmuc.IDChuyenMuc, chuyenmuc.TenChuyenMuc, baiviet.IDBaiViet, baiviet.TieuDe, baiviet.NgayDang, baiviet.LuotXem,  count(binhluan.IDBinhLuan) as slbinhluan, baiviet.XemTruoc
+	from baiviet inner join chuyenmuc on chuyenmuc.IDChuyenMuc = baiviet.ChuyenMuc
+    left join binhluan on baiviet.IDBaiViet = binhluan.IDBaiViet 
+	where baiviet.ChuyenMuc = idchuyenmuc and baiviet.XuatBan = 1
+    group by baiviet.idbaiviet
+    order by baiviet.NgayDang
+    limit lim offset os;
+END //
+delimiter ;
+/*-----------------------------------*/
+/* PROCEDURE Hiển thị bài viết theo nhãn*/
+/* DROP PROCEDURE IF EXISTS HienThiBaiVietTheoNhan; 
+call HienThiBaiVietTheoNhan('Phi tang xác',2,0); */
+delimiter //
+create procedure HienThiBaiVietTheoNhan(in tentag varchar(20), in lim int, in os int)
+BEGIN
+	select baiviet.AnhDaiDien, chuyenmuc.IDChuyenMuc, chuyenmuc.TenChuyenMuc, baiviet.IDBaiViet, baiviet.TieuDe, baiviet.NgayDang, baiviet.LuotXem,  count(binhluan.IDBinhLuan) as slbinhluan, baiviet.XemTruoc
+	from baiviet inner join chuyenmuc on chuyenmuc.IDChuyenMuc = baiviet.ChuyenMuc
+    left join binhluan on baiviet.IDBaiViet = binhluan.IDBaiViet 
+    left join nhan on baiviet.IDBaiViet = nhan.IDBaiViet
+	where nhan.TenTag = tentag and baiviet.XuatBan = 1
+    group by baiviet.idbaiviet
+    order by baiviet.NgayDang
+    limit lim offset os;
+END //
+delimiter ;
 /*-----------------------------------*/
 /* PROCEDURE Hiển thị bài viết chi tiết */
 /* DROP PROCEDURE IF EXISTS HienThiBaiVietChiTiet;
-call HienThiBaiVietChiTiet('1'); */
+call HienThiBaiVietChiTiet('2'); */
 delimiter //
 create procedure HienThiBaiVietChiTiet (in idbaiviet int)
 BEGIN
