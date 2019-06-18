@@ -1,5 +1,5 @@
 
-/* PROCEDURE Hiển thị 3 bài viết mới nhất */
+/* PROCEDURE Hiển thị 4 bài viết mới nhất */
 /* DROP PROCEDURE IF EXISTS HienThiBaiVietMoiNhat; 
 call HienThiBaiVietMoiNhat (); */
 delimiter //
@@ -164,7 +164,8 @@ delimiter ;
 /*-----------------------------------*/
 
 /* PROCEDURE Thêm bài viết */
-/* DROP PROCEDURE IF EXISTS ThemBaiViet; */
+/* DROP PROCEDURE IF EXISTS ThemBaiViet; 
+call ThemBaiViet (null,'a','TT1','b','abc','xyz',2); */
 delimiter //
 create procedure ThemBaiViet (IN idbaiviet int, IN tieude varchar(255) CHARACTER SET utf8, IN ChuyenMuc varchar(10),
   IN AnhDaiDien  varchar(255), IN NoiDung text CHARACTER SET utf8, IN XemTruoc text CHARACTER SET utf8,
@@ -187,7 +188,8 @@ delimiter ;
 
 /* PROCEDURE Thêm nhãn */
 /* DROP PROCEDURE IF EXISTS ThemNhan;
-call ThemNhan(3,'Phi tang xác'); */
+call ThemNhan(15,'Phi tang xác');
+call ThemNhan(15,'Chặt xác');  */
 delimiter //
 create procedure ThemNhan (in idbaiviet int, in tentag varchar(20))
 begin 
@@ -219,6 +221,99 @@ begin
 	update BaiViet set LuotXem = LuotXem+1 where BaiViet.idbaiviet = idbaiviet; 
 end //
 delimiter ;
+
+/*-----------------------------------*/
+/* PROCEDURE Hiệu chỉnh bài viết */
+/* DROP PROCEDURE IF EXISTS SuaBaiViet;
+call SuaBaiViet(1,'tieude','ChuyenMuc','AnhDaiDien','NoiDung','XemTruoc') */
+delimiter //
+create procedure SuaBaiViet(in idbaiviet int, IN tieude varchar(255) CHARACTER SET utf8, IN ChuyenMuc varchar(10),
+  IN AnhDaiDien  varchar(255), IN NoiDung text CHARACTER SET utf8, IN XemTruoc text CHARACTER SET utf8)
+begin 
+	update baiviet set baiviet.TieuDe = tieude, baiviet.ChuyenMuc = ChuyenMuc, baiviet.AnhDaiDien = AnhDaiDien, baiviet.NoiDung = NoiDung,baiviet.XemTruoc = XemTruoc
+	where baiviet.IDBaiViet = idbaiviet;
+end //
+delimiter ;
+
+/*-----------------------------------*/
+/* PROCEDURE Xóa  nhãn */
+/* DROP PROCEDURE IF EXISTS XoaNhan; 
+call XoaNhan('15'); */
+delimiter //
+create procedure XoaNhan(in idbaiviet int)
+begin 
+	if exists (select * from nhan where nhan.IDBaiViet = idbaiviet)
+    then 
+		delete from nhan where nhan.IDBaiViet = idbaiviet;
+	end if;
+end //
+delimiter ;
+
+/*-----------------------------------*/
+/* PROCEDURE Xem danh sách bài viết  trong chuyên mục do mình quản lý */
+/* DROP PROCEDURE IF EXISTS XemBaiVietDoMinhQuanLy; 
+call XemBaiVietDoMinhQuanLy(6); */
+delimiter //
+create procedure XemBaiVietDoMinhQuanLy(in idbtv int)
+begin 
+	select baiviet.TieuDe, chuyenmuc.TenChuyenMuc, baiviet.NgayViet
+    from baiviet inner join chuyenmuc on baiviet.ChuyenMuc = chuyenmuc.IDChuyenMuc
+    inner join bientap_chuyenmuc on chuyenmuc.IDChuyenMuc = bientap_chuyenmuc.IDChuyenMuc
+    where bientap_chuyenmuc.IDBTV = idbtv;
+end //
+delimiter ;
+
+/*-----------------------------------*/
+/* PROCEDURE Duyệt bài và xác định ngày xuất bản */
+/* DROP PROCEDURE IF EXISTS DuyetBaiVaXacDinhNgayXuatBan ; 
+call DuyetBaiVaXacDinhNgayXuatBan  */
+delimiter //
+create procedure DuyetBaiVaXacDinhNgayXuatBan (in idbtv int,in idbaiviet int, in ngayxuatban datetime)
+begin 
+	update baiviet set baiviet.DaDuyet = '1', baiviet.NgayDang = ngayxuatban 
+    where baiviet.IDBaiViet = idbaiviet;
+end //
+delimiter ;
+
+/*-----------------------------------*/
+/* PROCEDURE Xóa bài viết */
+/* DROP PROCEDURE IF EXISTS XoaBaiViet ; 
+call XoaBaiViet(14) ; */
+delimiter //
+create procedure XoaBaiViet(in idbaiviet int)
+begin 
+	if exists (select * from baiviet where baiviet.IDBaiViet = idbaiviet)
+    then 
+		delete from baiviet where baiviet.IDBaiViet = idbaiviet;
+	end if;
+end //
+delimiter ;
+
+/*-----------------------------------*/
+/* PROCEDURE Xóa chuyên mục */
+/* DROP PROCEDURE IF EXISTS XoaChuyenMuc ; 
+call XoaChuyenMuc('LD1') ; */
+delimiter //
+create procedure XoaChuyenMuc(in idchuyenmuc varchar(15))
+begin 
+	if exists (select * from chuyenmuc where chuyenmuc.IDChuyenMuc = idchuyenmuc)
+    then 
+		delete from bientap_chuyenmuc where bientap_chuyenmuc.IDChuyenMuc = idchuyenmuc;
+        delete from chuyenmuc where chuyenmuc.IDChuyenMuc = idchuyenmuc;
+	end if;
+end //
+delimiter ;
+
+
+
+
+
+
+
+
+
+
+
 
 
 

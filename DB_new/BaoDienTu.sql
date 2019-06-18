@@ -34,6 +34,12 @@ create table ChuyenMuc #category
 	TenChuyenMuc varchar(50) CHARACTER SET utf8 not null ,
 	ChuyenMucCha varchar(10)
 	);
+    
+create table BienTap_ChuyenMuc
+( IDBTV int not null,
+IDChuyenMuc varchar(15) not null,
+primary key(IDBTV,IDChuyenMuc)
+);
 
 create table BaiViet
 (	IDBaiViet INT  primary KEY auto_increment,
@@ -49,7 +55,9 @@ create table BaiViet
 	BinhLuan int default 0,
 	DaDuyet int default 0,
     XuatBan int default 0,
-	TinNoiBat int default 0
+	TinNoiBat int default 0,
+    NgayViet datetime default current_timestamp,
+    Premium int default 0
     );
 
 create table Nhan #tag
@@ -76,6 +84,16 @@ alter table ChuyenMuc
 add constraint Fk_CM_CM	
 foreign key (ChuyenMucCha)
 references ChuyenMuc(IDChuyenMuc);
+
+alter table BienTap_ChuyenMuc
+add constraint Fk_BTV_ND	
+foreign key (IDBTV)
+references nguoidung(id);
+
+alter table BienTap_ChuyenMuc
+add constraint Fk_BTV_CM	
+foreign key (idchuyenmuc)
+references chuyenmuc(idchuyenmuc);
 
 alter table NguoiDung
 add constraint Fk_user_PH	
