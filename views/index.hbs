@@ -62,6 +62,8 @@
 						<div class="date">
 							<a class="gad_btn" href="#">{{TenChuyenMuc}}</a>
 							<a href="#"><i class="fa fa-calendar" aria-hidden="true"></i>{{format NgayDang}}</a>
+							<a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i>{{slbinhluan}}</a>
+							<a href="#"><i class="fa fa-eye"></i>{{LuotXem}}</a>
 						</div>
 						<a href="/post/{{IDBaiViet}}">
 							<h4>{{TieuDe}}</h4>
@@ -101,7 +103,8 @@
 								<div class="date">
 									<a class="gad_btn" href="#">{{TenChuyenMuc}}</a>
 									<a href="#"><i class="fa fa-calendar" aria-hidden="true"></i>{{format NgayDang}}</a>
-									<a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i>05</a>
+									<a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i>{{slbinhluan}}</a>
+									<a href="#"><i class="fa fa-eye"></i>{{LuotXem}}</a>
 								</div>
 								<a href="/post/{{IDBaiViet}}">
 									<h4>{{TieuDe}}</h4>
@@ -147,12 +150,13 @@
 											<h4>{{TieuDe}}</h4>
 										</a>
 										<div class="date">
-											<a href="#"><i class="fa fa-calendar" aria-hidden="true"></i>{{format NgayDang}}</a>
+											<a href="#"><i class="fa fa-calendar"
+													aria-hidden="true"></i>{{format NgayDang}}</a>
 										</div>
 									</div>
 								</div>
 							</div>
-							{{/each}}							
+							{{/each}}
 						</div>
 					</aside>
 					<!-- <aside class="r_widgets add_widgets text-center">

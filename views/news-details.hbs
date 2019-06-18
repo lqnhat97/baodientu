@@ -81,6 +81,7 @@
 					<h4>Không có bình luận</h4>
 					{{/if}}
 				</div>
+				{{#if _user}}
 				<div class="comment-form">
 					<h4>Để lại phản hồi</h4>
 					<form method="POST">						
@@ -92,6 +93,9 @@
 						<input type="submit" class="primary-btn submit_btn">Đăng bình luận</input>
 					</form>
 				</div>
+				{{else}}
+				<h3>Vui lòng đăng nhập để bình luận. Đăng nhập <a href="/user/login">Tại đây</a></h3>
+				{{/if}}
 			</div>
 			<div class="col-lg-4">
 				<div class="right_sidebar">

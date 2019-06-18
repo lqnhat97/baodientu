@@ -25,11 +25,9 @@ router.get('/:tag', function (req, res,next) {
             };
             pages.push(obj);
         }
-        console.log(tg[0]);
-        rows.length > 0? rows:undefined
         res.render('tag', {
             layout: 'main.hbs',
-            baiViet: rows,
+            baiViet: rows[0].length > 0? rows[0]:false,
             pages,
             tg:tg[0]
         });

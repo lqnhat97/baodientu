@@ -25,10 +25,9 @@ router.get('/:idCategory', function (req, res,next) {
             };
             pages.push(obj);
         }
-        rows.length > 0? rows:undefined
         res.render('category', {
             layout: 'main.hbs',
-            baiViet: rows,
+            baiViet: rows[0].length > 0? rows[0]:false,
             pages,
             cm:cm[0]
         });
