@@ -23,6 +23,7 @@ router.post("/upload", upload.single('file'), function (req, res) {
     data.nhan=tag;
     let len = data.nhan.length;
     var file = './public/img/' + req.file.filename;
+    data.ID = req.session.passport.user.ID
     fs.rename(req.file.path, file, function (err) {
         if (err) {
             console.log(err);

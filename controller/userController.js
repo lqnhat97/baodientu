@@ -14,9 +14,13 @@ var router = express.Router()
 }))*/
 
 router.get('/login', (req, res) => {
-    if (req.session.passport.user)
-        res.redirect('/');
-    else
+    if (req.session.passport) {
+        if (req.session.passport.user)
+            res.redirect('/');
+        res.render("login", {
+            layout: 'main.hbs'
+        })
+    } else
         res.render("login", {
             layout: 'main.hbs'
         })

@@ -29,7 +29,7 @@ exports.loadBinhLuan=(idBaiViet)=>{
     return db.load(sql);
 }
 
-exports.themBinhLuan=(idBaiViet,noiDung)=>{
-    let sql = `call ThemBinhLuan(null,${idBaiViet},'9','${noiDung}');`;
+exports.themBinhLuan=(idBaiViet,noiDung,nguoibinhluan)=>{
+    let sql = `call ThemBinhLuan(null,${idBaiViet},'${nguoibinhluan}','${noiDung}');`;
     return db.load(sql);
 }

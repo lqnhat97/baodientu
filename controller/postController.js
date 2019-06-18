@@ -27,7 +27,8 @@ router.get('/:idBaiViet', function (req, res) {
 router.post('/:idBaiViet', function (req, res) {
     let binhluan= req.body.noidung;
     let id = req.params.idBaiViet
-    let binhLuan = postRepo.themBinhLuan(id,binhluan).then(rows=>{
+    let nguoibinhluan =req.session.passport.user.ID
+    let binhLuan = postRepo.themBinhLuan(id,binhluan,nguoibinhluan).then(rows=>{
         res.redirect("/post/"+id);
     });
 });

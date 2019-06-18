@@ -6,7 +6,7 @@ exports.loadChuyenMuc=()=>{
 };
 
 exports.themBaiViet=(data)=>{
-    let sql = `call ThemBaiViet(null,N'${data.tieuDe}','${data.chuyenMuc}','${data.img}',N'${data.noiDung}',N'${data.xemTruoc}',1)`;
+    let sql = `call ThemBaiViet(null,N'${data.tieuDe}','${data.chuyenMuc}','${data.img}',N'${data.noiDung}',N'${data.xemTruoc}',${data.ID})`;
     return db.load(sql);
 }
 

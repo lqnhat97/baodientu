@@ -20,8 +20,9 @@ module.exports = (req, res, next) => {
             }
         }
         res.locals._category = data1;
-        if (req.session.passport.user)
-            res.locals._user = req.session;
+        if (req.session.passport)
+            if (req.session.passport.user)
+                res.locals._user = req.session;
         next();
     })
 }
