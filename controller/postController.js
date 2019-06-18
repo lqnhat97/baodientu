@@ -8,6 +8,7 @@ router.get('/:idBaiViet', function (req, res) {
     let binhLuan = postRepo.loadBinhLuan(req.params.idBaiViet);
     Promise.all([baiViet, nhan, binhLuan]).then(([baiVietRes, nhanRes, binhLuanRes]) => {
         try {
+            let tangLuotXem = postRepo.tangLuotXem(req.params.idBaiViet);
             let baiVietChuyenMuc = postRepo.loadBaiVietCungChuyenMuc(baiVietRes[0][0].IDChuyenMuc);
             let random1bai = postRepo.loadRandom1Bai(baiVietRes[0][0].IDChuyenMuc);
             Promise.all([baiVietChuyenMuc, random1bai]).then(([baiVietChuyenMucRes, random1baiRes]) => {

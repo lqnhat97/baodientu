@@ -23,8 +23,7 @@
                   <div class="table-responsive">
                     <table class="table table-striped table-hover" >
                       <thead>
-                        <tr>
-                          <th>ID Bài Viết</th>
+                        <tr style="text-align:center">
                           <th>Tên Bài Viết</th>
                           <th>Chuyên Mục</th>
                           <th>Ngày Đăng</th>
@@ -33,10 +32,9 @@
                       <tbody>
                         {{#each rows}}
                         <tr>
-                          <th scope="row">{{IDBaiViet}}</th>
-                          <td><a href="/post/{{IDBaiViet}}">{{TieuDe}}</a></td>
+                          <td><a href="./post/edit?idBaiViet={{IDBaiViet}}">{{TieuDe}}</a></td>
                           <td>{{TenChuyenMuc}}</td>
-                          <td>{{NgayDang}}</td>
+                          <td>{{format NgayDang}}</td>
                         </tr>
                         {{/each}}
                       </tbody>

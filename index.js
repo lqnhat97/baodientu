@@ -52,7 +52,6 @@ app.get('/contact', function (req, res) {
 
 app.use('/admin',(req, res, next)=> {
     if (req.isAuthenticated() && 1< req.session.passport.user.PhanHe){
-        console.log(req.session.passport.user)
         next();
     } else {
         res.render('error404',{

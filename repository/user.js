@@ -8,6 +8,9 @@ module.exports = {
         return db.add('NguoiDung', entity);
     },
     singleByUserName: userName => {
-        return db.load(`select * from NguoiDung where UserName = '${userName}'`);
+        return db.load(`select * from NguoiDung left join  phanhenguoidung on NguoiDung.PhanHe = phanhenguoidung.IDPhanHe where UserName = '${userName}'`);
+    },
+    phanHe: phanHe => {
+        return db.load(`select * from phanhenguoidung where IDPhanHe = ${phanHe}`);
     },
 }

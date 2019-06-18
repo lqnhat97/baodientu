@@ -47,8 +47,6 @@ router.post('/login', (req, res, next) => {
             if (req.query.retUrl) {
                 url = req.query.retUrl;
             }
-            console.log(url);
-
             return res.redirect(url);
         });
     })(req, res, next);

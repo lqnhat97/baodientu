@@ -32,6 +32,9 @@
 						<li>Xin chào: </li>
 						<li><a href="/user/profile" >{{_user.passport.user.HoTen}}</a></li>
 						<li><a href="/user/logout"  style="font-size:12px">Đăng xuất</a></li>
+						{{#ifCond _user.passport.user.PhanHe '>' 1}}
+						<li><a href="/admin">Quản trị</a></li>
+						{{/ifCond}}
 					</ul>
 				</div>
 				{{else}}

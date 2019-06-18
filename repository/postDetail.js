@@ -24,6 +24,11 @@ exports.loadNhan=(idBaiViet)=>{
     return db.load(sql);
 }
 
+exports.tangLuotXem=(idBaiViet)=>{
+    let sql = `call TangLuotXem('${idBaiViet}');`;
+    return db.load(sql);
+}
+
 exports.loadBinhLuan=(idBaiViet)=>{
     let sql = `call HienThiBinhLuan('${idBaiViet}');`;
     return db.load(sql);

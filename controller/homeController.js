@@ -6,7 +6,6 @@ router.get('/', (req, res)=> {
     let xemNhieu = homeRepo.loadXemNhieuNhat();
     let moiNhat = homeRepo.loadMoiNhat();
     let topChuyenMuc = homeRepo.loadTopChuyenMuc();
-    console.log(req.session)
     Promise.all([noiBat,xemNhieu,moiNhat,topChuyenMuc]).then(([noiBatRes,xemNhieuRes,moiNhatRes,topChuyenMucRes])=>{
         let resData = {
             layout:'main.hbs',
