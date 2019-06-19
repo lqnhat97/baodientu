@@ -332,7 +332,7 @@ delimiter ;
 /* DROP PROCEDURE IF EXISTS SuaChuyenMuc ; 
 call SuaChuyenMuc('TS1','Tâm sự và cuộc sống','DS1') ; */
 delimiter //
-create procedure SuaChuyenMuc(in idchuyenmuc varchar(15), in tenchuyenmuc varchar(50), in chuyenmuccha varchar(15) )
+create procedure SuaChuyenMuc(in idchuyenmuc varchar(15), in tenchuyenmuc varchar(50) charset utf8, in chuyenmuccha varchar(15) )
 begin 
 	if exists (select * from chuyenmuc where chuyenmuc.IDChuyenMuc = idchuyenmuc)
     then 
@@ -355,6 +355,20 @@ begin
 	end if;
 end //
 delimiter ;
+
+/* PROCEDURE Xóa  nhãn  theo ten*/
+/* DROP PROCEDURE IF EXISTS XoaNhanTheoTen; 
+call XoaNhan('15'); */
+delimiter //
+create procedure XoaNhanTheoTen(in nhan varchar(20) charset utf8)
+begin 
+	if exists (select * from nhan where nhan.TenTag = nhan)
+    then 
+		delete from nhan where nhan.TenTag = nhan;
+	end if;
+end //
+delimiter ;
+
 /*-----------------------------------*/
 /* PROCEDURE Xóa bài viết */
 /* DROP PROCEDURE IF EXISTS XoaBaiViet ; 
@@ -391,16 +405,33 @@ call XemBaiVietDoMinhQuanLy(6); */
 delimiter //
 create procedure XemBaiVietDoMinhQuanLy(in idbtv int)
 begin 
-	select baiviet.TieuDe, chuyenmuc.TenChuyenMuc, baiviet.NgayViet
+	select baiviet.IDBaiViet,baiviet.TieuDe, chuyenmuc.TenChuyenMuc, baiviet.NgayViet, nguoidung.HoTen as PhongVien
     from baiviet inner join chuyenmuc on baiviet.ChuyenMuc = chuyenmuc.IDChuyenMuc
     inner join bientap_chuyenmuc on chuyenmuc.IDChuyenMuc = bientap_chuyenmuc.IDChuyenMuc
-    where bientap_chuyenmuc.IDBTV = idbtv;
+    inner join nguoidung on baiviet.PhongVien = nguoidung.ID
+    where bientap_chuyenmuc.IDBTV = idbtv and baiviet.DaDuyet=0 and baiviet.XuatBan = 0;
 end //
 delimiter ;
+
+/*-----------------------------------*/
+/* PROCEDURE Xem danh sách bài viết  trong chuyên mục do mình quản lý đã xử lý */
+/* DROP PROCEDURE IF EXISTS XemBaiVietDoMinhDaXuLy; 
+call XemBaiVietDoMinhDaXuLy(6); */
+delimiter //
+create procedure XemBaiVietDoMinhDaXuLy(in idbtv int)
+begin 
+	select baiviet.IDBaiViet,baiviet.TieuDe, chuyenmuc.TenChuyenMuc, baiviet.NgayViet, nguoidung.HoTen as PhongVien,baiViet.NgayDang,baiviet.DaDuyet,baiviet.XuatBan
+    from baiviet inner join chuyenmuc on baiviet.ChuyenMuc = chuyenmuc.IDChuyenMuc
+    inner join bientap_chuyenmuc on chuyenmuc.IDChuyenMuc = bientap_chuyenmuc.IDChuyenMuc
+    inner join nguoidung on baiviet.PhongVien = nguoidung.ID
+    where bientap_chuyenmuc.IDBTV = idbtv and baiviet.DaDuyet!=0;
+end //
+delimiter ;
+
 /*-----------------------------------*/
 /* PROCEDURE Duyệt bài và xác định ngày xuất bản */
 /* DROP PROCEDURE IF EXISTS DuyetBaiVaXacDinhNgayXuatBan ; 
-call DuyetBaiVaXacDinhNgayXuatBan  */
+call DuyetBaiVaXacDinhNgayXuatBan (6,2,'07-07-2019 01:00:00')  */
 delimiter //
 create procedure DuyetBaiVaXacDinhNgayXuatBan (in idbtv int,in idbaiviet int, in ngayxuatban datetime)
 begin 
