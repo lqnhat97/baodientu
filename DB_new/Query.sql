@@ -358,13 +358,13 @@ delimiter ;
 
 /* PROCEDURE Xóa  nhãn  theo ten*/
 /* DROP PROCEDURE IF EXISTS XoaNhanTheoTen; 
-call XoaNhan('15'); */
+call XoaNhanTheoTen('hadong'); */
 delimiter //
-create procedure XoaNhanTheoTen(in nhan varchar(20) charset utf8)
+create procedure XoaNhanTheoTen(in tag varchar(20) charset utf8)
 begin 
-	if exists (select * from nhan where nhan.TenTag = nhan)
+	if exists (select * from nhan where nhan.TenTag = tag)
     then 
-		delete from nhan where nhan.TenTag = nhan;
+		delete from nhan where nhan.TenTag = tag;
 	end if;
 end //
 delimiter ;
