@@ -1,4 +1,4 @@
-<form class="container margin-top-170 mb-5 bg-light rounded shadow-lg p-5" method="POST">
+<form class="container margin-top-170 mb-5 bg-light rounded shadow-lg p-5" enctype="multipart/form-data" method="POST">
     <div class="form-group mt-4">
         <h2 class="text-uppercase text-center text-info">Thông tin tài khoản</h2>
     </div>
@@ -6,19 +6,22 @@
         <div class="col-sm-3 bg-dark text-center p-5">
             <div class="form-group">
                 <div className='u-clickable image rounded-circle avatar'>
-                    <img src="https://independentsector.org/wp-content/uploads/2016/12/blankhead.jpg"
-                        class="img-thumbnail rounded-circle" />
+                    <label>
+                        <input type="file" class="d-none" id="avatar"  name="file" onchange="readURL(this);">
+                        <img src='/{{_user.passport.user.AnhDaiDien}}'
+                        class="img-thumbnail rounded-circle"  />
+                    </label>
                 </div>
             </div>
             <div class="form-group">
                 <div class="text-light">
-                    <h4 class="font-weight-light">Name</h4>
+                    <h4 class="font-weight-light"></h4>
                 </div>
             </div>
             <div class="form-group">
                 <div class="text-light">
-                    <i class="far fa-envelope"></i>
-                    example@gmail.com
+                    <i class="fa fa-envelope"></i>
+                    {{_user.passport.user.Email}}
                 </div>
             </div>
             <div class="form-group mt-5">
@@ -72,70 +75,55 @@
                 <label for="txtname" class="col-sm-3 col-form-label">Họ tên</label>
                 <div class="col-sm-9">
                     <input type="text" name="name" class="form-control" placeholder="Nhập họ tên" id="txtname"
-                        value="Name">
+                        value='{{_user.passport.user.HoTen}}'>
                 </div>
             </div>
             <div class="form-group row">
                 <label for="sex-male" class="col-sm-3 col-form-label">Giới tính</label>
                 <div class="col-sm-9 mt-2">
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="sex" id="sex-male" value="Nam">
-                        <label class="form-check-label" for="inlineRadio1">Nam</label>
+                        <input type="radio" name="sex" id="sex-male" value="Nam">
+                        <label for="inlineRadio1">Nam</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="sex" id="sex-female" value="Nữ">
-                        <label class="form-check-label" for="inlineRadio2">Nữ</label>
+                        <input type="radio" name="sex" id="sex-female" value="Nữ">
+                        <label for="inlineRadio2">Nữ</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="sex" id="sex-other" value="Khác">
-                        <label class="form-check-label" for="inlineRadio2">Khác</label>
+                        <input type="radio" name="sex" id="sex-other" value="Khác">
+                        <label for="inlineRadio2">Khác</label>
                     </div>
                 </div>
             </div>
             <div class="form-group row">
                 <label for="date" class="col-sm-3 col-form-label">Ngày sinh</label>
                 <div class="col-sm-9">
-                    <input type="date" name="birth" class="form-control" id="date" value="?">
+                    <input type="date" name="birth" id="birth" class="form-control" id="date" value="{{formatDate1 _user.passport.user.NgaySinh}}">
                 </div>
             </div>
             <div class="form-group row">
                 <label for="email" class="col-sm-3 col-form-label">Email</label>
                 <div class="col-sm-9">
                     <input type="email" name="email" class="form-control" placeholder="Nhập email" id="email"
-                        value="example@gmail.com">
+                        value='{{_user.passport.user.Email}}'>
                 </div>
             </div>
             <div class="form-group row">
                 <label for="number-phone" class="col-sm-3 col-form-label">Số điện thoại</label>
                 <div class="col-sm-9">
-                    <input type="text" name="phone" class="form-control" id="number-phone" value="0909009">
+                    <input type="text" name="phone" class="form-control" id="number-phone" value='{{_user.passport.user.SDT}}'>
                 </div>
             </div>
             <div class="form-group row">
-                <label for="type-reader" class="col-sm-3 col-form-label">Phân hệ</label>
-                <div class="col-sm-9 mt-2">
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="type" id="type-reader" value="Độc giả">
-                        <label class="form-check-label" for="inlineRadio1">Độc giả</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="type" id="type-reporter" value="Phóng viên">
-                        <label class="form-check-label" for="inlineRadio2">Phóng viên</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="type" id="type-editor" value="Biên tập viên">
-                        <label class="form-check-label" for="inlineRadio2">Biên tập viên</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="type" id="type-admin" value="Quản trị">
-                        <label class="form-check-label" for="inlineRadio2">Quản trị</label>
-                    </div>
+                <label for="type-reader" class="col-sm-3 col-form-label">Phân hệ: </label>
+                <div class="col-sm-9">
+                    {{_user.passport.user.TenPhanHe}}
                 </div>
             </div>
             <div class="form-group row">
                 <label for="username" class="col-sm-3 col-form-label">Tên đăng nhập</label>
                 <div class="col-sm-9">
-                    <input type="text" name="username" class="form-control" id="username" value="Name71">
+                    <input type="text" name="username" class="form-control" id="username" value='{{_user.passport.user.UserName}}'>
                 </div>
             </div>
             <div class="form-group mt-5">
@@ -146,3 +134,25 @@
         </div>
     </div>
 </form>
+<script>
+    window.onload = function() {
+        $(".custom-file-input").on("change", function () {
+            var fileName = $(this).val().split("\\").pop();
+            $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+        });
+    }
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#blah')
+                    .attr('src', e.target.result)
+                    .width(150)
+                    .height(200);
+            };
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+</script>

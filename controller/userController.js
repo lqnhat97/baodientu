@@ -1,10 +1,10 @@
 var express = require('express')
-// var bcrypt = require('bcrypt')
-// var moment = require('moment')
 var passport = require('passport');
 var userModel = require('../repository/user')
-var restrict = require('../util/restrict');
+var moment = require('moment')
 var router = express.Router()
+var fs = require('fs');
+const multer = require("multer");
 
 /*router.use(session ({
     secret: 'somthing',
@@ -12,6 +12,18 @@ var router = express.Router()
         maxAge: 1000 * 50 * 5
     }
 }))*/
+var storage = multer.diskStorage({
+    destination: function (req, file, callback) {
+        callback(null, './public/img');
+    },
+    filename: function (req, file, callback) {
+        callback(null, file.originalname);
+    }
+});
+var upload = multer({
+    storage: storage
+});
+
 
 router.get('/login', (req, res) => {
     console.log(req.session);
@@ -60,26 +72,31 @@ router.get('/signup', (req, res) => {
     })
 })
 
-router.post('/signup', (req, res) => {
-    var saltRounds = 10
-    // var hash = bcrypt.hashSync(req.body.password, saltRounds)
-    //var date = moment(req.body.birth, 'MM/DD/YYYY').format('YYYY-MM-DD')
-
-    var entity = {
-        UserName: req.body.username,
-        MatKhau: req.body.password,
-        HoTen: req.body.name,
-        GioiTinh: req.body.sex,
-        NgaySinh: req.body.birth,
-        Email: req.body.email,
-        SDT: req.body.phone
+router.post("/signup", upload.single('file'), (req, res) => {
+    var entity = res.body;
+    var file = './public/img/' + req.file.filename;
+    entity = {
+        userName: req.body.username,
+        matKhau: req.body.password,
+        hoTen: req.body.name,
+        gioiTinh: req.body.sex,
+        avatar: file,
+        ngaySinh: req.body.birth,
+        email: req.body.email,
+        sdt: req.body.phone
     }
-
-    userModel.add(entity).then(id => {
-        res.redirect('/user/login')
-    }).catch(err => {
-        console.log(err)
-    })
+    fs.rename(req.file.path, file, function (err) {
+        if (err) {
+            console.log(err);
+            res.send(500);
+        } else {
+            entity.avatar = file.slice(9);
+            (async () => {
+                await userModel.add(entity);
+                res.redirect('/user/login');
+            })();
+        }
+    });
 })
 
 router.get('/logout', (req, res, next) => {
@@ -100,4 +117,36 @@ router.get('/profile', (req, res, next) => {
             res.redirect('/user/login');
     }
 })
+
+router.post('/profile',  upload.single('file'), (req, res) => {
+    var entity = res.body
+    var file = './public/img/' + req.file.filename;
+    entity = {
+        id: req.session.passport.user.ID,
+        userName: req.body.username,
+        matKhau: req.session.passport.user.MatKhau,
+        hoTen: req.body.name,
+        gioiTinh: req.body.sex,
+        avatar: file,
+        ngaySinh: req.body.birth,
+        email: req.body.email,
+        sdt: req.body.phone,    
+        phanHe: req.session.passport.user.PhanHe
+    }
+    console.log(entity)
+
+    fs.rename(req.file.path, file, function (err) {
+        if (err) {
+            console.log(err);
+            res.send(500);
+        } else {
+            entity.avatar = file.slice(9);
+            (async () => {
+                await userModel.update(entity);
+                res.redirect('/user/profile');
+            })();
+        }
+    });
+})
+
 module.exports = router
