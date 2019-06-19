@@ -3,7 +3,7 @@
         <div class="container-fluid">
           <ul class="breadcrumb">
             <li class="breadcrumb-item"><a href="/">Trang chủ</a></li>
-            <li class="breadcrumb-item active">Danh sách bài viết</li>
+            <li class="breadcrumb-item active">Danh sách nguời dùng</li>
           </ul>
         </div>
       </div>
@@ -14,7 +14,6 @@
           <header>
             <h1 class="h3 display">{{title}}</h1>
           </header>
-          
           {{#if err_message}}
           <div class="alert alert-warning alert-dismissible fade show" role="alert">
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -28,7 +27,7 @@
             <div class="col-lg-12 col-sm-6">
               <div class="card">
                 <div class="card-header">
-                  <h4>Danh sách bài viết</h4>
+                  <h4>Danh sách người dùng</h4>
                 </div>
                 {{#if rows}}
                 <div class="card-body">
@@ -36,11 +35,10 @@
                     <table class="table table-striped table-hover">
                       <thead>
                         <tr style="text-align:center">
-                          <th>#</th>
-                          <th>Tên Bài Viết</th>
-                          <th>Chuyên Mục</th>
-                          <th>Người viết</th>
-                          <th>Thời gian viết</th>
+                          <th style="text-align:left">#</th>
+                          <th style="text-align:left">Username</th>
+                          <th style="text-align:left">Tên người dùng</th>
+                          <th style="text-align:left">Hạn</th>
                           <th>Thao tác</th>
                         </tr>
                       </thead>
@@ -48,13 +46,16 @@
                         {{#each rows}}
                         <tr>
                           <td>{{@index}}</td>
-                          <td>{{TieuDe}}</td>
-                          <td>{{TenChuyenMuc}}</td>
-                          <td>{{PhongVien}}</td>
-                          <td>{{format NgayViet}}</td>
-                          <td style="text-align:center"><a href="./post/preview?idBaiViet={{IDBaiViet}}"><button
-                                class="btn btn-success">Duyệt</button></a><button type="button"
-                              class="btn btn-danger text-center" data-toggle="modal" data-target="#delPost">Từ chối</button>
+                          <td>{{UserName}}</td>
+                          <td>{{HoTen}}</td>
+                          {{#if NgayHetHan}}
+                          <td>{{format NgayHetHan}}</td>
+                          {{else}}
+                          <td>Hết hạn hoặc chưa subcrible</td>
+                          {{/if}}
+                          <td style="text-align:center"><a href="/admin/manage/giahan?id={{ID}}">
+                          <button class="btn btn-success">Gia hạn</button></a><button type="button"
+                              class="btn btn-danger text-center" data-toggle="modal" data-target="#delPost">Xóa</button>
                           </td>
                         </tr>
                         <div class="modal fade" id="delPost" tabindex="-1" role="dialog" aria-labelledby="delPostLabel"
@@ -68,11 +69,11 @@
                                 </button>
                               </div>
                               <div class="modal-body">
-                                Hmm! Các hạ có thật sự muốn từ chối bài viết ?
+                                Hmm! Các hạ có thật sự muốn người này không ?
                               </div>
                               <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-                                <a href="./post/refuse?idBaiViet={{IDBaiViet}}"><button type="button"
+                                <a href="/admin/manage/delUser?id={{ID}}"><button type="button"
                                     class="btn btn-danger text-center">Xóa luôn!</button></a>
                               </div>
                             </div>
@@ -85,7 +86,7 @@
                 </div>
                 {{else}}
                 <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                  Không có bài viết chưa xử lý
+                  Không có bài chưa đăng
                 </div>
                 {{/if}}
               </div>

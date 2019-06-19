@@ -1,0 +1,103 @@
+      <!-- Breadcrumb-->
+      <div class="breadcrumb-holder">
+        <div class="container-fluid">
+          <ul class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">Trang chủ</a></li>
+            <li class="breadcrumb-item active">Danh sách bài viết</li>
+          </ul>
+        </div>
+      </div>
+      <section>
+
+        <div class="container-fluid">
+          <!-- Page Header-->
+          <header>
+            <h1 class="h3 display">{{title}}</h1>
+          </header>
+          <div class="row">
+            <div class="col-lg-6 col-sm-6">
+              <div class="card">
+                <div class="card-header">
+                  <h4>Danh sách chuyên mục</h4>
+                </div>
+                {{#if cmRes}}
+                <div class="card-body">
+                  <div class="table-responsive">
+                    <table class="table table-striped table-hover">
+                      <thead>
+                        <tr style="text-align:left">
+                          <th>#</th>
+                          <th>Tên chuyên mục</th>
+                          <th>Chuyên mục cha</th>
+                          <th style="text-align:center">Thao tác</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {{#each cmRes}}
+                        <tr>
+                           {{#ifCond ChuyenMucCha '!=' null}}
+                              <form action="/admin/manage/changeNameCategory?id={{IDChuyenMuc}}&cmCha={{ChuyenMucCha}}"method="POST">
+                              {{else}}
+                              <form action="/admin/manage/changeNameCategory?id={{IDChuyenMuc}}&cmCha=null"method="POST">
+                              {{/ifCond}}
+                          <td>{{@index}}</td>
+                          <td><input type="text" class="form-control" name='name' value="{{TenChuyenMuc}}"></td>
+                          {{#ifCond ChuyenMucCha '!=' null}}
+                          <td>{{TenChuyenMucCha}}</td>
+                          {{else}}
+                          <td>-</td>
+                          {{/ifCond}}
+                          <td style="text-align:center"><button type="submit" class="btn btn-success text-center">Sửa tên</button></form>
+                          <a href="/admin/manage/delCategory?id={{IDChuyenMuc}}"><button class="btn btn-danger">Xóa</button></a></td>
+                              
+                        </tr>
+                        {{/each}}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+                {{else}}
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                  Không có chuyên mục
+                </div>
+                {{/if}}
+              </div>
+            </div>
+            <div class="col-lg-6 col-sm-6">
+              <div class="card">
+                <div class="card-header">
+                  <h4>Danh sách nhãn</h4>
+                </div>
+                {{#if tagsRes}}
+                <div class="card-body">
+                  <div class="table-responsive">
+                    <table class="table table-striped table-hover">
+                      <thead>
+                        <tr style="text-align:left">
+                          <th>#</th>
+                          <th>Tên Nhãn</th>
+                          <th style="text-align:center">Thao tác</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {{#each tagsRes}}
+                        <tr>
+                          <td>{{@index}}</td>
+                          <td>{{TenTag}}</td>
+                          <td style="text-align:center"><a href="/admin/manage/delTag?tag={{TenTag}}"><button class="btn btn-danger">Xóa</button></a></td>
+                        </tr>
+                        {{/each}}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+                {{else}}
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                  Không có nhãn
+                </div>
+                {{/if}}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>

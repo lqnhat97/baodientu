@@ -30,6 +30,11 @@ exports.xoaBaiViet=(id)=>{
     return db.load(sql);
 }
 
+exports.tuChoiBaiViet=(id)=>{
+    let sql = `update baiviet set baiviet.DaDuyet = '-1', baiviet.NgayDang = null where baiviet.IDBaiViet = ${id}; `;
+    return db.load(sql);
+}
+
 exports.idBaiVietMoiNhat=()=>{
     let sql = `call LayIDBaiVietMoi(@idbaivietmoi);`;
     return db.load(sql);
@@ -42,5 +47,10 @@ exports.themNhan=(data)=>{
 
 exports.xoaNhan=(idBaiViet)=>{
     let sql = `call XoaNhan('${idBaiViet}');`;
+    return db.load(sql);
+}
+
+exports.xuatBan=(id,idBaiViet,date)=>{
+    let sql = `call DuyetBaiVaXacDinhNgayXuatBan('${id}','${idBaiViet}','${date}') `;
     return db.load(sql);
 }

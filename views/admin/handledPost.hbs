@@ -41,43 +41,33 @@
                           <th>Chuyên Mục</th>
                           <th>Người viết</th>
                           <th>Thời gian viết</th>
-                          <th>Thao tác</th>
+                          <th>Tình trạng</th>
                         </tr>
                       </thead>
                       <tbody>
                         {{#each rows}}
                         <tr>
                           <td>{{@index}}</td>
+                          {{#ifCond XuatBan '==' 1}}
+                          <td><a href="/post/{{IDBaiViet}}">{{TieuDe}}</a></td>
+                          {{else}}
                           <td>{{TieuDe}}</td>
+                          {{/ifCond}}
                           <td>{{TenChuyenMuc}}</td>
                           <td>{{PhongVien}}</td>
                           <td>{{format NgayViet}}</td>
-                          <td style="text-align:center"><a href="./post/preview?idBaiViet={{IDBaiViet}}"><button
-                                class="btn btn-success">Duyệt</button></a><button type="button"
-                              class="btn btn-danger text-center" data-toggle="modal" data-target="#delPost">Từ chối</button>
-                          </td>
+                          {{#ifCond DaDuyet '==' XuatBan}}
+                          <td style="color:blue">Đã đăng</td>
+                          {{/ifCond}}
+                          {{#ifCond DaDuyet '==' -1}}
+                          <td style="color:red">Đã từ chối</td>
+                          {{else}}
+                          {{#ifCond XuatBan '==' 0}}
+                          <td style="color:green">Chờ xuất bản</td>
+                          {{/ifCond}}
+                          {{/ifCond}}
+
                         </tr>
-                        <div class="modal fade" id="delPost" tabindex="-1" role="dialog" aria-labelledby="delPostLabel"
-                          aria-hidden="true">
-                          <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                              <div class="modal-header">
-                                <h5 class="modal-title" id="delPostLabel">Khoan! Vị huynh đài đây đợi tí</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Đóng">
-                                  <span aria-hidden="true">&times;</span>
-                                </button>
-                              </div>
-                              <div class="modal-body">
-                                Hmm! Các hạ có thật sự muốn từ chối bài viết ?
-                              </div>
-                              <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-                                <a href="./post/refuse?idBaiViet={{IDBaiViet}}"><button type="button"
-                                    class="btn btn-danger text-center">Xóa luôn!</button></a>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
                         {{/each}}
                       </tbody>
                     </table>

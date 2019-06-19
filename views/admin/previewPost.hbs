@@ -8,7 +8,7 @@
       </div>
     </div>
     <section class="editor">
-      <form id="uploadFormEdit" enctype="multipart/form-data" method="post">
+      <form id="exportFormEdit" method="post">
 
         <div class="container-fluid">
           <!-- Page Header-->
@@ -34,11 +34,11 @@
                 </button>
               </div>
               <div class="modal-body">
-                Bạn có đồng ý duyệt bài này ? ?
+                <input id="datepicker" name="date" required width="100%" />
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-                <button type="submit" class="btn btn-success text-center" id="post">Lưu những thay đổi</button>
+                <button type="submit" class="btn btn-success text-center" id="post">Xuất bản</button>
               </div>
             </div>
           </div>
@@ -49,17 +49,22 @@
       <script>
         $(document).ready(() => {
           var quill = new Quill('#editor');
-          var data = {{{json baiViet.NoiDung}}};
+          var data = {{{json baiViet.NoiDung}}} ;
           quill.setContents(data);
           quill.root.innerHTML;
           quill.disable(true);
-          $('#uploadFormEdit').submit((e) => {
-            console.log(quill.root.innerHTML);
+
+          $('#datepicker').datepicker({
+            uiLibrary: 'bootstrap4'
+          });
+
+          $('#exportFormEdit').submit((e) => {
+            var date =$('#datepicker').val();
+            console.log(date);
             $("<input />").attr("type", "hidden")
               .attr("name", "noiDung")
-              .attr("value", quill.root.innerHTML)
-              .appendTo("#uploadFormEdit");
-            alert("ok");
+              .attr("value",date)
+              .appendTo("#exportFormEdit");
             return true;
           })
         })

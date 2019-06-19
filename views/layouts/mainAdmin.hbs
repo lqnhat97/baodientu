@@ -42,6 +42,10 @@
   <script src="/admin/vendor/jquery.cookie/jquery.cookie.js"> </script>
   <script src="/admin/vendor/jquery-validation/jquery.validate.min.js"></script>
   <script src="/admin/vendor/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
+  <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
   <!-- Main File-->
   <script src="/admin/js/front.js"></script>
   <!-- Side Navbar -->
@@ -63,6 +67,7 @@
         <h5 class="sidenav-heading">Menu</h5>
         <ul id="side-main-menu" class="side-menu list-unstyled">
           <li><a href="/admin"> <i class="icon-home"></i>Trang chủ </a></li>
+          {{#ifCond _user.passport.user.PhanHe '==' 2}}
           <li><a href="/admin/post"> <i class="icon-form"></i>Đăng bài viết </a></li>
           <li><a href="#dsBaiViet" aria-expanded="false" data-toggle="collapse"> <i
                 class="icon-interface-windows"></i>Danh sách bài viết </a>
@@ -73,23 +78,23 @@
               <li><a href="/admin/listpost/waitExport">Đã được duyệt & chờ xuất bản</a></li>
             </ul>
           </li>
-          {{#ifCond _user.passport.user.PhanHe '>' 2}}
+          {{/ifCond}}
+          {{#ifCond _user.passport.user.PhanHe '==' 3}}
           <li><a href="#dsBaiVietQuanLy" aria-expanded="false" data-toggle="collapse"> <i
                 class="icon-interface-windows"></i>Quản lí bài viết</a>
             <ul id="dsBaiVietQuanLy" class="collapse list-unstyled ">
               <li><a href="/admin/handlePost">Danh sách bài viết chưa xử lý</a></li>
-              <li><a href="/admin/listpost/exported">Danh sách bài viết đã xử lý</a></li>
+              <li><a href="/admin/handlePost/handled">Danh sách bài viết đã xử lý</a></li>
             </ul>
           </li>
           {{/ifCond}}
-          {{#ifCond _user.passport.user.PhanHe '>' 3}}
+          {{#ifCond _user.passport.user.PhanHe '==' 4}}
           <li><a href="#qly" aria-expanded="false" data-toggle="collapse"> <i class="icon-interface-windows"></i>Quản lý
             </a>
             <ul id="qly" class="collapse list-unstyled ">
-              <li><a href="/admin/listpost">Quản lý chuyên mục</a></li>
-              <li><a href="/admin/listpost">Quản lý nhãn</a></li>
-              <li><a href="/admin/listpost">Quản lý bài viết</a></li>
-              <li><a href="/admin/listpost">Quản lý danh sách người dùng</a></li>
+              <li><a href="/admin/manage/categories">Quản lý chuyên mục</a></li>
+              <li><a href="/admin/manage/posts">Quản lý bài viết</a></li>
+              <li><a href="/admin/manage/users">Quản lý danh sách người dùng</a></li>
             </ul>
           </li>
           {{/ifCond}}
